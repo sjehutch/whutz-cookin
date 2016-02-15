@@ -1,0 +1,200 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured"><a class="homefeatured" href="#/my-profile">MY PROFILE</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div id="slider_row">
+            <div class="center_column " id="top_column"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-body"> <img style="max-width: 100%; max-height: 240px; min-height: 240px;" class="thumbnail" src="uploads/{{ user.profile_photo || 'user.png' }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ user.name }}</b> <br>
+                  <p> {{ user.email }} </p>
+                  <br>
+                  <center>
+                    <p class="col-sm-12 nopd">
+                    <a href="http://fb.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/f.png" alt="facebook" class="img-responsive"></a>
+                    <a href="http://twitter.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/t.png" alt="twitter" class="img-responsive"></a>
+                    <a href="http://plus.google.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/g.png" alt="Gmail plus" class="img-responsive"></a>
+                    <a href="http://linkedin.com" target="_blank" class="col-sm-3 plr2" ><img src="views/images/in.png" alt="linkedin" class="img-responsive"></a>
+                    </p>
+                    <br>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-8">
+              <form class="box" name="user" >
+                <h3 class="page-subheading">Edit Your Profile</h3>
+                <div class="form_content clearfix">
+                  <div class="form-group">
+                    <label for="profile" class="pointer">Your Profile Photo</label>
+                    <input type="file" id="profile" ngf-select ng-model="profile_photo"  ngf-pattern="'image/*'"
+    accept="image/*">
+                    <div ng-if="user.profile_photo != null">
+                        <img ng-src="{{ 'uploads/'+ user.profile_photo }}" alt="{{ user.name }}" class="pull-left"/>
+                        <a class="close pull-left pl10" ng-click="user.profile_photo = null" style="max-width:50%">X</a>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text"  class="form-control" ng-model="user.name" required="">
+                  </div>
+                  
+                  
+                  <!-- user -->
+                  <div class="full" ng-if="auth.getType() =='user'">
+                      <div class="form-group">
+                        <label >Mobile</label>
+                        <input type="text" ng-model="user.mobile" class="form-control">
+                      </div>
+                    <div class="form-group">
+                    	<label>Email</label>
+                   		<input type="email"  class="form-control" ng-model="user.email">
+                 	 </div>
+                     <div class="form-group">
+                    	<label>Password</label>
+                   		<input type="password"  class="form-control" ng-model="user.password">
+                 	 </div>
+                      <div class="form-group">
+                    	<label >Address</label>
+                    	<textarea class="form-control" ng-model="user.address" cols="50" rows="4"> </textarea>
+                  	  </div>
+                      <div class="form-group">
+                    	<label >City</label>
+                    	<input type="text" ng-model="user.city" class="form-control">
+                 	 </div>
+                     <div class="form-group">
+                    	<label >State</label>
+                    	<input type="text" ng-model="user.state" class="form-control">
+                  	 </div>
+                     <div class="form-group">
+                    	<label >Zip</label>
+                   	 	<input type="text" ng-model="user.zip" class="form-control">
+                  	 </div>
+                  </div>
+                  
+				 
+                 <!--  cook -->
+                 <div class="full" ng-if="auth.getType() == 'cook'">
+                    <div class="form-group">
+                    	<label >BUSINESS NAME</label>
+                    	<input type="text" ng-model="user.business_name" class="form-control" placeholder="BUSINESS NAME">
+                    </div>
+                    <div class="form-group">
+                    	<label>Phone</label>
+                    	<input type="text" class="form-control" ng-model="user.phone">
+                    </div>
+                    <div class="form-group">
+                    	<label >Mobile</label>
+                    	<input type="text" ng-model="user.mobile" class="form-control">
+                    </div>
+                   	<div class="form-group">
+                    	<label>Email</label>
+                   		<input type="email"  class="form-control" ng-model="user.email">
+                 	 </div>
+                    <div class="form-group">
+                    	<label >D.O.B</label>
+                    	<input type="text" ng-model="user.dob" class="form-control" uib-datepicker-popup>
+                  	</div>
+                    <div class="form-group">
+                    	<label >Address</label>
+                    	<textarea class="form-control" ng-model="user.address" cols="50" rows="4"> </textarea>
+                  	  </div>
+                      <div class="form-group">
+                    	<label >City</label>
+                    	<input type="text" ng-model="user.city" class="form-control">
+                 	 </div>
+                     <div class="form-group">
+                    	<label >State</label>
+                    	<input type="text" ng-model="user.state" class="form-control">
+                  	 </div>
+                     <div class="form-group">
+                    	<label>Zip</label>
+                   	 	<input type="text" ng-model="user.zip" class="form-control">
+                  	 </div>
+                     <div class="form-group">
+                   		<label> Website </label>
+                    	<input type="text" ng-model="user.website" class="form-control">
+                  	</div>
+                    <div class="form-group">
+                   		<label>SSN OR EIN</label>
+                    	<input type="text" ng-model="user.ssn_ein" class="form-control">
+                  	</div>
+                    <div class="form-group">
+                    	<label >Specialty</label>
+                    	<input type="text" ng-model="user.specialty" class="form-control">
+                 	 </div>
+                     <div class="form-group">
+                    	<label >Certification</label>
+                    	<input type="text" class="form-control input" placeholder="CERTIFICATIONS" name="user.certification" value="">
+                 	 </div>
+                     <div class="form-group">
+                    	<label >Amount of time cooking</label>
+                        <input type="text" class="form-control input"  ng-model="user.amount_time" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label >Awards</label>
+                        <input type="text" class="form-control input"  ng-model="user.award" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> fav food to cook </label>
+                        <input type="text" class="form-control input"  ng-model="user.fav_food" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Least fav food to cook </label>
+                        <input type="text" class="form-control input"  ng-model="user.least_fav" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Facebook </label>
+                        <input type="text" class="form-control input"  ng-model="user.facebook" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Youtube </label>
+                        <input type="text" class="form-control input"  ng-model="user.youtube" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Twitter </label>
+                        <input type="text" class="form-control input"  ng-model="user.twitter" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Instagram </label>
+                        <input type="text" class="form-control input"  ng-model="user.instagram" >
+                 	 </div>
+                     <div class="form-group">
+                    	<label> Payment </label>
+                        <input type="text" class="form-control input"  ng-model="user.payment" >
+                 	 </div>
+                     <div class="form-group">
+                         <select ng-model="user.cooking_type" class="form-control">
+                            <option value="">SELECTED</option>
+                            <option value="home_cook">HOME COOK</option>
+                            <option value="reg_cook">REG COOK/CHEF</option>
+                            <option value="family_cook">FAMILY OWNED REST.</option>
+                         </select>
+                      </div>
+                 </div>
+                  
+                  <div class="form-group">
+                    <label >Work history</label>
+                    <textarea class="form-control" ng-model="user.work_history" cols="50" rows="4"> </textarea>
+                  </div>
+                  <div class="submit">
+                    <button ng-click="update()" class="btn btn-default btn-md" ng-disabled="user.$invalid"> <span> <i class="fa fa-user left"></i> Update </span> </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

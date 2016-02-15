@@ -1,0 +1,39 @@
+
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div id="slider_row">
+        <div class="center_column " id="top_column">
+          <div id="homepage-slider">
+            <div class="row">
+              <div id="cs-slider"> <img title="" src="views/images/webBanner.jpg" > </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured"><a class="homefeatured" href="#">All Videos</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="col-md-4" ng-repeat="video in videos">
+           <!--<a ng-href="#/cook/dish/show/{{ photo.id }}">-->
+            <div class="panel panel-default">
+              <div class="panel-body">
+              <div ng-if="video.dish_video != null">
+                 <video  controls class="full pull-left" >
+                    <source ng-src="{{'uploads/'+video.dish_video}}" type="video/mp4">
+                 </video>
+              </div>
+              </div>
+            </div>
+            <!--</a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

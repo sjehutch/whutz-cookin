@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <!-- Character set configuration -->
+        <meta charset="UTF-8">
+
+        <!-- Viewport configuration, scaling options -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- Trying to make IE do its best -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Author and description -->
+        <meta name="author" content="whutz cookin">
+        <meta name="description" content="Whutz Cookin, Home Cooked Meals Delivered, Fine Dining at your Front Door.">
+
+        <!-- Open graph elements | http://ogp.me/ -->
+        <meta property="og:title" content="whutz cookin">
+        <meta property="og:image" content="images/slider/veggies.jpg">
+        <meta property="og:description" content="Whutz Cookin, Home Cooked Meals Delivered, Fine Dining at your Front Door.">
+
+        <!-- Hide the browser UI -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <!-- MS tile icons -->
+        <meta name="msapplication-TileColor" content="#e13e3e">
+        <meta name="msapplication-TileImage" content="mstile-144x144.html">
+
+        <!-- Android toolbar color -->
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Apple touch icons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+
+        <!-- Android touch icons -->
+        <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+        <!-- Web app manifest file | Make sure you edit the app name in it on 2nd line -->
+        <link rel="manifest" href="favicons/manifest.json">
+<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Stylesheets -->
+     <link rel="stylesheet" href="libs/materialize-src/css/materialize.css">
+        
+        <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="libs/owl-carousel/assets/owl.carousel.css">
+        <link rel="stylesheet" href="libs/animate.css/animate.min.css">
+        <link rel="stylesheet" href="styles/css/schemes/cookin.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="star/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+
+
+    <style>
+
+    input::-webkit-input-placeholder {
+color: #37751F !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: #37751F !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #37751F !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: #37751F !important;  
+}
+
+.input-field label {
+    color: #000 important;
+}
+.btn:hover {
+  background-color: #ddd;
+  -webkit-transition: background-color 1s ease;
+  -moz-transition: background-color 1s ease;
+  transition: background-color 1s ease;
+}
+
+.btn-small {
+  padding: .75em 1em;
+  font-size: 0.8em;
+}
+
+.modal-box {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 98%;
+  background: white;
+  border-bottom: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+@media (min-width: 32em) {
+
+.modal-box { width: 70%; 
+position:fixed;
+}
+}
+
+.modal-box header,
+.modal-box .modal-header {
+  padding: 1.25em 1.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-box header h3,
+.modal-box header h4,
+.modal-box .modal-header h3,
+.modal-box .modal-header h4 { margin: 0; }
+
+.modal-box .modal-body { padding: 2em 1.5em; }
+
+.modal-box footer,
+.modal-box .modal-footer {
+  padding: 1em;
+  border-top: 1px solid #ddd;
+  background: rgba(0, 0, 0, 0.02);
+  text-align: right;
+}
+
+.modal-overlay {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+a.close {
+  line-height: 1;
+  font-size: 1.5em;
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  text-decoration: none;
+  color: #bbb;
+}
+
+a.close:hover {
+  color: #222;
+  -webkit-transition: color 1s ease;
+  -moz-transition: color 1s ease;
+  transition: color 1s ease;
+}
+
+
+.input-field.col.s4 > label {
+  color: #93b486;
+  font-size: 15px !important;
+}
+.input-field.col.s6 > label{
+  color: #93b486;
+  font-size: 15px !important;
+}
+.input-field.col.s12 > label{
+  color: #93b486;
+  font-size: 15px !important;
+}
+
+
+    </style>
+        <!-- Site title -->
+        <title>WHUTZ COOKIN</title>
+    </head>
+    <body class="locked nav-fixed">
+
+        <!-- The initial spinner container -->
+        <div id="spinner-overlay"></div>
+
+        <!-- Progress indicator when an email is being sent -->
+        <div class="progress" id="status">
+            <div class="indeterminate"></div>
+        </div>
+
+        <!-- Fixed navigation bar -->
+        <div class="navbar-fixed">
+            <nav class="active">
+                <div class="nav-wrapper">
+                    <a href="index.php" class="brand-logo center">
+                        <img src="images/whutzcookin.png" alt="Whutz Cookin">
+                    </a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+					
+					<li><a  href="javascript:show_menu2();" class="waves-effect waves-dark">Survey</a></li>
+					
+					
+            
+                        <li><a href="recent-added-dishes.php" class="waves-effect waves-dark">Dashboard</a></li>
+                        <li><a href="index.php#contact" class="waves-effect waves-dark">contact us</a></li>
+                  
+
+
+          
+            
+                    </ul>
+          
+
+
+ <ul class="right hide-on-med-and-down">
+<li><a href="profile.php" class="waves-effect waves-dark">Welcome Ashish</a></li>
+<li><a href="http://www.whutzcookin.com/web_cookin/logout.php" class="waves-effect waves-dark">Logout </a></li>
+</ul>
+
+      
+
+                   
+                    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a><br>
+          
+          <center>
+          
+          
+      
+        
+      
+      
+        
+      
+              
+          
+          
+                
+          
+          
+          
+    
+          
+          
+                
+          
+          </center>
+                </div>
+            </nav>
+      
+      
+      
+        </div>
+
+        <!-- Mobile menu.
+             You can slide it out with your finger, too :-) -->
+       
+       
+       
+
+        <ul id="slide-out" class="side-nav">
+            <li><a href="#cook">Book a Cook</a></li>
+            <li><a  href="#plate">Chef</a></li>
+      
+        </ul>
+
+        <!-- Overlay navigation icon -->
+        <div class="nav-icon-container">
+            <div class="nav-icon"></div>
+        </div>
+
+        <!-- Overlay navigation -->
+        <div class="nav-overlay-wrapper">
+            <div class="nav container">
+                <div class="row">
+                    <div class="col s12 m10 offset-m2">
+                        <ul id="nav-items">
+                            <li><a href="#intro" class="waves-effect waves-light">Intro</a></li>
+                            <li><a href="#atmosphere" class="waves-effect waves-light">Atmosphere</a></li>
+                            <li><a href="#menu" class="waves-effect waves-light">Menu</a></li>
+                            <li><a href="#reservations" class="waves-effect waves-light">Reservations</a></li>
+                            <li><a href="#chef" class="waves-effect waves-light">Chef</a></li>
+                            <li><a href="#events" class="waves-effect waves-light">Events</a></li>
+                            <li><a href="#contact" class="waves-effect waves-light">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+<div id="popup1" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>Service in your area is not available.<br> Your account has been registered. You will get new updates soon.</h5></center>
+  </div>
+  <footer> <a href="#" class="btn js-modal-close">Close</a> </footer>
+</div>
+
+
+<div id="popup2" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>Welcome Cook to Whutz Cookin<br><br>You are logged in as Cook , You can add new dish for sale.</h5><br>
+	<a href="profile.php">
+            <button class="btn btn-cart">Visit Dashboard</button></a>
+  
+	<a href="add-new-dish.php">
+            <button class="btn btn-cart">Add New Dish <i class="fa fa-plus"></i></button></a>
+  
+
+  </center>
+  </div>
+  
+</div>
+
+
+<div id="popup3" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>Your dish has been added for sale.<br><br>You can see all your added dishes.</h5><br>
+  <a href="web-cookin.php">
+<button class="btn btn-cart">See All Dishes <i class="fa fa-search"></i></button></a>
+  
+
+  </center>
+  </div>
+  
+</div>
+
+
+
+
+<div id="popup4" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    
+
+  </center>
+  </div>
+  
+</div>
+
+<div id="popup5" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>You must logged in<br><br>To use the services of website</h5><br>
+  
+
+  </center>
+  </div>
+  
+</div>
+
+<div id="del" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>Your Account Registered For Delivery <br></h5><br>
+  
+
+  </center>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<div id="sur" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><img src="http://www.whutzcookin.com/cookin/images/logo2.png" style="width:200px;"></center>
+  </header>
+  <div class="modal-body">
+    <center><h5>Thanks for being a part of our survey.</br> You will get service soon.<br></h5><br>
+  
+
+  </center>
+  </div>
+  
+</div>
+
+
+
+
+
+<div id="delivery" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><h5>Delivery Registration<br></h5></center>
+  </header>
+  <div class="modal-body">
+    <center>
+      <div class="row">
+        <form class="col s12" action="web_cookin/phpcode.php" method="POST" id="create-account_form">
+          <div class="row">
+            <div class="input-field col s4">
+              <input id="last_name" type="text" name="name" class="validate">
+              <label for="last_name">Your Name</label>
+            </div>  
+            <div class="input-field col s4">
+              <input id="email" type="email" name="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="password" type="password" name="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+            <div class="input-field col s4">
+              <input type="date" class="datepicker" name="dob" placeholder="Birth date">
+            </div>
+            <div class="input-field col s4">
+              <input id="ssn_name" name="ssn" type="text" class="validate">
+              <label for="ssn">SSN OR EIN</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="mobile" type="text" name="mobile" class="validate">
+              <label for="mobile">Mobile</label>
+            </div> 
+             <div class="input-field col s4">
+              <input id="car-type" type="text" name="car_type" class="validate">
+              <label for="ca-type">Car Type</label>
+            </div> 
+            <div class="input-field col s4">
+              <input id="car-model" type="text" name="car_model" class="validate">
+              <label for="car-model">Car Model</label>
+            </div> 
+            <div class="input-field col s4">
+              <select name="travel">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <label>Willing to Travel</label>
+          </div>
+        </div>
+        
+        <button name="delivery" type="submit" class="btn-large btn-bordered waves-effect waves-light transparent disabled"> Create an account
+                        </button>
+						</form>
+      </div>
+
+
+  </center>
+  </div>
+
+</div>
+
+<!--survey form-->
+
+
+<div id="survey" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <center><h5>Online Survey<br></h5></center>
+  </header>
+  <div class="modal-body">
+    <center>
+      <div class="row">
+        <form class="col s12" action="web_cookin/phpcode.php" method="POST" id="create-account_form">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="last_name" type="text" name="name" class="validate">
+              <label for="last_name">Your Name</label>
+            </div>  
+            <div class="input-field col s6">
+              <input id="email" type="email" name="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+             <div class="input-field col s6">
+              <select name="del">
+                <option value="" disabled selected>Delivery Option</option>
+                <option value="By yourself">By yourself</option>
+                <option value="By Delivery Person">By Delivery Person</option>
+              </select>
+              <label>Your Prefer Delivery Option</label>
+          </div>
+          <div class="input-field col s6">
+              <input id="area_code" type="text" name="Code" class="validate">
+              <label for="area_code">Your Area Code</label>
+            </div>
+            <div class="input-field col s6">
+          <textarea id="textarea1" name="kind" class="materialize-textarea"></textarea>
+          <label for="textarea1">What kind of dishes you want to buy/sale?</label>
+        </div>
+        <div class="input-field col s6">
+          <textarea id="textarea1" name="comment" class="materialize-textarea"></textarea>
+          <label for="textarea1">Any Comment</label>
+        </div>
+        
+        <button name="survey" type="submit" class="btn-large btn-bordered waves-effect waves-light transparent disabled"> Submit</button>
+            </form>
+      </div>
+
+
+  </center>
+  </div>
+
+</div>
+<script>
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+
+    
+      
+</script> <style>
+
+.select-wrapper input.select-dropdown {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: transparent;
+  border-color: -moz-use-text-color -moz-use-text-color #9e9e9e;
+  border-image: none;
+  border-style: none none solid;
+  border-width: medium medium 1px;
+  color: rgb(147,180,134) !important;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 3rem;
+  line-height: 3rem;
+  margin: 0 0 15px;
+  outline: medium none;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+h5 {
+  color: rgb(150, 201, 92);
+  font-weight: bold;
+  text-align: left;
+}
+.collection-item {
+  text-align: left;
+}
+h4 {
+  font-size: large;
+  text-align: left;
+}	
+.content-box {
+  border: 1px solid lightgrey;
+  padding: 4px 21px;
+}
+.input-field > input, textarea {
+  background: none !important;
+}
+[type="checkbox"]:checked + label::before {
+  border-color: transparent #26a69a #26a69a transparent;
+  border-style: solid;
+  border-width: 2px;
+  height: 13px;
+  left: -3px;
+  top: -4px;
+  transform: rotate(40deg);
+  transform-origin: 100% 100% 0;
+  width: 9px;
+}
+[type="checkbox"] + label::before {
+  border: 2px solid #5a5a5a;
+  border-radius: 1px;
+  content: "";
+  height: 13px;
+  left: 0;
+  margin-top: 2px;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease 0s;
+  width: 13px;
+  z-index: 0;
+}
+.filled-in[type="checkbox"]:checked + label::after {
+  background-color: rgb(150, 201, 92);
+  border: medium none rgb(150, 201, 92);
+  height: 20px;
+  top: 0;
+  width: 20px;
+  z-index: 0;
+}
+
+.content-box label {
+  font-size: 13px;
+}
+*::-moz-placeholder {
+  color: rgb(146, 167, 134);
+}
+h2 {
+  font-size: 15px;
+  margin-top: 40px !important;
+  text-align: left;
+}
+p {
+  float: left;
+  text-align: left;
+  width: 100%;
+  margin:0px;
+}
+td:last-child{
+	color:grey;
+}
+
+.dish-detail li {
+  margin: 5px 0;
+  text-align: left;
+}
+.social > li {
+  float: left;
+  width: 33%;
+}
+.social > li > p{
+	text-align:center;
+}
+.desc > strong {
+  float: left;
+  text-align: left !important;
+  width: 100%;
+}
+ </style>
+   <div class="section white-text center" id="intro">
+        <div class="row">
+			<div class="col s12 m3  5 wow fadeIn">						
+									
+					
+					
+								
+<ul class="collection with-header" style="text-align: left;">
+<li class="collection-header"><h5 style="color: #000;">USER MENU</h5></li>
+<li class="collection-item"><a href="index.php">HOME</a><i class="fa fa-caret-right"></i></li>
+<li class="collection-item">
+<a href="#" id="flip">
+MESSAGES 
+<div class="pull-right" style="background-color: rgb(213, 17, 17); width: 30px; height: 30px; text-align: center; line-height: 27px; border-radius: 50%; margin: -5px; color: aliceblue;">
+0</div>
+</a>
+</li>	
+        <li class="collection-item"><a href="profile.php">MY PROFILE</a><i class="fa fa-caret-right"></i></li>
+        <li class="collection-item"><a href="recent-added-dishes.php">FOOD FOR SALE</a><i class="fa fa-caret-right"></i></li>
+        <li class="collection-item"><a href="my-past-ordered.php">MY ORDERS</a><i class="fa fa-caret-right"></i></li>
+		<li class="collection-item"><a href="view-booking.php">BOOKING WITH COOK</a><i class="fa fa-caret-right"></i></li>
+      
+      </ul>  
+ 			</div> 
+           <div class="col s12 m9 wow fadeIn content-box" style="color:#000;">
+				<h4 class="text-left" style="text-transform: uppercase; font-size: 28px;">Chicken Breasts Pierre</h4>
+					<hr/>
+				<div class="col m5">
+									<div class="profile card"><a href=""><img src="http://www.whutzcookin.com/cookin/img/75894auserfile_img1453267961.jpg" style="max-height:240px;"></a></div>
+					
+				</div>
+				<div class="col m6 offset-m1">
+					
+					
+					<div class="row">
+						<ul class="dish-detail" style="font-size: 22px;">
+							<li><strong style="color:red;">70 $</strong> pick up only</li>
+							<li><b style="color:green;">9</b> Plates Left | <b style="color:green;">20</b> Unfulfilled</li>
+							<li>1 week ago</li>
+							<li><b style="color:green; text-transform: uppercase; "><b style="color:black;">DISH BY:</b> Cook Mate</b></li>
+						</ul>
+						<br>
+				
+<form method="POST" action="http://www.whutzcookin.com/web_cookin/phpcode.php" data-ajax="false" enctype="multipart/form-data">				
+	<div class="row">	
+<div class="col-md-6">	
+<div style="">
+<input type="number" value="1" name="qnt" min="1" max="9">
+				</div>
+	</div>	
+<input type="hidden" name="product_id" value="165">
+<input type="hidden" name="rate" value="70">
+<input type="hidden" name="cookid" value="58">
+
+<div class="col-md-6 pull-left" >	
+<div class="submit" style="margin-top: -11px;">
+<button class="btn btn-default btn-md" type="submit" id="SubmitCreate" name="adddishweb">
+<span>
+<i class="fa fa-plus"></i>
+ADD TO CART
+</span>
+</button>
+</div>
+	</div>	
+	
+	</div>
+</form>	
+<br>
+						
+						
+						<ul class="social">
+							<li><p>Share</p><a href="#" onclick="postToFeed()" ><img src="img/facebook-share.png"></a></li>
+							<li><p>Share</p><a 
+							href="http://www.twitter.com/share?url=http://www.whutzcookin.com/dish-detail.php?id=165" target="_blank"><img src="img/twitter-share.png"></a></li>
+							<li><p>Share</p><a href="https://www.linkedin.com/shareArticle?mini=true&url=http://www.whutzcookin.com/dish-detail.php?id=165&title=Chicken Breasts Pierre&summary="One of my husband's favorites. I've been making this for over fifteen years, and he's not sick of it yet! Serve with pan sauces, crusty French bread and a tossed green salad."" target="_blank" ><img src="img/linkdin-share.png"></a></li>
+						</ul>
+						
+					</div>
+			</div>
+			<div class="desc">
+				<strong>Description</strong>
+				<hr/>
+				<p>"One of my husband's favorites. I've been making this for over fifteen years, and he's not sick of it yet! Serve with pan sauces, crusty French bread and a tossed green salad."</p>
+			</div>
+        </div>
+
+	</div>	
+	
+		
+        <div class="section" id="menu">
+            <div class="container">
+                <div class="row" style="display: none ! important;">
+                    <div class="col s12">
+                        <h2 class="dark-wave">Menu</h2>
+                        <p>HAPPY THANKSGIVING! THIS YEAR WE WILL HAVE A SPECIAL THANKSGIVING MENU AND DINNER SELECTION HOSTED BY CHEF TONEY IN DALLAS TEXAS CHECK OUT THE MENU BELOW</p>
+
+                        <!-- Tabs -->
+                        <ul class="tabs" id="menu-tabs">
+                            <li class="tab col s4 wow slideInLeft"><a class="active" href="#entree">Entr?e</a></li>
+                            <li class="tab col s4 wow fadeIn"><a href="#main-course">Main <span class="hide-on-small-and-down">course</span></a></li>
+                            <li class="tab col s4 wow slideInRight"><a href="#dessert">Dessert</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Contact section -->
+        <div class="section colorful-background white-text center" id="contact" style="display: none ! important;">
+           
+
+            <!-- Google map container -->
+            <div id="map"></div>
+        </div>
+<script>
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+        
+</script>
+ <script src="http://connect.facebook.net/en_US/all.js"></script>
+<script> FB.init({appId: "1484351695206404", status: true, cookie: true});
+
+function postToFeed() {
+var obj = {
+method: "feed",
+redirect_uri: "http://www.whutzcookin.com/dish-detail.php",
+link: "http://www.whutzcookin.com/dish-detail.php?id=165",
+picture: "http://www.whutzcookin.com/cookin/img/75894auserfile_img1453267961.jpg",
+name: "Dish Name : Chicken Breasts Pierre",
+caption: "http://www.whutzcookin.com/",
+description: ""One of my husband's favorites. I've been making this for over fifteen years, and he's not sick of it yet! Serve with pan sauces, crusty French bread and a tossed green salad.""
+};
+
+function callback(response) {
+document.getElementById("msg").innerHTML = "Post ID: " + response["post_id"];
+}
+
+FB.ui(obj, callback);
+}
+
+</script>
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l6">
+                        <h5>Instagram Feed</h5>
+
+                        <!-- INSTANSIVE WIDGET -->
+                        <script src="../instansive.com/widget/js/instansive.js"></script>
+                        <iframe
+                                src="http://instansive.com/widgets/ce8bf5f8fb71c3632a013164c08e1cb246626f42.html"
+                                id="instansive_ce8bf5f8fb"
+                                name="instansive_ce8bf5f8fb"
+                                scrolling="no"
+                                allowtransparency="true"
+                                class="instansive-widget"
+                                style="width: 100%; border: 0; overflow: hidden;">
+                        </iframe>
+                        Use #Whutzcookin to see your photos here!
+                    </div>
+                    <div class="col s12 l4 offset-l2 subscribe">
+                        <h5>Subscribe</h5>
+                        <p>
+                            Receive our news, events pre-sale information and more. No spam, unsubscribe anytime you want.
+                        </p>
+
+                        <!-- Begin MailChimp Signup Form -->
+                        <div id="mc_embed_signup">
+                            <form action="http://pimmey.us11.list-manage.com/subscribe/post?u=4131d254e34d85ebd3ba25ad3&amp;id=61196261e7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_4131d254e34d85ebd3ba25ad3_61196261e7" tabindex="-1" value=""></div>
+                                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--End mc_embed_signup-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer copyright and social icons -->
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            � 2015 <span class="bukhari-span">WHUTZ COOKIN</span>
+                        </div>
+                        <div class="col s12 m6">
+                           <span class="social right">
+                                <a href="#!"><i class="fa fa-facebook"></i></a>
+                                <a href="#!"><i class="fa fa-vk"></i></a>
+                                <a href="#!"><i class="fa fa-google-plus"></i></a>
+                                <a href="#!"><i class="fa fa-twitter"></i></a>
+                                <a href="#!"><i class="fa fa-pinterest"></i></a>
+                                <a href="#!"><i class="fa fa-instagram"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- These containers are needed to inject colors into JavaScript, do not remove -->
+        <div id="dark-color"></div>
+        <div id="base-color"></div>
+
+        <!-- JavaScript libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <script type="text/javascript" src="js/jquery.validate.js"></script>
+	    <script type="text/javascript" src="js/additional-methods.js"></script>
+		
+<script>
+$("#rgForm").validate();
+$("#loForm").validate();
+$("#pwdForm").validate();
+</script>
+		
+						   
+<script>
+$(document).ready(function(){
+    $("#show").click(function(){
+        $("#forget").show();
+    });
+});
+</script>	
+
+
+<script type="text/javascript">
+
+var url = window.location.href;
+if(url.indexOf('?status=service_not_available') != -1 || url.IndexOf('/offer1234') != -1) {
+    $('#popup1').show();
+}
+
+
+</script>
+
+
+<script type="text/javascript">
+var url = window.location.href;
+if(url.indexOf('?status=logged_cook') != -1 || url.IndexOf('status=logged_cook') != -1) {
+
+    $('#popup2').show();
+}
+
+
+</script>
+
+
+<script type="text/javascript">
+
+var url = window.location.href;
+if(url.indexOf('?status=dishadded') != -1 || url.IndexOf('status=dishadded') != -1) {
+
+    $('#popup3').show();
+}
+
+
+</script>
+	
+	
+<script type="text/javascript">
+var url = window.location.href;
+if(url.indexOf('?status=delivery_account_created') != -1 || url.IndexOf('status=dishadded') != -1) {
+
+    $('#del').show();
+}
+</script>	
+
+
+<script type="text/javascript">
+var url = window.location.href;
+if(url.indexOf('?status=survey_form_filled') != -1 || url.IndexOf('status=dishadded') != -1) {
+
+    $('#sur').show();
+}
+</script>	
+
+
+
+
+		
+<script type="text/javascript">
+
+var url = window.location.href;
+if(url.indexOf('?status=login_now') != -1 || url.IndexOf('status=dishadded') != -1) {
+
+    $('#popup5').show();
+}
+
+
+function show_menu(){
+    $('#delivery').show();
+
+}
+
+
+function show_menu2(){
+    $('#survey').show();
+
+}
+</script>	
+	
+<script>
+$(function(){
+
+var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+
+	$('a[data-modal-id]').click(function(e) {
+		e.preventDefault();
+    $("body").append(appendthis);
+    $(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+		var modalBox = $(this).attr('data-modal-id');
+		$('#'+modalBox).fadeIn($(this).data());
+	});  
+  
+  
+$(".js-modal-close, .modal-overlay").click(function() {
+    $(".modal-box, .modal-overlay").fadeOut(500, function() {
+        $(".modal-overlay").remove();
+    });
+ 
+});
+ 
+$(window).resize(function() {
+    $(".modal-box").css({
+        top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+    });
+});
+ 
+$(window).resize();
+ 
+});
+</script>		
+		
+
+			
+        <script src="libs/spin.js/spin.min.js"></script>
+        
+        <script src="libs/materialize-src/js/bin/materialize.min.js"></script>
+        <script src="libs/owl-carousel/owl.carousel.min.js"></script>
+        <script src="libs/masonry/dist/masonry.pkgd.min.js"></script>
+        <script src="libs/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"></script>
+        <script src="libs/scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min.js"></script>
+        <script src="libs/wow/wow.min.js"></script>
+        <script src="libs/sticky/jquery.sticky.js"></script>
+        <script src="libs/ajaxchimp/jquery.ajaxchimp.min.js"></script>
+         <script src="star/star-rating.js" type="text/javascript"></script>	
+        <!-- Sauce scripts -->
+        <script src="scripts/config.js"></script>
+        <script src="scripts/sauce.js"></script>
+        <script src="scripts/map-style.js"></script>
+
+
+        <!-- Google maps API -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+    </body>
+
+</html>

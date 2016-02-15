@@ -1,0 +1,28 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div id="center_column" class="center_column col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="tab-content">
+        <ul id="home-page-tabs" class="nav nav-tabs clearfix">
+          <li class="homefeatured"><a href="#" class="homefeatured">SEARCH BY MAP</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="breadcrumb clearfix"> <a class="home" href="http://livedemo00.template-help.com/prestashop_54022/" title="Return to Home"> <i class="fa fa-home"></i> </a> <span class="navigation-pipe">&gt;</span> Map Search </div>
+          <div id="slider_row">
+            <div id="top_column" class="center_column "></div>
+          </div>
+          <h1 class="page-heading">All Dishes Near By</h1>
+          {{ markers }}
+          <div class="row">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+              <ui-gmap-markers models="markers" coords="'self'" icon="'icon'"> </ui-gmap-markers>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,51 @@
+<!--view cart-->
+
+<div class="section" id="cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width: 13%;">Photo</th>
+              <th>Dish</th>
+              <th>Plates</th>
+              <th>Added On</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cart in carts">
+              <td><img style="width:100px;" class="thumbnail" ng-src="uploads/{{ cart.dish.dish_img }}"></td>
+              <td> {{ cart.dish.name }} </td>
+              <td> {{ cart.quantity }} </td>
+              <td> {{ cart.created_at }}</td>
+              <td> {{ cart.dish.price * cart.quantity }}</td>
+              <td><button class="btn btn-default btn-md" ng-click="remove(cart.id)"> <span> <i class="fa fa-times"></i> REMOVE DISH </span> </button></td>
+            </tr>
+            <!--<tr>
+              <td><input type="hidden" name="checkout_id" value="62">
+                <img style="width:100px;" class="thumbnail" src="http://www.whutzcookin.com/cookin/img/78923auserfile_img1448018852.jpg"></td>
+              <td> Chicken Roll </td>
+              <td>1 </td>
+              <td> Nov 24, 2015 </td>
+              <td>44</td>
+              <td><a href="remove-product.php?id=62">
+                <button class="btn btn-default btn-md"> <span> <i class="fa fa-times"></i> REMOVE DISH </span> </button>
+                </a></td>
+            </tr>-->
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><b>SUB TOTAL</b></td>
+              <td><b>{{ total }}</b></td>
+              <td class="text-center"><a class="grey-bg btn" ng-hide="carts.length == 0" href="#/order/place" >Place Order</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

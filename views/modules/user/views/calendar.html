@@ -1,0 +1,57 @@
+
+<style>
+
+.ui-icon-circle-triangle-w:before {
+  content: "\f104";
+}
+
+.ui-icon-circle-triangle-e:before {
+  content: "\f105";
+}
+
+#calendar h2{
+		font-size:32px;
+		margin-top:10px;
+}
+#calendar .fc-content th{
+	font-weight:bold;
+	text-align:center;
+}
+.fc-button{
+	border:1px solid #ccc !important;
+	padding:4px 5px;
+	cursor:pointer;	
+}
+#calendar .fc-content th,
+#calendar .fc-content td{
+	border:1px solid #ccc;
+}
+.fc-other-month{
+	color:	#ccc;
+}
+.fc-day > div{
+	min-height:90px;
+}
+.fc-event-title{
+	background:#96c95c;
+	color:#fff;
+	padding:2px;
+	cursor:pointer;	
+}
+.fc-header-right{
+	text-align:right;	
+}
+</style>
+
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+    
+      <p> MY Calendar  </p>
+       <div full-calendar events="events"></div>
+     <!--<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="events" calendar="myCalendar"></div> -->
+
+    </div>
+  </div>
+</div>

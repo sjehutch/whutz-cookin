@@ -1,0 +1,120 @@
+<script type="text/ng-template" id="dishUpdateTemplate">
+
+		<div class="modal-header">
+		  
+		  <h4 class="modal-title">Edit User Details</h4>
+		  <center>
+			<img ng-src="/uploads/{{ data.dish_img || 'dish-img.png' }}" alt="Dish" width="150" />
+		  </center>
+		</div>
+		<form >
+		  <div class="row">
+			<div class="col-md-6">
+			  <div class="form-group">
+				<label for="text">Id:</label>
+				<input type="text" ng-model="data.id" value="9" class="form-control" readonly>
+			  </div>
+			</div>
+			<div class="col-md-6">
+			  <div class="form-group">
+				<label for="text">Photo:</label>
+				<br>
+				<label class="uploadButton" for="image"></label>
+                <input type="file" id="image" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+    accept="image/*">
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-10">
+			  <div class="form-group">
+				<label for="text">Description:</label>
+				<textarea class="form-control" ng-model="data.description"></textarea>
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="modal-footer">
+			<button type="submit" class="btn btn-primary" ng-click="update()">Update</button>
+			<button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>
+		  </div>
+		</form>
+
+</script>
+
+<div>
+  <ul class="breadcrumb">
+    <li> <a href="#" style="color:#000;">Dishs</a> </li>
+  </ul>
+</div>
+
+<!--<div class="wrapGridList" clienttable2
+         tabledata='tabledata'
+         groupeditmode='groupeditmode'
+         totalcount='totalcount'
+         deletetargetlist='deleteOffer(I, K)'
+         edittargetlist='editOffer(I, K)'
+         selecttargetlist='editOffer(I, K)'
+         copytargetlist='copyOffer(I, K)'
+         deactivetargetlist='deactiveOffer(I,K)'
+         getnextpage='getnextpage()'
+         getprevpage='getprevpage()'
+         getselectpage='getselectpage(num)'
+         overridecopy="hidecopy" 
+         overrideedit="hideedit"
+         pagesize='pagesize'
+         currentpage='currentpage'
+         pagenumbers='pagenumbers'
+         searchtext='searchtext'>
+    </div>-->
+
+
+<div class=" row">
+  <div class="col-xs-6"> 
+    <!--<select ng-model="itemsByPage" class="form-control">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+        <label>Records Per Page</label>-->
+  </div>
+  <diV class="col-xs-6"> 
+   <!-- <input st-search placeholder="global search" class="input-sm form-control" type="search"/>-->
+  </diV>
+  <table st-table="rowsCollection" st-safe-src="dataCollection" class="table table-striped">
+    <thead>
+      <tr>
+        <th st-sort="id">Id</th>
+        <th>Cook</th>
+        <th>Photo</th>
+        <th st-sort="name">Dish Name</th>
+        <th st-sort="phone">Plates left</th>
+        <th >Delivery</th>
+        <th st-sort="zipcode">Zip</th>
+        <th st-sort="verification">Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in rowsCollection">
+        <td>{{ row.id }}</td>
+        <td>{{ row.cookname }}</td>
+        <td><img ng-src="/uploads/{{ row.dish_img || 'dish-img.png' }}" alt="dish" width="150" /></td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.delivery_method }}</td>
+        <td>{{ row.zipcode }}</td>
+        <td>{{ row.price }}</td>
+        <td><a class="btn" ng-click="showDishEditTemplate(row)">Edit</a>
+          <button type="button" ng-click="removeRow(row)" class="btn btn-sm btn-danger"> <i class="glyphicon glyphicon-remove-circle"> </i> </button></td>
+      </tr>
+      <tr ng-show="rowsCollection.length == 0" class="text-center">	<td> Data not found </td> </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" class="text-center"><div st-pagination st-items-by-page="itemsByPage" st-displayed-pages="7"></div></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

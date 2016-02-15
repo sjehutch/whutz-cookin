@@ -1,0 +1,128 @@
+<style>
+.moreThanZero{
+	color:#B5191F;	
+}
+
+</style>
+<script type="text/ng-template" id="template">
+
+		<div class="modal-header">
+		  
+		  <h4 class="modal-title">Details of Delivery</h4>
+
+		</div>
+		<form >
+		  <div class="row">
+			<div class="col-md-12 ">
+			  <div class="form-group">
+				<label for="text">Enter Amount:</label>
+				<input type="text" ng-model="data.paid_amount"  class="form-control">
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12">
+			  <div class="form-group">
+				<label for="text">Select Payement Mode:</label>
+				<select ng-model="data.payment_mode" class="form-control">
+					<option value="Via Transfer"> Via Transfer</option>
+					<option value="other"> Other</option>
+				</select>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12">
+			  <div class="form-group">
+				<label for="text">Remarks:</label>
+				<textarea ng-model="data.Remarks" class="form-control"></textarea>
+			  </div>
+			</div>
+		  </div>
+
+
+		  <div class="modal-footer">
+			<button type="submit" class="btn btn-primary" ng-click="update()">Update</button>
+		  </div>
+		</form>
+
+</script>
+
+<div>
+  <ul class="breadcrumb">
+    <li> <a href="#" style="color:#000;">Sales Records</a> </li>
+  </ul>
+</div>
+
+<!--<div class="wrapGridList" clienttable2
+         tabledata='tabledata'
+         groupeditmode='groupeditmode'
+         totalcount='totalcount'
+         deletetargetlist='deleteOffer(I, K)'
+         edittargetlist='editOffer(I, K)'
+         selecttargetlist='editOffer(I, K)'
+         copytargetlist='copyOffer(I, K)'
+         deactivetargetlist='deactiveOffer(I,K)'
+         getnextpage='getnextpage()'
+         getprevpage='getprevpage()'
+         getselectpage='getselectpage(num)'
+         overridecopy="hidecopy" 
+         overrideedit="hideedit"
+         pagesize='pagesize'
+         currentpage='currentpage'
+         pagenumbers='pagenumbers'
+         searchtext='searchtext'>
+    </div>-->
+
+
+<div class=" row">
+  <div class="col-xs-6"> 
+    <!--<select ng-model="itemsByPage" class="form-control">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+        <label>Records Per Page</label>-->
+  </div>
+  <diV class="col-xs-6"> 
+   <!-- <input st-search placeholder="global search" class="input-sm form-control" type="search"/>-->
+  </diV>
+  <table st-table="rowsCollection" st-safe-src="dataCollection" class="table table-striped">
+    <thead>
+      <tr>
+        <th st-sort="cook_id">Id</th>
+        <th> Photos  </th>
+        <th st-sort="name"> Name </th>
+        <th st-sort="email">Email</th>
+        <td st-sort="dishs"> Dishs </td>
+        <th st-sort="quantity">Booking</th>
+        <th st-sort="total">total</th>
+        <th st-sort="total">Balance</th>
+        <th >Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in rowsCollection" ng-init="row.balance = row.dishs + row.booking - row.paid_amount">
+        <td>{{ row.cook_id }}</td>
+        <td><img ng-src="/uploads/{{ row.photo || 'user.png' }}" alt="User" width="150" /}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.email }}</td>
+        <td>$ {{ row.dishs  }}</td>
+        <td>$ {{ row.booking }}</td>
+        <td>$ {{ row.dishs + row.booking }} </td>
+        <td ng-class="{'moreThanZero' : row.balance > 0}">$ {{ row.balance }}</td>
+        <td>
+        	<a class="btn" ng-click="showTemplate(row)"  ng-show="row.balance > 0">Pay Now</a>
+            <a class="btn" ng-hide="row.balance > 0">View</a>
+         </td>
+      </tr>
+      <tr ng-show="rowsCollection.length == 0" class="text-center">	<td> Data not found </td> </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" class="text-center"><div st-pagination st-items-by-page="itemsByPage" st-displayed-pages="7"></div></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="container sets-wrap uPlans">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
+      <div class="panel-group">
+        <div class="panel panel-default" ng-repeat="plan in plans">
+          <div class="panel-heading"> {{ plan.name }} ( ${{ plan.price }} ) </div>
+          <div class="panel-body"> 
+            <!--<p><img src="../images/"/></p>-->
+            <h3>Ideal for {{ plan.ideal_for }}</h3>
+            <p>{{ plan.videos_limit }} Videos up to {{ plan.pics_limit }} pics {{ plan.plates_limit }} plates per month.</p>
+            <p> {{ plan.description }} </p>            
+            <p>
+                <a class="btn btn-success" ng-click="activePlan(plan.id)"> Activate  </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

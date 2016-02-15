@@ -1,0 +1,98 @@
+<!--list-->
+
+<div class="section r2" id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="row mb10">
+          <div class="col-sm-12">
+            <div class="search-sets">
+              <input type="text" ng-model="searchDish" class="search-input" placeholder="Search" />
+              <a class="search-icon dish-search" > <!--<img src="views/images/search-icon.png" height="30" alt="search"/>--> </a> </div>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+              <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+                <ui-gmap-windows show="show">
+                  <div ng-non-bindable>
+                    <div>{{title}}</div>
+                    <div><small>Cook : </small>{{cook}}</div>
+                    <div><small>Price : </small>${{price}}</div>
+                  </div>
+                </ui-gmap-windows>
+              </ui-gmap-markers>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+        <div class="row dish-text-style nomr2" ng-repeat="dish in dishs">
+        	
+          <div class="full sm-desc" ng-init="dish.isDescShow=false" ng-click="dish.isDescShow = !dish.isDescShow">
+            <div class="col-xs-3  wow fadeIn dish-img-sets"> 
+            	<img ng-src="uploads/{{ dish.dish_img || 'dish-img.jpg'}}" alt="" class="img-responsive" />
+            	 <h2 class="mt10" style="margin-top:10px !important">{{ dish.user.name }}</h2>
+             </div>
+            <div class="col-xs-6">
+                <h2 style="text-align:left;">{{ dish.name }}</h2>
+               	 <p> {{ dish.description }} </p>
+                <!--<p class="rating"> <a ng-href="#/dish/show/{{ dish.id }}"> (11 comments) </a></p>-->
+               <!-- <p class="desc">{{ dish.quantity }} plates left | {{ dish.distance }}</p>-->
+             
+             <!-- <div class="col-sm-3 nopd cook-img-sets"> <img ng-src="uploads/{{dish.user.profile_photo || 'cook.jpg'}}" alt="" class="img-responsive" /> </div>-->
+            </div>
+            <div class="col-xs-3">
+            	 <h1 class="full">${{ dish.price }} </h1>
+                 <!--<a ng-href="#/dish/show/{{ dish.id }}" class="btn  btn-bordered waves-effect waves-light org mt10"> Add Cart </a><br/>-->
+                 
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);isFollow=false" ng-show="isFollow"> FOLLOW </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);isFollow=true" ng-hide="isFollow"> UNFOLLOW </a>
+                 
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);isFavorite=false" ng-show="isFavorite"> FAVORITE </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);isFavorite=true" ng-hide="isFavorite"> REMOVE FROM FAVORITE </a>
+            </div>
+          </div>
+          <!--<div class="full" ng-show="dish.isDescShow">
+            <div class="col-sm-12 dish-desc">
+              <p> {{ dish.description }} </p>
+            </div>
+            <div class="col-sm-12 dish-order-details">
+              <div class="col-sm-5 nopd">
+                <h1>${{ dish.price }} </h1>
+                <h3 class="delivery-type">{{ dish.delivery_method }}</h3>
+              </div>
+              <div class="col-sm-3 text-right">
+              		<a  class="btn  btn-bordered waves-effect waves-light org"> FAVORITE </a>
+              </div>
+              <div class="col-sm-4 nopd">
+                <input type="number" ng-model="dish.order_quantity" class="form-control addcart33" ng-init="dish.order_quantity=1"  />
+                <a type="submit" name="submit_search"  ng-click="addCart(dish.id,dish.order_quantity)" class="btn  btn-bordered waves-effect waves-light org"> Add Cart </a> </div>
+            </div>
+          </div>-->
+        </div>
+        
+        <div class="row dish-text-style nomr2" ng-repeat="cook in cooks">
+        <div class="full sm-desc" >
+            <div class="col-xs-3  wow fadeIn dish-img-sets"> 
+            	<img ng-src="uploads/{{ cook.profile_photo || 'user.png'}}" alt="" class="img-responsive" />
+            	
+             </div>
+            <div class="col-xs-6">
+                <h2 style="text-align:left;">{{ cook.name }}</h2>
+               	 <p> {{ cook.work_history }} </p>
+                <!--<p class="rating"> <a ng-href="#/dish/show/{{ dish.id }}"> (11 comments) </a></p>-->
+               <!-- <p class="desc">{{ dish.quantity }} plates left | {{ dish.distance }}</p>-->
+             
+             <!-- <div class="col-sm-3 nopd cook-img-sets"> <img ng-src="uploads/{{dish.user.profile_photo || 'cook.jpg'}}" alt="" class="img-responsive" /> </div>-->
+            </div>
+             <div class="col-xs-3">
+            	
+                 <!--<a ng-href="#/dish/show/{{ dish.id }}" class="btn  btn-bordered waves-effect waves-light org mt10"> Add Cart </a><br/>-->
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10"  href="#/send/cook.id"> Send Message </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favoriteCook(cook.id);isfavoriteCook=false" ng-show="cook.isfavoriteCook"> Favorite </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favoriteCook(cook.id);isfavoriteCook=true" ng-hide="cook.isfavoriteCook">Remove From Favorite </a>
+                 
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

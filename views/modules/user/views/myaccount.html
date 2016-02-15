@@ -1,0 +1,35 @@
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+    
+      <p> PAYMENTS RECORD </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Payment Mode</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in data[0]">
+            <td>{{ row.date }}</td>
+            <td>{{ row.paid_amount }}</td>
+            <td>{{ row.payment_mode }}</td>
+            <td>{{ row.remarks }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+        	<tr>
+             	<td>Balance</td>
+                <td></td>
+                <td></td>
+                <td>{{ data.total - data.paid }}</td>
+            </tr>
+        
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

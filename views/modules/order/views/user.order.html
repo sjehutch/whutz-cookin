@@ -1,0 +1,56 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured"><a style="text-transform: uppercase;" class="homefeatured" href="#">MY ORDERS</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+              	<th> Order No</th>
+                <th> Items Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="order in orders">
+              	<td> {{ order.id }}</td>
+                <td>
+                	<table  class="table table-bordered">
+                      <thead>
+                      	<tr ng-hide="order.order_items.length==0">
+                        	<th style="width: 13%;">Photo</th>
+                            <th>Dish</th>
+                            <th>Plates</th>
+                            <th>Placed On</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr ng-show="order.order_items.length==0">
+                        	<td>NO items Founds</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	<tr ng-repeat="item in order.order_items">
+                            <td><img ng-src="uploads/{{ item.dish.dish_img }}" alt="{{ item.dish.name }}" class="img-responsive" style="width: 150px;"/></td>
+                            <td> {{ item.dish.name }} </td>
+                            <td> {{ item.quantity }} </td>
+                            <td> {{ item.address || item.user.address }} </td>
+                            <td> {{ item.quantity * item.dish.price }} </td>
+                            <td style="text-transform: capitalize;"> {{ item.status }} </td>
+                        </tr>
+                       </tbody>
+                    </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

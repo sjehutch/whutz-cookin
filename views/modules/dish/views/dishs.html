@@ -1,0 +1,42 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div id="slider_row">
+        <div class="center_column " id="top_column">
+          <div id="homepage-slider">
+            <div class="row">
+              <!--<div id="cs-slider"> <img title="" src="views/images/webBanner.jpg" class="img-responsive"> </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured"><a class="homefeatured">All DISHES</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="col-md-4" ng-repeat="dish in dishs">
+            <div class="panel panel-default">
+              <div class="panel-body"> <img style="max-width: 100%; height: 190px;" class="thumbnail" ng-src="{{ '/uploads/'+dish.dish_img }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ dish.name }}</b> <br>
+                <p><b style="color:black;text-transform: uppercase;">DISH BY: {{ dish.user.name }}</b></p>
+                <p><b>{{ dish.quantity }} plates left <br/>
+                  <!--2 Miles Away--></b> </p>
+                <center>
+                  <span style="color:red; font-size: 22px;"><b>$ {{ dish.price }}</b></span><br>
+                  <a ng-href="{{ '#/dish/show/'+ dish.id }}">
+                  <div class="submit">
+                    <button name="adddishweb" id="SubmitCreate" type="submit" class="btn btn-default btn-md"> <span> <i class="fa fa-plus"></i> VIEW DETAILS </span> </button>
+                  </div>
+                  </a>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

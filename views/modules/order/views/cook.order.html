@@ -1,0 +1,35 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 nopd">
+      <div class="col-md-4" ng-repeat="order in orders">
+        <div class="panel panel-default">
+          <div class="panel-body"> <img ng-src="uploads/{{ order.dish.dish_img }}" class="thumbnail" style="max-width: 216px; max-height: 190px; min-height: 190px; min-width: 215px;" /> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ order.dish.name }}</b> <br>
+            <p><b style="color:black;text-transform: uppercase;" >ORDERED BY: {{ order.user.name }}</b></p>
+            <br/>
+            <p><b>Plates Ordered : {{ order.quantity }}</b> </p>
+            <b>{{ order.time_ago }}</b>
+            
+            <br/>
+            <label>Dish Status</label>
+            <select ng-model="order.status" ng-change="updateStatus(order)">
+            	<option value="">Select Dish Status</option>
+            	<option value="1">Pending</option>
+            	<option value="2">Ready</option>
+                <option value="3">Delivered</option>
+            </select>
+            <center>
+              <span style="color:red; font-size: 22px;"><b>$ {{ order.dish.price }}</b></span><br>
+              <br>
+              <a ng-href="#/dish/show/{{order.dish.id }}">
+              <div class="submit">
+                <button class="btn btn-default btn-md" type="submit" id="SubmitCreate" name="adddishweb"> <span> <i class="fa fa-plus"></i> VIEW DETAILS </span> </button>
+              </div>
+              </a>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

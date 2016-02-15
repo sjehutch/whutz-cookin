@@ -1,0 +1,619 @@
+<!-- The first section user sees. Make sure it looks tasty -->
+ <script type="text/ng-template" id="menuPopup">
+ 	<div class="open-desc text-center">
+		<div style="padding:30px 0;">
+			<img src="/views/images/logo2.png"  alt="logo" width="200"/>
+		</div>
+    	<h1>Welcome Cook to Whutz Cookin</h1>
+    	<p class>You are logged in as Cook , You can add new dish for sale.</p>
+		
+		<p>
+			<a href="#/dishs" ng-if="auth.getType()=='user'" ng-click="closeThisDialog()">DASHBOARD</a>
+			<a href="#/dashboard" ng-if="auth.getType()=='cook'" ng-click="closeThisDialog()">DASHBOARD</a>
+			
+			<a class="btn" href="#/cook/dish/0" ng-click="closeThisDialog()" >Add New Dish</a>
+		</p>
+	</div>
+</script>
+
+<script type="text/ng-template" id="deliveryTemplate">
+
+	<div class="row">
+		<div class="col-xs-12 text-center"><h3>DELIVERY REGISTRATION</h3></div>		
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 mt10 ">
+					<input type="text" placeholder="Your Name" class="form-control" ng-model="delivery.name" />
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="email" placeholder="email" class="form-control"  ng-model="delivery.email"/>
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="Password" class="form-control"  ng-model="delivery.password" />
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="Birth Date" class="form-control"  ng-model="delivery.dob" />
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="SSN OR EIN"  class="form-control"  ng-model="delivery.ssn_ein"/>
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="Mobile" class="form-control"  ng-model="delivery.mobile"/>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="Car type" class="form-control"  ng-model="delivery.car_type"/>
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<input type="text" placeholder="Car model" class="form-control"  ng-model="delivery.car_model" />
+				</div>
+				<div class="col-xs-12 col-sm-4 mt10">
+					<select ng-model="delivery.isTravel" class="form-control">
+						<option value="">Willing to travel</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="col-xs-12 text-center">
+			<a class="btn mt10" ng-click="save()"> Create a Account</a>
+		</div>
+	</div>
+	
+	
+
+</script>
+
+ <div style="height: 100%; width:100%;">
+	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+      <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        
+      </uib-slide>
+    </uib-carousel>
+    </div>
+
+
+
+<!--<div class="section owl-section" style="background-image:url(views/images/slider/veggies.jpg);background-size:100% auto;" id="homesection"> -->
+<div class="section owl-section" style="background-size:100% auto;position:absolute;top:0;z-index:99; width:100%" id="homesection" > 
+
+  <!--<div class="owl-carousel">
+
+                  <div class="owl-cover" style="background-image:url(views/images/slider/veggies.jpg)"></div>
+                  <div class="owl-cover" style="background-image:url(views/images/slider/tomato.jpg)"></div>
+              </div>-->
+  <div class="container-wrapper valign-wrapper">
+  <h1 class="text-center white-text">Fine Dining At Your Front Door</h1>
+    <div class="container zip-search" ng-show="auth.isAuthenticated()">
+      
+      <div class="input-field col-sm-12 text-center">
+        <input id="contact-first-name" ng-model="s.item" type="text" class="form-control2 bold" placeholder="Search a dish/Cook">
+      </div>
+      <div class="input-field col-sm-12 text-center mt10">
+      	<select ng-model="s.type" class="form-control2">
+        	<option value=""> Select Type </option>
+        	<option value="cook"> Cook </option>
+            <option value="dish"> Dish </option>
+        </select>
+      </div>
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-md bold grey-bg mt10" ng-click="cookinSearch()"> Search </button>
+      </div>
+    </div>
+    <a class="btn-floating btn-large waves-effect waves-dark" id="explore"> <i class="mdi-navigation-arrow-forward"></i> </a> </div>
+  <div class="container-wrapper text-center scroll-img"> <a href="#/home#intro"><img src="views/images/icon-down.png"  alt=""/></a> </div>
+</div>
+<!-- Intro section -->
+<div class="section colorful-background white-text text-center welcome-notes" id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 m10">
+        <h1>Welcome</h1>
+        <p class="flow-text"> Search for Cooks to be your private chef in your home or find Dishes being prepared in your area and have them delivered. We bring fine dining to your front door! </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cook section -->
+<div class="section owl-section" id="cook"> 
+  <!--<div class="owl-carousel">
+
+          <div style="background-image:url(views/images/chef/chef-2.jpg)"></div>
+      </div>--> 
+  <!-- Vertically aligned container -->
+  <div class="container-wrapper sets-wrapper" style="background:url('views/images/chef/chef-1.jpg') no-repeat scroll center center;background-size:100% 100%;">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 m10 text-center">
+          <div class="white-transparent black-text spacious top sets-layouts">
+            <h2 class=""> <img src="views/images/tasty-icons/0601-chef-hat_128.png" alt="Tasty icon" class="tasty-icon wow zoomIn"><br />
+              Book a Cook </h2>
+          </div>
+          <!-- Transparent wave -->
+          <div class="transparent-divider sets-layouts"></div>
+          <div class="white-transparent black-text spacious bottom sets-layouts">
+            <p class="flow-text"> Chefs can upload dishes that they create for sale or they can become a traveling chef by creating a menu and showing their availability in our book a cook section! </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- plate section -->
+<div class="section owl-section" id="plate"> 
+  <!--<div class="owl-carousel">
+
+          <div style="background-image:url(views/images/interior/interior-1.jpg)"></div>
+          <div style="background-image:url(views/images/interior/interior-2.jpg)"></div>
+      </div>--> 
+  <!-- Vertically aligned container -->
+  <div class="container-wrapper sets-wrapper" style="background:url('views/images/interior/interior-1.jpg') no-repeat scroll center center;background-size:100% 100%;">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 m10 text-center">
+          <div class="white-transparent black-text spacious top sets-layouts">
+            <h2 class=""> <img src="views/images/tasty-icons/0203-coffee-love_128.png" alt="Tasty icon" class="tasty-icon wow zoomIn"><br />
+              Order a Plate </h2>
+          </div>
+          
+          <!-- Transparent wave -->
+          <div class="transparent-divider sets-layouts"></div>
+          <div class="white-transparent black-text spacious bottom sets-layouts">
+            <p class="flow-text"> Using the site is easy simply search by entering your address or zip code and find food being prepared in your area. Our delivery drivers will bring you the fine dining experience faster than pizza delivery! </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div  class="section colorful-background  center ng-scope white" ng-if="!auth.isAuthenticated()">
+  <div id="register" class="section r2 center ng-scope">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="wave-white white">Sign Up</h2>
+        </div>
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+          <form novalidate name="mregister" class="ng-pristine ng-invalid ng-invalid-required">
+            <div class="col-sm-12 left-align">
+              <p class="text-center">Please enter your email address to create an account.</p>
+            </div>
+            <div class="form-group col-sm-12">
+              <input type="text" placeholder="Enter Your Name" required="" ng-model="register.name" id="contact-name" name="email" class="form-control  bold2 ng-pristine ng-untouched ng-invalid ng-invalid-required">
+            </div>
+            <div class="form-group col-sm-12">
+              <input type="text" placeholder="Enter Your Email" required="" ng-model="register.email" id="contact-email2" name="email" class="form-control bold2 ng-pristine ng-untouched ng-invalid ng-invalid-required">
+            </div>
+            <div class="form-group col-sm-12">
+              <input type="password" placeholder="Enter Your Password" required="" ng-model="register.password" id="contact-password2" name="password" class="form-control  bold2  ng-pristine ng-untouched ng-invalid ng-invalid-required">
+            </div>
+            <div class="form-group col-sm-12">
+              <input type="number" placeholder="Pin Code" class="form-control bold2" required="" ng-model="vreset.zip" >
+            </div>
+            <div class="form-group col-sm-12">
+              <label>Type :</label>
+              <label class="radio-inline">
+                <input type="radio" value="cook" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="18" checked="checked">
+                Cook</label>
+              <label class="radio-inline">
+                <input type="radio" value="user" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="19">
+                User</label>
+            </div>
+            <div class="form-group text-center">
+              <button ng-click="registerFn(mregister.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> Register </button>
+            </div>
+             <div class="form-group text-center">
+              <button ng-click="deliveryTemplateOpen()" type="button" name="submit_search" class="btn btn-md bold grey-bg"> Register  For Delivery</button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="reset" class="section r2 center ng-scope" ng-show="isResetPassShow">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="wave-white">Reset Password</h2>
+        </div>
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+          <form novalidate name="mreset" class="ng-pristine ng-invalid ng-invalid-required">
+            <div class="form-group ">
+              <input type="password" placeholder="Enter Your Password" class="form-control" required="" ng-model="vreset.password"  >
+              <!--<label for="contact-email" class="">Enter Your Email</label>--> 
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Enter Your Confirm Password" class="form-control" required="" ng-model="vreset.confirm_password" >
+              <!-- <label for="contact-password" class="">Enter Your Password</label>--> 
+            </div>
+            <!-- <div class="form-group col-sm-12">
+            <select ng-model="login.type" class="browser-default form-control " required>
+              <option value="" >Select Account</option>
+              <option value="cook">Cook</option>
+              <option value="user">User</option>
+            </select>
+          <label>Select Account</label>
+          </div>-->
+            <div class="form-group text-center">
+              <button ng-click="resetFn(mreset.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> Reset Password </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="login" class="section r2 center ng-scope">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="wave-white">Login</h2>
+        </div>
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+          <div class="data-error ng-binding"></div>
+          <form novalidate name="mlogin" class="ng-pristine ng-invalid ng-invalid-required">
+            <div class="form-group ">
+              <input type="text" placeholder="Enter Your Email" class="form-control  ng-pristine ng-invalid ng-invalid-required ng-touched" required="" ng-model="login.email" id="contact-email" name="email">
+              <!--<label for="contact-email" class="">Enter Your Email</label>--> 
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Enter Your Password" class="form-control  ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" ng-model="login.password" id="contact-password" name="password">
+              <!-- <label for="contact-password" class="">Enter Your Password</label>--> 
+            </div>
+            <!-- <div class="form-group col-sm-12">
+            <select ng-model="login.type" class="browser-default form-control " required>
+              <option value="" >Select Account</option>
+              <option value="cook">Cook</option>
+              <option value="user">User</option>
+            </select>
+          <label>Select Account</label>
+          </div>-->
+            <div class="form-group text-center">
+              <button ng-click="loginFn(mlogin.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> login </button>
+            </div>
+          </form>
+          <form name="mforgot" novalidate >
+            <div class="form-group" ng-init="isShowforgot=false"> <a class="white" ng-click="isShowforgot=true"> Forgot your password ?</a> </div>
+            <div class="form-group" ng-show="isShowforgot">
+              <input type="email" class="form-control" required placeholder="Email" ng-model="forgot.email" />
+            </div>
+            <div class="form-group text-center" ng-show="isShowforgot">
+              <button ng-click="forgotFn(mforgot.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> Submit </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Menu section -->
+<div class="section" id="menu">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="dark-wave text-center">Menu</h2>
+        <p>HAPPY THANKSGIVING! THIS YEAR WE WILL HAVE A SPECIAL THANKSGIVING MENU AND DINNER SELECTION HOSTED BY CHEF TONEY IN DALLAS TEXAS CHECK OUT THE MENU BELOW</p>
+        
+        <!-- Tabs -->
+        <ul class="tabs" id="menu-tabs" ng-init="menutabs=1">
+          <li class="tab col-xs-4 wow slideInLeft" ng-click="menutabs = 1" ng-class="{'active':menutabs==1}"><a class="active">Entrée</a></li>
+          <li class="tab col-xs-4 wow fadeIn" ng-click="menutabs = 2" ng-class="{'active':menutabs==2}"><a>Main <span class="hide-on-small-and-down">course</span></a></li>
+          <li class="tab col-xs-4 wow slideInRight" ng-click="menutabs = 3" ng-class="{'active':menutabs==3}"><a>Dessert</a></li>
+        </ul>
+      </div>
+      
+      <!-- First tab contents -->
+      <div id="entree" class="col-sm-12" ng-show="menutabs==1">
+        <ul class="food-menu">
+          <li>
+            <h4>Grandma’s Brandy Pâté <small>with</small> Homemade Brioche <small>and</small> Chutney</h4>
+            Butter, Onions, Chicken Livers, Bacon Rashers, Mushrooms, Brandy, Salt and Pepper and Brioche Rolls &mdash; 15 </li>
+          <li>
+            <h4>Prawns, Avocado <small>and</small> Pink Grapefruit</h4>
+            Green Prawns, Pink Grapefruit, Lebanese Cucumber, Avocados, Lemon Juice and Micro Herbs &mdash; 13 </li>
+          <li>
+            <h4>Steamed Mussels <small>with</small> Lemongrass, Ginger <small>and</small> Chilli</h4>
+            Lemongrass Stick, Red Chilli, Piece Ginger, Coconut Milk, Fish Sauce and Mussels &mdash; 10 </li>
+          <li>
+            <h4>Beef Carpaccio <small>with</small> Truffle Mayonnaise</h4>
+            Beef Fillet, Rosemary Leaves, Garlic, Fresh Horseradish, Parmesan and Lemon &mdash; 9 </li>
+          <li>
+            <h4>Scallop Mousse <small>with</small> Lobster Sauce</h4>
+            Lobsters, Fennel Seeds, Eschallots, Carrot, Tomato Paste, White Wine, Egg Yolks and Cream &mdash; 11 </li>
+          <li>
+            <h4>Prawn <small>and</small> Leek Tart <small>with</small> Basil Pesto</h4>
+            Green Prawns, Basil Leaves, Parmesan, Pine Nuts, Garlic, Brown Onion, Cream and Feta &mdash; 12 </li>
+        </ul>
+      </div>
+      
+      <!-- Second tab contents -->
+      <div id="main-course" class="col-sm-12" ng-show="menutabs==2">
+        <ul class="food-menu">
+          <li>
+            <h4>Confit Duck Leg <small>with</small> honeyed Beetroot <small>and</small> Compressed Watermelon</h4>
+            Duck Marylands, Rosemary, Beetroot, Sherry Vinegar, Butter, Honey, Lemon Juice, Watermelon and
+            White Wine Vinegar &mdash; 18 </li>
+          <li>
+            <h4>Beef Cheeks <small>with</small> Port <small>and</small> Celeriac Purée</h4>
+            Beef Cheeks, Plain Flour, Brown Onion, Garlic, Port, Red Wine, Caster Sugar, Celeriac Cream,
+            Baby Carrot and Baby Turnip &mdash; 20 </li>
+          <li>
+            <h4>Rib-Eye <small>with</small> Root Vegetable Galette <small>and</small> Port Jus</h4>
+            Rib-Eye Steaks on the Bone, Olive Oil, Horseradish, Creme Fraiche, Lemon Juice, Potato, Turnip,
+            Beetroot, Carrot, Mushrooms and Eschallots &mdash; 24 </li>
+          <li>
+            <h4>Steamed Barramundi <small>with</small> Chilli, Spring Onion <small>and</small> Ginger</h4>
+            Barramundi Fillet, Ginger, Dry Sherry, Chinese Cabbage Leaves, Soy Sauce, White Sugar,
+            Rice and Red Chilli &mdash; 19 </li>
+          <li>
+            <h4>Singapore Chilli Crab</h4>
+            Blue Swimmer Crab, Brown Onion, Red Chilli, Tomato Puree, Soy Sauce and White Vinegar &mdash; 21 </li>
+          <li>
+            <h4>Pappardelle Pasta <small>with</small> Chorizo, Tomato <small>and</small> Fresh Herbs</h4>
+            Flour, Eggs, Vine Cherry Tomatoes, Parmesan, Chorizo Sausages, Pancetta, Garlic, Red Chilli,
+            Parsley and Rosemarin &mdash; 24 </li>
+        </ul>
+      </div>
+      
+      <!-- Third tab contents -->
+      <div id="dessert" class="col-sm-12" ng-show="menutabs==3">
+        <ul class="food-menu">
+          <li>
+            <h4>Red Velvet <small>with</small> Chocolate <small>and</small> Raspberries</h4>
+            Cream, Raspberries, Raspberry Juice, Egg, Dark Chocolate, Sugar, Butter, Vanilla
+            and Apple Cider Vinegar &mdash; 9 </li>
+          <li>
+            <h4>Lime <small>and</small> Coconut Sorbet <small>with</small> Pineapple <small>and</small> Meringue</h4>
+            Cream, Egg, Sugar, Lemon Juice, Butter, Plain Flour, Caster Sugar, Almond Meal, Pineapple
+            and Orange Liqueur &mdash; 11 </li>
+          <li>
+            <h4>Mango Pudding <small>with</small> Coconut Sago</h4>
+            Mango Puree, Caster Sugar, Gelatine, Milk, Sago, Coconut Milk, Wholemeal Flour, Plain Flour and
+            Almond &mdash; 7 </li>
+          <li>
+            <h4>Blackberry, Lime <small>and</small> Elderflower Tart</h4>
+            Blackberries, Pastry, Plain Flour, Mint, Egg, Butter, Caster Sugar, Lemon Juice and
+            Elderflower Liqueur &mdash; 9 </li>
+          <li>
+            <h4>Mille-Feuille</h4>
+            Plain Flour, Egg, Butter, Milk, Vanilla Extract, Raspberries and Caster Sugar &mdash; 8 </li>
+          <li>
+            <h4>White Chocolate Crème Brûlée <small>with</small> Baked Figs</h4>
+            Figs, Cream, White Chocolate, Vanilla Bean, Egg, Caster Sugar, Ginger and  Cinnamon &mdash; 9 </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reservations section -->
+<div class="section colorful-background  center" id="reservations">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 m10 white-text">
+        <h2 class="wave-white">Reservations</h2>
+        <p class="flow-text"> Reserve a spot for our thanksgiving menu selection! </p>
+      </div>
+    </div>
+    <div class="row"> 
+      
+      <!-- Reservations form -->
+      <div class="data-error">{{ errorsReserve }}</div>
+      <form class="col-sm-12  max-wth-700" id="reserve-form" novalidate>
+        <div class="form-group">
+          <div class="col-sm-6 btm-mrg-sm">
+            <input id="f_name" name="f_name" type="text" class="form-control" placeholder="First Name" ng-model="reserve.f_name" ng-maxlength="30" />
+          </div>
+          <div class="col-sm-6">
+            <input id="l_name" name="l_name" type="text" class="form-control" placeholder="Last Name" ng-model="reserve.l_name" ng-maxlength="30" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-6 btm-mrg-sm">
+            <input id="reserve-email" name="reserve-email" type="email" class="validate form-control" placeholder="Email" ng-model="reserve.email" ng-maxlength="50" />
+          </div>
+          <div class="col-sm-6 ">
+            <input id="reserve-phone" name="reserve-phone" type="tel" class="validate form-control" placeholder="Telephone" ng-model="reserve.phone" ng-maxlength="13" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-6 btm-mrg-sm"> 
+            
+            <!-- Datepicker -->
+            <input id="reserve-date" name="reserve-date" type="text" class="form-control datetimepicker" placeholder="Pick a Date" ng-model="reserve.book_date" ng-maxlength="20" />
+          </div>
+          <div class="col-sm-6"> 
+            
+            <!-- Time select --> 
+            <!--<select id="reserve-time" name="reserve-time" class="form-control ">
+                          <option value="" disabled selected>Choose Your Time</option>
+                          <option value="9AM">9AM</option>
+                          <option value="10AM">10AM</option>
+                          <option value="11AM">11AM</option>
+                          <option value="12PM">12PM</option>
+                          <option value="1PM">1PM</option>
+                          <option value="2PM">2PM</option>
+                          <option value="3PM">3PM</option>
+                          <option value="4PM">4PM</option>
+                          <option value="5PM">5PM</option>
+                          <option value="6PM">6PM</option>
+                          <option value="7PM">7PM</option>
+                          <option value="8PM">8PM</option>
+                          <option value="9PM">9PM</option>
+                        </select>--> 
+            <!-- Party size select -->
+            <select id="reserve-party-size" name="reserve-party-size" class="form-control " ng-model="reserve.party_size">
+              <option value="" disabled selected>Party Size</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10+">10+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-sm-6  text-center btm-mrg-sm text-right">
+            <button class="btn btn-md bold grey-bg" type="reset" name="action"> Clear </button>
+          </div>
+          <div class="col-sm-6 text-center">
+            <button class="btn btn-md bold grey-bg text-left" type="submit" ng-click="reserveFn(reserve.$invalid)"> Get More Info </button>
+          </div>
+        </div>
+        <div class="form-group text-center"> </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Contact section -->
+<div class="section colorful-background  center" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 white-text">
+        <h2 class="wave-white">Contact</h2>
+        <p class="flow-text"> We welcome your feedback contact us &mdash; <br />
+          <a href="mailto:restaurant@sauce.com">info@whutzcookin.com</a> or use the form below. </p>
+      </div>
+    </div>
+    <div class="row"> 
+      
+      <!-- Contact form -->
+      <form class="col-sm-12  max-wth-700" id="contact-form" novalidate>
+        <div class="form-group">
+          <div class="col-sm-6 btm-mrg-sm">
+            <input id="contact-first-name" name="contact-first-name" type="text" class="form-control" placeholder="First Name" ng-model="contact.first_name" ng-maxlength="30" />
+          </div>
+          <div class="col-sm-6">
+            <input id="contact-last-name" name="contact-last-name" type="text" class="form-control" placeholder="Last Name" ng-model="contact.last_name" ng-maxlength="30" />
+          </div>
+        </div>
+        <div class="form-group btm-mrg-sm">
+          <div class="col-sm-6 btm-mrg-sm">
+            <input id="contact-email" name="contact-email" type="email" class="validate form-control" placeholder="Email" ng-model="contact.email" ng-maxlength="50" />
+          </div>
+          <div class="col-sm-6">
+            <input id="contact-telephone" name="contact-telephone" type="tel" class="form-control" placeholder="Telephone" ng-model="contact.phone" ng-maxlength="13" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 btm-mrg-sm">
+            <textarea id="contact-message" placeholder="Message" name="contact-message" class="materialize-textarea form-control" ng-model="contact.message" ng-maxlength="600"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-6 btm-mrg-sm text-right">
+            <button class="btn btn-md bold grey-bg" type="reset" name="action"> Clear </button>
+          </div>
+          <div class="col-xs-6 text-left">
+            <button class="btn btn-md bold grey-bg" type="submit" ng-click="contactFn(contact.$invalid)"> Send </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Google map container -->
+  <div id="map"></div>
+</div>
+<div>
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'> </ui-gmap-google-map>
+</div>
+<!-- Reach us section -->
+<div class="section" id="reach-us">
+  <div class="container">
+    <div class="row">
+      <h2 class="dark-wave">Reach us</h2>
+      <div class="col-xs-12 col-sm-2 col-sm-offset-2">
+        <h5 class="h512">Address</h5>
+        <div class="divider"></div>
+        <address>
+        <br>
+        Dallas TX<br>
+        USA
+        </address>
+      </div>
+      <div class="col-xs-12 col-sm-3 ">
+        <h5 class="h512">Phone &amp; email</h5>
+        <div class="divider"></div>
+        <p> 1800WECOOK5<br>
+          <a href="mailto:info@whutzcookin.com">info@whutzcookin.com</a> </p>
+      </div>
+      <div class="col-xs-12 col-sm-3 modern-connect ">
+        <h5 class="h512">IM</h5>
+        <div class="divider"></div>
+        <p> 
+          <!-- Add your Skype link here --> 
+          <a href="skype:skypeid?chat"><i class="fa fa-skype"></i> whutzcookin.skype</a><br>
+          <a href="https://twitter.com/"><i class="fa fa-twitter"></i> @whutzcookin</a><br>
+          <i class="fa fa-whatsapp"></i> whutzcookin.whatsapp<br>
+          <i class="fa fa-wechat"></i> whutzcookin.wechat </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section" id="instagramSets">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-6">
+        <h5>Instagram Feed</h5>
+        
+        <!-- INSTANSIVE WIDGET --> 
+        <script src="http://instansive.com/widget/js/instansive.js"></script>
+        <iframe
+                    src="http://instansive.com/widgets/ce8bf5f8fb71c3632a013164c08e1cb246626f42.html"
+                    id="instansive_ce8bf5f8fb"
+                    name="instansive_ce8bf5f8fb"
+                    scrolling="no"
+                    allowtransparency="true"
+                    class="instansive-widget"
+                    style="width: 100%; border: 0; overflow: hidden;"> </iframe>
+        Use #Whutzcookin to see your photos here! </div>
+      <div class="col-sm-12 col-lg-4 col-lg-offset-2 subscribe">
+        <h5>Subscribe</h5>
+        <p> Receive our news, events pre-sale information and more. No spam, unsubscribe anytime you want. </p>
+        
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="http://pimmey.us11.list-manage.com/subscribe/post?u=4131d254e34d85ebd3ba25ad3&amp;id=61196261e7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;">
+                <input type="text" name="b_4131d254e34d85ebd3ba25ad3_61196261e7" class="form-control" tabindex="-1" value="">
+              </div>
+              <div class="clear">
+                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-sm bold grey-bg">
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup--> 
+      </div>
+    </div>
+  </div>
+</div>

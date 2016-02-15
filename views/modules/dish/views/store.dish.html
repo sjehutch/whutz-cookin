@@ -1,0 +1,143 @@
+
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured"><a class="homefeatured" href="#">ADD NEW DISH</a></li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <form name="addDish" class="box"  id="create-account_form" >
+                <h3 class="page-subheading">ADD NEW DISH</h3>
+                <div class="form_content clearfix">
+                  <div style="display:none" id="create_account_error" class="alert alert-danger"></div>
+                  <div class="form-group">
+                    <!--<label >DISH NAME</label>-->
+                    <div class="col-xs-6 nopd pr">
+                    	<input type="text" required="" ng-model="dish.name" id="email_create" class="form-control" placeholder="Dish Name">
+                    </div>
+                    
+                     <!-- <label >FOOD FOR DAY/NIGHT</label>-->
+                      <div class="col-xs-6 nopd pl">
+                        <select ng-model="dish.dish_for_day_night" class="form-control">
+                          <option value=""> Food For </option>
+                          <option value="breakfast">BREAKFAST</option>
+                          <option value="lunch">LUNCH</option>
+                          <option value="dinner">DINNER</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-xs-6 nopd pr">
+                       <!-- <label >DELIVERY METHOD</label>-->
+                        <select  ng-model="dish.delivery_method" class="form-control">
+                          <option value="">DELIVERY METHOD</option>
+                          <option value="delivery only">DELIVERY ONLY</option>
+                          <option value="pick up only">PICK UP ONLY</option>
+                        </select>
+                        </div>
+                        <div class="col-xs-6 nopd pl">
+                        <!--<label >CHOOSE A DISH</label>-->
+                        <select  ng-model="dish.dish_type" class="form-control">
+                          <option value=""> CHOOSE A DISH </option>
+                          <option value="Main Dish">MAIN DISH</option>
+                          <option value="Salad">SALAD</option>
+                          <option value="Dessert">DESSERT</option>
+                          <option value="Beverage">BEVERAGE</option>
+                        </select>
+                        </div>
+                  </div>
+
+                  <div class="form-group">
+                    <p class="col-xs-6 nopd pr">
+                      <label class="uploadButton" for="image"></label>
+                      <input type="file" id="image" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+    accept="image/*">
+    					<div ng-if="dish.dish_img != null">
+    						<img ng-src="{{'uploads/'+dish.dish_img}}" alt="{{ dish.name }}" class="pull-left"/>
+                            <a class="close pull-left pl10" ng-click="dish.dish_img= null">X</a>
+                        </div>
+                    </p>
+                    <p class="col-xs-6 nopd pl">
+                      <label class="uploadButton1" for="video"></label>
+                      <input type="file" id="video" ngf-select ng-model="video" name="video" >
+                      <div ng-if="dish.dish_video != null">
+    						 <video width="400px" controls class="video_class pull-left" >
+                             	<source ng-src="{{'uploads/'+dish.dish_video}}" type="video/mp4">
+                             </video>
+                             <a class="close pull-left pl10" ng-click="dish.dish_img = null">X</a>
+                        </div>
+                   	
+                    </p>
+                  </div>
+                  <div class="form-group">
+                    <label >SPECIAL NOTES</label>
+                    <br>
+                    <input type="checkbox" ng-true-value="'CONTAINS MILK, EGGS'" ng-model="special_notes.one" >
+                    CONTAINS MILK, EGGS &nbsp;&nbsp;
+                    <input type="checkbox" ng-true-value="'CONTAINS NUTS'"  ng-model="special_notes.two">
+                    CONTAINS NUTS &nbsp;&nbsp;
+                    <input type="checkbox" ng-true-value="'CONTAINS SHELLFISH'"  ng-model="special_notes.three">
+                    CONTAINS SHELLFISH &nbsp;&nbsp;
+                    <input type="checkbox" ng-true-value="'VEGETARIAN'" ng-model="special_notes.four">
+                    VEGETARIAN &nbsp;&nbsp;
+                    <input type="checkbox" ng-true-value="'GLUTEN FREE'"  ng-model="special_notes.five">
+                    GLUTEN FREE &nbsp;&nbsp;
+                    <input type="checkbox" ng-true-value="'NON VEGETARIAN'" ng-model="special_notes.six">
+                    NON VEGETARIAN &nbsp;&nbsp;
+                  </div>
+                  <div class="form-group">
+                    <!--<label for="other">OTHER</label>-->
+                    <input type="text" ng-model="dish.other" id="other" class="form-control" placeholder="OTHER">
+                  </div>
+                  <div class="form-group">
+                    <!--<label >DESCRIPTION ABOUT DISH</label>-->
+                    <textarea class="form-control" ng-model="dish.description" cols="50" rows="4" placeholder="DESCRIPTION ABOUT DISH"></textarea>
+                  </div>
+                  <div class="form-group">
+                   <!-- <label >ADDRESS FOR DISH</label>-->
+                    <textarea class="form-control" ng-model="dish.address"  cols="50" rows="4" placeholder="ADDRESS FOR DISH"></textarea>
+                  </div>
+                  <div class="form-group">
+                  	<div class="col-xs-6 nopd pr">
+                   	 <!--<label >AREA ZIP CODE FOR DISH</label>-->
+                   	 <input type="number" required="" ng-model="dish.zipcode" class="form-control" placeholder="AREA ZIP CODE FOR DISH">
+                    </div>
+                    <div class="col-xs-6 nopd pl">
+                     <!--<label for="plates">NUMBER OF PLATES</label>-->
+                    <input type="number" required="" ng-model="dish.quantity" id="plates" name="plates_left" class="form-control" placeholder="NUMBER OF PLATES">
+                    </div>
+                    
+                  </div>
+
+                  <div class="form-group">
+                   <div class="col-xs-6 nopd pr">
+                    <!--<label for="unfulfilled">UNFULFILLED</label>-->
+                    <input type="text" required="" ng-model="dish.unfulfilled" id="unfulfilled" class="form-control" placeholder="UNFULFILLED">
+                   </div>
+                   <div class="col-xs-6 nopd pl">
+                   	<!-- <label for="price">PRICE</label>-->
+                    <input type="number" required="" ng-model="dish.price" id="price" class="form-control" placeholder="PRICE">
+                   </div>
+                  </div>
+
+                  <div class="submit">
+                    <button name="adddishweb" id="SubmitCreate" type="submit"  ng-disabled="addDish.$invalid" class="btn btn-default btn-md" ng-click="store()" ng-show="id==0"> <span> <i class="fa fa-plus" ></i> ADD DISH </span> </button>
+                    
+                    <button name="adddishweb" id="SubmitCreate" type="submit"  ng-disabled="addDish.$invalid" class="btn btn-default btn-md" ng-click="update()" ng-hide="id==0"> <span> <i class="fa fa-plus"></i> Update DISH </span> </button>
+                    
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+      <div class="panel-group2 full" >
+        <div class="col-sm-5">
+          <div class="profile card"> <a href=""><img style="max-height: 130px; max-width: 130px;" ng-src="uploads/{{ auth.getUser().profile_photo || 'user.png' }}" ></a>
+            <div class="col-sm-4"> <a > <b> Followers </b>
+              <div class="notification" style="display:block"> 0 </div>
+              </a> </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="">
+            <h4> {{ auth.getUser().name }} <i style="color:#96C95C !important;font-weight:small;" class="fa fa-circle"> Active</i> </h4>
+          </div>
+        </div>
+      </div>
+      <p> MY DISHES </p>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>DISH Name</th>
+            <th>Date</th>
+            <th>Plates Left</th>
+            <th>Delivery Type</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in dishs">
+            <td>{{ row.name }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.quantity }}</td>
+            <td>{{ row.delivery_method }}</td>
+            <td>{{ row.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+      <p>RECENTLY SOLD DISHES</p>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>DISH Name</th>
+            <th>Sold Date</th>
+            <th>Customer Name</th>
+            <th>Delivery Address</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>View Dish</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in soldDish">
+            <td>{{ row.name }}</td>
+            <td>{{ row.sold_date }}</td>
+            <td>{{ row.username }}</td>
+            <td>{{ row.address }}</td>
+            <td>{{ row.quantity }}</td>
+            <td>{{ row.price }}</td>
+            <td><a ng-href="#/dish/show/{{ row.dish_id }}"> {{ row.name }} </a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+      <p>RECENTLY RECEIVED PAYMENTS</p>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Payment Mode</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in payments">
+            <td>{{ row.date }}</td>
+            <td>{{ row.paid_amount }}</td>
+            <td>{{ row.payment_mode }}</td>
+            <td>{{ row.remarks }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

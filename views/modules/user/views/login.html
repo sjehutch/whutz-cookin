@@ -1,0 +1,93 @@
+
+<div class="section white-text center bg-logo" id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-10 col-md-offset-1 min-height-logo col-lg-8 col-lg-offset-2 ">
+      
+       </div>
+    </div>
+  </div>
+</div>
+
+<!--button-->
+<!--<div class="button-sets color-white">
+  <div class="button-login"> <a class="btn-small" ng-class="{'active' : isLogin}" ng-click="isLogin=true"> Existing user </a> 													  <a class="btn-small" ng-class="{'active' : !isLogin }" ng-click="isLogin=false"> New user </a> </div>
+</div>-->
+
+
+<!--login-->
+ <!--<div class="container">
+    <div class="row">
+    	<p class="text-login">
+        <a class="text-login" ng-click="isLogin=false" ng-class="{'active' : !isLogin}">SIGN UP</a>
+        <a class="text-sign-in" ng-click="isLogin=true" ng-class="{'active' : isLogin}">SIGN IN</a></p>
+        <br/>
+    </div>
+ </div>-->
+<div class="section r2 center" id="login" ng-show="isLogin">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-8 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      	
+        
+        <div class="data-error">{{ errorsLogin }}</div>
+        <form name="mlogin" novalidate >
+          <div class="form-group col-sm-12">
+            <input type="text" name="email" id="contact-email" ng-model="login.email" required class="form-control " placeholder="Enter Your Email">
+            <!--<label for="contact-email" class="">Enter Your Email</label>--> 
+          </div>
+          <div class="form-group col-sm-12">
+            <input type="password"  name="password" id="contact-password" ng-model="login.password" required class="form-control " placeholder="Enter Your Password">
+            <!-- <label for="contact-password" class="">Enter Your Password</label>--> 
+          </div>
+           <!-- <div class="form-group col-sm-12">
+            <select ng-model="login.type" class="browser-default form-control " required>
+              <option value="" >Select Account</option>
+              <option value="cook">Cook</option>
+              <option value="user">User</option>
+            </select>
+          <label>Select Account</label>
+          </div>--> 
+          <div class="form-group text-center">
+            <button class="btn btn-md bold grey-bg"  name="submit_search" type="submit" ng-click="loginFn(mlogin.$invalid)"> login </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--register-->
+<div class="section r2 center" id="register" ng-hide="isLogin">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-8 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <form name="mregister" novalidate>
+          <div class="col-sm-12 left-align">
+            <p class="text-center">Please enter your email address to create an account.</p>
+          </div>
+          <div class="form-group col-sm-12">
+            <input type="text" class="form-control  bold2" name="email" id="contact-name" ng-model="register.name" required placeholder="Enter Your Name" >
+          </div>
+          <div class="form-group col-sm-12">
+            <input type="text" class="form-control bold2" name="email" id="contact-email2" ng-model="register.email" required placeholder="Enter Your Email">
+           </div>
+          <div class="form-group col-sm-12">
+            <input type="password" class="form-control  bold2 " name="password" id="contact-password2" ng-model="register.password" required placeholder="Enter Your Password">
+          </div>
+          <div class="form-group col-sm-12">
+            <input type="password" class="form-control  bold2 " name="verify_password"  ng-model="register.verify_password" required placeholder="Verify Password">
+           </div>
+          <div class="form-group col-sm-12">
+          	<label>Type :</label>
+            <label class="radio-inline"><input type="radio" ng-model="register.type" ng-checked="true" value="cook">Cook</label>
+            <label class="radio-inline"><input type="radio" ng-model="register.type" value="user">User</label>
+          </div>
+          <div class="form-group text-center">
+            <button class="btn btn-md bold grey-bg" name="submit_search" type="submit" ng-click="registerFn(mregister.$invalid)"> Register </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

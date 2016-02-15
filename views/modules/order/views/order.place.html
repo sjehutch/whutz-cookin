@@ -1,0 +1,32 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2"  id="center_column">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+      	<div><h3>Delivery Method</h3></div>
+        <div class="order-list"	ng-repeat="method in methods" ng-class="{ 'active' : selectedDelivery == method}"
+             ng-click="setDelivery(method)"> {{ method.name }} <small> $ {{ method.rate }} ETA </small> </div>
+        <div class="total-details">
+        	<table>
+        	<tr>
+            	<td> total  </td>
+                <td> {{ total }} </td>
+            </tr>
+            <tr>
+            	<td> Delivery  </td>
+                <td> {{ selectedDelivery.rate }} </td>
+            </tr>
+            <tr>
+            	<td> Grand Total  </td>
+                <td> {{ parseInt(total) + parseInt(selectedDelivery.rate) }} </td>
+            </tr>
+            <tr>
+            	<td> </td>
+            	<td> <button class="grey-bg btn" ng-hide="carts.length == 0" ng-click="placeOrder()">Order It</button> </td>
+            </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

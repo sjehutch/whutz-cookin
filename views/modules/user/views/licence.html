@@ -1,0 +1,40 @@
+<div class="container sets-wrap">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <div>
+                <form name="model">
+                    <p>Are you a licensed food handler? Please upload your license and kitchen license number below.</p>
+                    <p>
+                        <div class="form-group uploadPnl">
+                            <label class="pointer" for="profile">Upload Licence Image</label>
+                            <input type="file" id="profile" ngf-select ng-model="licence_img" ngf-pattern="'image/*'"
+                                   accept="image/*" class="form-control" />
+
+                            <div ng-if="model.licence_img != null">
+                                <img ng-src="{{ 'uploads/'+ model.licence_img }}" alt="Licence Image" class="pull-left img-responsive" />
+                                <a class="close pull-left pl10" ng-click="model.licence_img = null">X</a>
+                            </div>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+                            <input type="text" class="form-control" placeholder="KITCHEN LICENCE NUMBER" required ng-model="model.licence_no">
+                        </div>
+                    </p>
+                    <div class="forget-passowrd">
+                        <p>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Submit" ng-click="updateLicence(model.$invalid)" name="submit">
+                                <input type="button"
+                                       class="btn btn-success"
+                                       value="I do not have a license"
+                                       ng-click="withOutLicence()">
+                            </div>
+                        </p>
+                    </div>
+                </form>
+                <!--<button type="submit" name="login" >LOGIN</button>-->
+            </div>
+        </div>
+    </div>
+</div>

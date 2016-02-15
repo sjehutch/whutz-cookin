@@ -1,0 +1,58 @@
+
+<div>
+  <ul class="breadcrumb">
+    <li> <a href="#" style="color:#000;">Survey</a> </li>
+  </ul>
+</div>
+
+
+
+<div class=" row">
+  <div class="col-xs-6"> 
+    <!--<select ng-model="itemsByPage" class="form-control">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+        <label>Records Per Page</label>-->
+  </div>
+  <diV class="col-xs-6"> 
+   <!-- <input st-search placeholder="global search" class="input-sm form-control" type="search"/>-->
+  </diV>
+  <table st-table="rowsCollection" st-safe-src="dataCollection" class="table table-striped">
+    <thead>
+      <tr>
+        <th st-sort="id">Id</th>
+        <th>Date</th>
+        <th>Cook Name</th>
+        <th>Email</th>
+        <th>Paid Amount</th>
+        <th>Payments Mode</th>
+        <th>Remarks</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in rowsCollection">
+        <td>{{ row.id }}</td>
+        <td>{{ row.date }}</td>
+        <td>{{ row.cookname }}</td>
+        <td>{{ row.cookemail }}</td>
+        <td>{{ row.paid_amount }}</td>
+        <td>{{ row.payment_mode }}</td>
+        <td>{{ row.remarks }}</td>
+        <td>
+        	<button type="button" ng-click="removeRow(row)" class="btn btn-sm btn-danger">
+           		 <i class="glyphicon glyphicon-remove-circle"> </i>
+             </button></td>
+      </tr>
+      <tr ng-show="rowsCollection.length == 0" class="text-center">	<td> Data not found </td> </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" class="text-center"><div st-pagination st-items-by-page="itemsByPage" st-displayed-pages="7"></div></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

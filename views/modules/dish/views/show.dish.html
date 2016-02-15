@@ -1,0 +1,54 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2"  id="center_column">
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured">
+          	<a style="text-transform: uppercase;" class="homefeatured" ng-href="#/dish/show/{{dish.id}}">{{ dish.name}}</a>
+          </li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-6"> 
+          		 <img  class="img-thumbnail" style="width:100%;" ng-src="uploads/{{ dish.dish_img || 'dish-img.jpg'}}" />
+                 <p class="text-center"> followers  {{ dish.followers }} </p>
+             </div>
+            <div class="col-xs-12 col-md-6"><span class="delivery">$ {{ dish.price }}</span> <span style="color: black;" class="delivery">delivery only</span> <br>
+              <br>
+              <span style="font-size: 21px; color:black;" class="plates"> <b style="color:green;">{{ dish.quantity }}</b> plates left | <b style="color:green;">{{ dish.unfulfilled }}</b> Unfulfilled</span> <br>
+              <br>
+              <b style="color:black;">{{ dish.time_ago }}</b> <br>
+              <br>
+              <p><b style=""color:#000>IT CONTAINS:</b> {{ dish.contain }} </p>
+              <br/>
+               <div class="nopd">
+              <input type="number" ng-model="dish.order_quantity" class="form-control addcart33" />
+              <a type="submit" name="submit_search"  ng-click="addCart(dish.id,dish.order_quantity)" class="btn  btn-bordered waves-effect waves-light org"> Add Cart </a> </div>
+              <br>
+              <div class="full">
+              	<a ng-click="postToFeed()">
+              		<img src="/views/images/facebook-share.png" alt="" />
+                </a>
+                <a ng-href="http://www.twitter.com/share?url={{ absUrl }}" target="_blank">
+                	<img src="/views/images/twitter-share.png" alt="" />
+                </a>
+                <a ng-href="https://www.linkedin.com/shareArticle?mini=true&url={{ absUrl }}&title={{ dish.name }}&summary={{dish.description}}" target="_blank">
+                	<img src="/views/images/linkdin-share.png" alt="" />
+                </a>
+                
+              </div>
+             <!-- <span style="font-size: 21px; color:black;" class="plates"> <b style="color:green; text-transform: uppercase; "><b style="color:black;">DISH BY:</b> {{ dish.user.name }}</b> </span>--> <br>
+            </div>
+            <div class="col-md-12">
+              <h3 style="font-weight: bold; color: black; border-bottom: 1px solid;">Description:</h3>
+              <p> <span>{{ dish.description }}</span> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
