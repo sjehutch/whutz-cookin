@@ -42,7 +42,6 @@ Route::get("/user/photo/{id}",function($id){
 			
 			return Response::json(array('status' => true, 'message' => "", "data"  => $photo ));
 		}
-		
 		return Response::json(array('status' => true, 'message' => "", "data"  => '' ));
 });
 
@@ -70,7 +69,7 @@ Route::post("files/upload",array("before"=>"auth","uses" => "FilesController@ind
 Route::post("files/destroy",array("before"=>"auth","uses" => "FilesController@destroy"));
 
 
-Route::post("search", array("uses" => "DishController@search"));
+Route::post("search", array("before"=>"auth","uses" => "DishController@search"));
 
 Route::get("dishs", array("uses" => "DishController@index"));
 
@@ -113,6 +112,8 @@ Route::group(['before' => 'auth'], function() {
 
 
 
+/* admin routes*/ 
+
 Route::post("admin/login",array("uses" => "AdminController@login" ));
 
 
@@ -134,11 +135,8 @@ Route::group(['before' => 'auth.admin'], function() {
 	
 	
 	Route::get("admin/sales",array("uses" => "AdminController@topsalesRecord" ));
-	
 	Route::get("admin/cookPayments", array("uses" => "AdminController@cookPayments" ));
-	
 	Route::post("admin/cookPayNow", array("uses" => "AdminController@cookPayNow" ));
-	
 	
 	//Route::post("admin/dishs",array("before" => "auth.admin" ,"uses" => "AdminController@users" ));
 

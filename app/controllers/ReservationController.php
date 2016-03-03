@@ -10,7 +10,8 @@ class ReservationController extends BaseController {
 			'l_name'    =>'required',
 			'email' =>'required',
 			'book_date'     => 'required',
-			'party_size'     => 'required'
+			'party_size'     => 'required',
+			'book_time'		=> 'required'
 			));
 		if($validate->fails()){
 			return Response::json(array('status' => false, 'message' => "Validation Failed" , "errors" => $validate->messages()));

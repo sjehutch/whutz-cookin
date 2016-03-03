@@ -146,9 +146,9 @@
           <li> <a href="#/home#reservations">Reservations</a></li>-->
         </ul>
         <ul class="nav navbar-nav" ng-show="auth.isAuthenticated()">
-          <li><a ng-click="surveyPopup()">Survey</a></li>
+          <!--<li><a ng-click="surveyPopup()">Survey</a></li>-->
           <li> <a href="#/dishs" ng-if="auth.getType()=='user'">DASHBOARD</a> <a href="#/cook/dish/0" ng-if="auth.getType()=='cook'">DASHBOARD</a> </li>
-          <!--<li><a href="#/home#contact">Contact Us </a></li>-->
+          <li><a href="#/home#contact">Contact Us </a></li>
         </ul>
         <!-- cook menu -->
         <ul class="nav navbar-nav show-sm" ng-if="auth.getType()=='cook' && auth.isComplete() && location.path() != '/home'">
@@ -167,8 +167,8 @@
           <li> <a href="#/cook/booking"> BOOKING DETAILS
             <div class="pull-right notification"> 0</div>
             </a> </li>
-          <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
-          <li> <a href="#/my-videos"> MY VIDEOS </a> </li>
+         <!-- <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
+          <li> <a href="#/my-videos"> MY VIDEOS </a> </li>-->
           <li> <a href="#/my-account"> MY Account </a> </li>
         </ul>
         
@@ -189,8 +189,8 @@
           <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-if="!auth.isAuthenticated()">
-          <li><a href="#/home#menu">Menu</a></li>
-          <li> <a href="#/home#contact">Contact</a></li>
+          <!--<li><a href="#/home#menu">Menu</a></li>-->
+          <!--<li> <a href="#/home#contact">Contact</a></li>-->
           <li><a href="#/home#register"> Sign Up</a></li>
           <li><a href="#/home#login">Login</a></li>
         </ul>
@@ -218,8 +218,8 @@
       <li> <a href="#/cook/booking"> BOOKING DETAILS
         <div class="pull-right notification"> 0</div>
         </a> </li>
-      <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
-      <li> <a href="#/my-videos"> MY VIDEOS </a> </li>
+     <!-- <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
+      <li> <a href="#/my-videos"> MY VIDEOS </a> </li>-->
        <li> <a href="#/my-account"> MY Account </a> </li>
     </ul>
     

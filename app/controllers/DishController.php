@@ -103,6 +103,7 @@ class DishController extends BaseController {
 		$data =array();
 		$type = Input::get("type");
 		$search = Input::get("s");
+	
 		
 		if($type == "dish"){
 			
@@ -119,7 +120,7 @@ class DishController extends BaseController {
 				
 				$type2 = "favorite";
 				$dish_id = $dish["id"];
-		
+
 				$data21 = UserLike::whereUser_id(Auth::user()->id)
 									->whereItem_id($dish_id)
 									->Where("type",$type2)
@@ -179,7 +180,8 @@ class DishController extends BaseController {
 													//echo $val["user"]["latitude"];
 												});*/
 			}
-		}else{
+		}
+		else{
 			$data = User::where('name', 'like', '%'.$search.'%')->get();
 			
 			
