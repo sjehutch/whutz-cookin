@@ -26,4 +26,13 @@ class UserLike extends Eloquent implements UserInterface, RemindableInterface {
 	protected $fillable = array("user_id","item_id","type");
 	
 	
+	public function dish(){
+		return $this->belongsTo('Dish',"item_id","id");	
+	}
+	
+	public function cook(){
+		return $this->belongsTo('User','cook_id',id);	
+	}
+	
+	
 }

@@ -123,6 +123,10 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
 			templateUrl: 'views/modules/user/views/dashboard.html',
             controller: 'whutz.modules.user.dashboard'
 		})
+		.when('/dashboard-user',{
+			templateUrl: 'views/modules/user/views/dashboard_user.html',
+            controller: 'whutz.modules.user.dashboardUser'
+		})
 		.when('/calendar',{
 			templateUrl: 'views/modules/user/views/calendar.html',
             controller: 'whutz.modules.user.calendar'

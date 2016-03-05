@@ -15,22 +15,29 @@ class UserController extends BaseController {
 			return Response::json(array('status' => false, 'message' => "Validation Failed" , "errors" => $validate->messages()));
 		}else{
 			
-			$email_verification_code = Str::random(60);
 			
-			$overwrite = array(
-								'password' => Hash::make(Input::get("password")),
-								'email_verification_code' => $email_verification_code
-							);
-			
-			$data = array_merge(Input::all(),$overwrite);
-			
-			$user = User::create($data);
-			if($user){
-				// $to,$name,$verification_code
-				Helpers::emailVerfication(Input::get("email"),Input::get("email"),$email_verification_code);
-				return Response::json(array('status' =>true, 'message' => "Register Successfully !! Please check your Email for verification".$data['password'].$user));
-			}else{
-				return Response::json(array('status' =>true, 'message' => "Register Failed"));
+			if(!empty(DB::table('zip_codes')->whereCode(Input::get("code"))->get()))
+			{
+				$email_verification_code = Str::random(60);
+				
+				$overwrite = array(
+									'password' => Hash::make(Input::get("password")),
+									'email_verification_code' => $email_verification_code
+								);
+				
+				$data = array_merge(Input::all(),$overwrite);
+				
+				$user = User::create($data);
+				if($user){
+					// $to,$name,$verification_code
+					Helpers::emailVerfication(Input::get("email"),Input::get("email"),$email_verification_code);
+					return Response::json(array('status' =>true, 'message' => "Register Successfully !! Please check your Email for verification".$data['password'].$user));
+				}else{
+					return Response::json(array('status' =>false, 'message' => "Register Failed"));
+				}
+			}
+			else{
+				return Response::json(array('status' =>false, 'message' => "Service in your area is not available.Your account has been registered. You will get new updates soon"));	
 			}
 		}
 	}
@@ -239,6 +246,35 @@ class UserController extends BaseController {
 			
 			return Response::json(array('status' => true, 'message' => "remove ".$type ));
 		}
+	}
+	
+	public  function likes($type){
+		
+		if($type == "dish_follow")
+			$type = "follow";
+		else
+			$type = "favorite";
+			
+		$data = UserLike::with('dish')
+							->whereUser_id(3) // Auth::user()->id
+							->whereType($type)
+							->get();
+		
+		$data = array_map(function($row){
+						
+						$cook_id = $row["dish"]["cook_id"] ;
+			
+						$data = User::select('name')->find($cook_id);
+						
+						$row["dish"]["cook_name"] = $data["name"];
+						
+						$date = new DateTime($row["dish"]["created_at"]);
+						$row["dish"]["date"] = $date->format('d-m-Y');
+						
+						return $row;
+					},$data->toArray());
+
+		return Response::json(array('status' => true, 'message' => '', 'data'  => $data));		
 	}
 	
 	public function send(){

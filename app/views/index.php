@@ -175,16 +175,18 @@
         <!-- user  menu -->
         <ul class="nav navbar-nav show-sm" ng-if="auth.getType()=='user' && location.path() != '/home'">
           <li> <a ><i class="fa fa-bars"></i> USER MENU </a> </li>
-          <li> <a href="#/home"> HOME </a> </li>
+          <li> <a href="#/dashboard-user"> Dashboard </a> </li>
+          <li> <a href="#/home"> Food feed </a> </li>
+          
           <li> <a id="flip" href="#/mycart"> Cart
             <div class="pull-right notification"> 0</div>
             </a> </li>
-          <!--<li> <a id="flip" href="#"> MESSAGES
+          <li> <a id="flip" href="#"> MESSAGES
             <div class="pull-right notification"> 0</div>
-            </a> </li>-->
+            </a> </li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
-          <li> <a href="#/dishs"> ALL DISHES </a> </li>
-          <li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>
+          <li> <a href="#/dishs"> Recently added dishes </a> </li>
+          <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
           <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
         </ul>
@@ -226,18 +228,20 @@
     <!-- user  menu -->
     <ul class="tree dhtml show-gt-sm" ng-if="auth.getType()=='user' && location.path() != '/home'">
       <li> <a ><i class="fa fa-bars"></i> USER MENU </a> </li>
-      <li> <a href="#/home"> HOME </a> </li>
-      <li> <a id="flip" href="#/mycart"> Cart
-        <div class="pull-right notification"> 0</div>
-        </a> </li>
-      <!--<li> <a id="flip" href="#"> MESSAGES
-        <div class="pull-right notification"> 0</div>
-        </a> </li>-->
-      <li> <a href="#/my-profile"> MY PROFILE </a> </li>
-      <li> <a href="#/dishs"> ALL DISHES </a> </li>
-      <li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>
-      <li> <a href="#/my-orders"> MY ORDERS </a> </li>
-      <li> <a href="#/cook/booking">BOOKING With Cook </a> </li>
+     <li> <a href="#/dashboard-user"> Dashboard </a> </li>
+          <li> <a href="#/home"> Food feed </a> </li>
+          
+          <li> <a id="flip" href="#/mycart"> Cart
+            <div class="pull-right notification"> 0</div>
+            </a> </li>
+          <li> <a id="flip" href="#"> MESSAGES
+            <div class="pull-right notification"> 0</div>
+            </a> </li>
+          <li> <a href="#/my-profile"> MY PROFILE </a> </li>
+          <li> <a href="#/dishs"> Recently added dishes </a> </li>
+          <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
+          <li> <a href="#/my-orders"> MY ORDERS </a> </li>
+          <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
     </ul>
   </div>
 </div>

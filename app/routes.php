@@ -45,6 +45,9 @@ Route::get("/user/photo/{id}",function($id){
 		return Response::json(array('status' => true, 'message' => "", "data"  => '' ));
 });
 
+
+
+
 Route::get('verification/email/{code}',array("uses" => "VerificationController@emailVerification"));
 
 Route::post('forgotpassword',array("uses" => "UserController@forgotPassword"));
@@ -71,7 +74,9 @@ Route::post("files/destroy",array("before"=>"auth","uses" => "FilesController@de
 
 Route::post("search", array("before"=>"auth","uses" => "DishController@search"));
 
+
 Route::get("dishs", array("uses" => "DishController@index"));
+Route::get("dish/{id}", array("uses" => "DishController@show"));
 
 Route::get("cook/dishs", array("before" => "auth" ,"uses" => "DishController@cookDishs"));
 Route::get("cook/dish/{dish}", array("before" => "auth" ,"uses" => "DishController@showDish"));
@@ -90,7 +95,9 @@ Route::post("survey", array("uses" => "SurveyController@insert" ))	;
 	
 Route::group(['before' => 'auth'], function() {
 	
-	Route::post("/send", array("before" => "auth" ,"uses" => "UserController@send"));
+	Route::post("/send", array("uses" => "UserController@send"));
+	
+	Route::get('/likes/{type}', array("uses" => "UserController@likes"));
 	
 	Route::get("/receiver/{id}",array("uses" => "UserController@receiver"));
 	

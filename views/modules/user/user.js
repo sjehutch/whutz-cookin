@@ -516,6 +516,36 @@ user.controller('whutz.modules.user.dashboard', [
 		 
 	 }]);
 
+user.controller('whutz.modules.user.dashboardUser', [
+    '$scope',
+	'$rootScope',
+    '$http',
+    '$location',
+    '$window',
+	'$routeParams',
+	'$timeout',
+	"whutz.security.auth",
+	'Notification',
+	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification) {
+		 
+		$scope.dishs = [];
+			
+		$http.get("/likes/dish_favorite")
+				.success(function (data) {
+                 	if(data.status){
+						$scope.dishs = data.data;
+					}else{
+						Notification.error(data.message);
+					}
+                })
+                .error(function (data) {
+                    console.log('Error: ' + data);
+                }); 
+
+		 
+	 }]);
+
+
 user.controller('whutz.modules.user.calendar', [
     '$scope',
 	'$rootScope',

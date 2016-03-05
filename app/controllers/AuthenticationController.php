@@ -50,7 +50,7 @@ class AuthenticationController extends BaseController{
 	
 	public function logout(){
 		Auth::logout();	
-		return Response::json(array('status' => 'success', 'message' => 'logout successfully'));
+		return Response::json(array('status' => true, 'message' => 'logout successfully'));
 	}
 }
 ?>
