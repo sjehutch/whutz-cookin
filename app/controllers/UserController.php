@@ -15,8 +15,8 @@ class UserController extends BaseController {
 			return Response::json(array('status' => false, 'message' => "Validation Failed" , "errors" => $validate->messages()));
 		}else{
 			
-			
-			if(!empty(DB::table('zip_codes')->whereCode(Input::get("code"))->get()))
+			$isData = DB::table('zip_codes')->whereCode(Input::get("zip"))->get();
+			if(!empty($isData))
 			{
 				$email_verification_code = Str::random(60);
 				
@@ -282,7 +282,7 @@ class UserController extends BaseController {
 		$array = array();
 		
 		$array["user_id"] = Auth::user()->id;
-		$array["to_id"] = Input::get("cook_id");
+		$array["from_id"] = Input::get("cook_id");
 		$array["text"] = Input::get("text");
 		
 		Message::create($array);
@@ -292,6 +292,7 @@ class UserController extends BaseController {
 	
 	
 	public function receiver($id){
+		
 		
 		$data = Message::whereUser_id($id)->whereTo_id(Auth::user()->id)->get();
 		

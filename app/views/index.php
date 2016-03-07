@@ -147,7 +147,7 @@
         </ul>
         <ul class="nav navbar-nav" ng-show="auth.isAuthenticated()">
           <!--<li><a ng-click="surveyPopup()">Survey</a></li>-->
-          <li> <a href="#/dishs" ng-if="auth.getType()=='user'">DASHBOARD</a> <a href="#/cook/dish/0" ng-if="auth.getType()=='cook'">DASHBOARD</a> </li>
+          <li> <a href="#/dishs" ng-if="auth.getType()=='user'">DASHBOARD</a> <a href="#/dashboard" ng-if="auth.getType()=='cook'">DASHBOARD</a> </li>
           <li><a href="#/home#contact">Contact Us </a></li>
         </ul>
         <!-- cook menu -->
@@ -160,7 +160,7 @@
             </a> </li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
           <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
-          <li> <a href="#/cook/dishs"> ALL DISHES </a> </li>
+          <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
           <li> <a href="#/cook/my-orders"> MY ORDERS
             <div class="pull-right notification"> 0</div>
             </a> </li>
@@ -213,7 +213,7 @@
         </a> </li>
       <li> <a href="#/my-profile"> MY PROFILE </a> </li>
       <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
-      <li> <a href="#/cook/dishs"> ALL DISHES </a> </li>
+      <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
       <li> <a href="#/cook/my-orders"> MY ORDERS
         <div class="pull-right notification"> 0</div>
         </a> </li>

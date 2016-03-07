@@ -23,7 +23,7 @@ class Message extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	
-	protected $fillable = array("to_id","user_id","text");
+	protected $fillable = array("from_id","user_id","text");
 	
 	
 }

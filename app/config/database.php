@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 return array(
 
@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'whutzcookindb',
-			'username'  => 'whutzcookin_user',
-			'password'  => 'Auragrace1!',
+			'database'  => 'whutz',
+			'username'  => 'root',
+			'password'  => 'vnt1',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
