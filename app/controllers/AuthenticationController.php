@@ -36,7 +36,7 @@ class AuthenticationController extends BaseController{
 										 'email' =>	Input::get('email'),
 										 'password' =>	Input::get('password'),
 										 'type'  => Input::get('type')
-									  )); 
+									  ),true);
 			if ($auth) {
 			  return Response::json(array('status' => true, 'message' => 'You are login',"data" => Auth::user()));
 			}

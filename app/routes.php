@@ -93,26 +93,31 @@ Route::get("cook/booking", array("before" => "auth" ,"uses" => "BookingControlle
 	
 Route::post("survey", array("uses" => "SurveyController@insert" ))	;
 	
-Route::group(['before' => 'auth'], function() {
-	
-	Route::post("/send", array("uses" => "UserController@send"));
-	
+Route::group(array('before' => 'auth'), function() {
+
 	Route::get('/likes/{type}', array("uses" => "UserController@likes"));
-	
+
 	Route::get("/receiver/{id}",array("uses" => "UserController@receiver"));
-	
+
     Route::resource('mycart', 'CartController');
 	Route::resource('dish', 'DishController',array('except' => array("edit",'create')));
-	
+
 	Route::get("cook/plans", array("uses" => "PlanController@plans"));
-	
+
 	Route::get("cook/plan/{id}", array("uses" => "PlanController@active"));
-	
+
 	Route::post("update/dish/status", array("uses" => "OrderController@updateDishStatus"));
-	
+
 	Route::get("/payments",array("uses" => "UserController@payments"));
-	
+
 	Route::post("/likes",array("uses" => "UserController@userLikes"));
+
+	Route::post("/send", array("uses" => "UserController@send"));
+	Route::get("/message/{id}",array("uses" => "UserController@receiver"));
+	Route::get("/msg/unread",array("uses" => "UserController@getUnreadMessage"));
+	Route::get("/conversation",array("uses" => "UserController@getAllConversation"));
+
+
 });
 
 

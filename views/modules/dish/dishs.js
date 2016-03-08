@@ -305,6 +305,8 @@ dish.controller('whutz.modules.dish.show', [
 						$scope.dish = data.dishs;
 						
 						var special_notes = [];
+						
+						
 						var contains = JSON.parse($scope.dish.special_notes);
 						
 						for (x in contains) {
@@ -312,6 +314,15 @@ dish.controller('whutz.modules.dish.show', [
 						}
 						
 						$scope.dish.contain = special_notes.join(', ');
+						
+						var delivery_method = [];
+						var contains2 = JSON.parse($scope.dish.delivery_method);
+						for (x in contains2) {
+							delivery_method.push(contains2[x]);
+						}
+						
+						$scope.dish.delivery_method = delivery_method.join(', ');
+						
 						$scope.dish.order_quantity=1;
 					}else{
 						
@@ -361,6 +372,7 @@ dish.controller('whutz.modules.dish.addEdit', [
 		$scope.dish.dish_video = null;
 		
 		$scope.special_notes={};
+		$scope.delivery_method={};
 		
 		$scope.$watch('file',function(newVal,oldVal){
 			
@@ -411,6 +423,7 @@ dish.controller('whutz.modules.dish.addEdit', [
 					if(data.status){
 						$scope.dish = data.dish;
 						$scope.special_notes = JSON.parse($scope.dish.special_notes);
+						$scope.delivery_method = JSON.parse($scope.dish.delivery_method);
 					}else{
 						
 					}
@@ -427,6 +440,7 @@ dish.controller('whutz.modules.dish.addEdit', [
 		// add dish
 		$scope.store = function(){
 		  $scope.dish.special_notes=JSON.stringify($scope.special_notes);
+		  $scope.dish.delivery_method = JSON.stringify($scope.delivery_method);
 		  $http.post("/dish",$scope.dish)
 				.success(function (data) {
 					if(data.status){
@@ -441,12 +455,12 @@ dish.controller('whutz.modules.dish.addEdit', [
 				});
 		}
 		
-		
 		// update
 		
 		$scope.update = function(){
 			
 			$scope.dish.special_notes=JSON.stringify($scope.special_notes);
+			$scope.dish.delivery_method=JSON.stringify($scope.delivery_method);
 			$http.put("/dish/"+$scope.id,$scope.dish)
 				.success(function (data) {
 					if(data.status){

@@ -52,6 +52,7 @@ input.form-control2,
 input.form-control{
 	height:42px;
 }
+
 select.form-control{
 	height:42px;	
 }
@@ -364,7 +365,7 @@ input[type="file"] {
 	line-height: 30px;
 	border-radius: 50%;
 	color: aliceblue;
-	display:none;
+
 }
 .navbar-header .navbar-toggle{
 	z-index:11;	

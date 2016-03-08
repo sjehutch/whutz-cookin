@@ -13,7 +13,7 @@
       </div>
       <div class="tab-content">
         <ul class="nav nav-tabs clearfix" id="home-page-tabs">
-          <li class="homefeatured"><a class="homefeatured">All DISHES</a></li>
+          <li class="homefeatured"><a class="homefeatured">{{ (auth.getType()=='user')? 'All DISHES' : 'My DISHES' }}</a></li>
         </ul>
         <br>
         <br>

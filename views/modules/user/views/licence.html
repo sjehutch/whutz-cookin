@@ -10,11 +10,11 @@
                             <input type="file" id="profile" ngf-select ng-model="licence_img" ngf-pattern="'image/*'"
                                    accept="image/*" class="form-control" />
 
-                            <div ng-if="model.licence_img != null">
-                                <img ng-src="{{ 'uploads/'+ model.licence_img }}" alt="Licence Image" class="pull-left img-responsive" />
+                        </div>
+						<div ng-if="model.licence_img != null" class="form-group" >
+                                <img width="300" ng-src="{{ 'uploads/'+ model.licence_img }}" alt="Licence Image" class="pull-left img-responsive" />
                                 <a class="close pull-left pl10" ng-click="model.licence_img = null">X</a>
                             </div>
-                        </div>
                     </p>
                     <p>
                         <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">

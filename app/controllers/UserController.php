@@ -281,8 +281,8 @@ class UserController extends BaseController {
 		
 		$array = array();
 		
-		$array["user_id"] = Auth::user()->id;
-		$array["from_id"] = Input::get("cook_id");
+		$array["user_id"] = Input::get("cook_id");
+		$array["from_id"] = Auth::user()->id;
 		$array["text"] = Input::get("text");
 		
 		Message::create($array);
@@ -293,10 +293,72 @@ class UserController extends BaseController {
 	
 	public function receiver($id){
 		
-		
-		$data = Message::whereUser_id($id)->whereTo_id(Auth::user()->id)->get();
-		
+		$where = ["user_id" => $id,"from_id" =>  Auth::user()->id];
+		$orWhere = ["user_id" => Auth::user()->id,"from_id" =>  $id];
+
+		Message::where("isRead",0)->where($where)->orWhere($orWhere)->update(array("isRead"=>1));
+
+		$data = Message::where($where)->orWhere($orWhere)->get();
+
+		$data = array_map(function($row) {
+			$row["time"] = Helpers::time_ago($row["created_at"]);
+			$user = User::find($row["from_id"]);
+			$row["name"] = $user->name;
+			$row["profile_photo"] = $user->profile_photo;
+			return $row;
+
+		},$data->toArray());
+
 		return Response::json(array('status' => true, 'message' => "" , "data" => $data ));	
 		
 	}
+
+	public function getUnreadMessage()
+	{
+		$id = Auth::user()->id;
+
+		$where = ["user_id" => $id, "from_id" => Auth::user()->id, "isRead" => 0];
+		$orWhere = ["user_id" => Auth::user()->id, "from_id" => $id, "isRead" => 0];
+
+		if (Auth::user()->type == 'user')
+			$count = Message::where($where)->orWhere($orWhere)->count();
+		else {
+			$where = ["user_id" =>  Auth::user()->id, "isRead" => 0 ];
+			$count = Message::where($where)->count();
+		}
+
+		return Response::json(array('status' => true, 'message' => "" , "unread" => $count ));
+
+	}
+
+	public function getAllConversation(){
+
+		if(Auth::user()->type == 'user') {
+			$data = Message::whereFrom_id(Auth::user()->id)->select("user_id")->distinct()->get();
+			$data = array_map(function($row) {
+				$user = User::find($row["user_id"]);
+				$row["from_id"] = $row["user_id"];
+				$row["name"] = $user->name;
+				return $row;
+
+			},$data->toArray());
+		}
+		else {
+			$data = Message::where("user_id", Auth::user()->id)->select("from_id")->distinct()->get();
+			$data = array_map(function($row) {
+				$user = User::find($row["from_id"]);
+				$row["name"] = $user->name;
+				$row["cook_id"] = $row["from_id"];
+				return $row;
+
+			},$data->toArray());
+		}
+
+
+
+		return Response::json(array('status' => true, 'message' => "" , "data" => $data ));
+	}
+
+
+
 }

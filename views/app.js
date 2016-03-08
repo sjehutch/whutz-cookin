@@ -132,8 +132,12 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
             controller: 'whutz.modules.user.calendar'
 		})
 		.when('/send/:id',{
-			templateUrl: 'views/modules/user/views/send-message.html',
+			templateUrl: 'views/modules/user/views/message.html',
             controller: 'whutz.modules.user.send.message'
+		})
+		.when('/sms/:id',{
+			templateUrl: 'views/modules/user/views/message.html',
+			controller: 'whutz.modules.user.message'
 		})
         .when('/resetPassword', {
     		
@@ -162,6 +166,40 @@ app.controller('whutz.main.controller', [
 		$scope.location = $location;
 		$rootScope.auth = Auth;
 		$scope.JSON = JSON;
+
+		$scope.unreadMessage = 0;
+
+		 $scope.conversation = [];
+
+		 $scope.getAllConversation = function(){
+			 $http.get("/conversation")
+				 .success(function (data) {
+					 if(data.status){
+						 $scope.conversation = data.data;
+					 }else{
+
+					 }
+				 })
+				 .error(function (data) {
+					 console.log('Error: ' + data);
+				 });
+		 }
+		 $scope.getAllConversation();
+
+		$scope.getUnreadMessage = function(){
+			$http.get("/msg/unread")
+				.success(function (data) {
+					if(data.status){
+						$scope.unreadMessage = data.unread;
+					}else{
+
+					}
+				})
+				.error(function (data) {
+					console.log('Error: ' + data);
+				});
+		}
+		$scope.getUnreadMessage();
 		
 		if(Auth.getType() == "cook")
 			ngDialog.open({ template: 'menuPopup' });
@@ -205,6 +243,7 @@ app.controller('whutz.main.controller', [
 		$scope.logout = function(){
 			notification.info("Logout Successfully");
 			Auth.authenticate();
+			$scope.surveyPopup();
 		}
 	 }
  ]);

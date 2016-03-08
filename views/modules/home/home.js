@@ -154,6 +154,7 @@ homes.controller('whutz.modules.home.index', [
 										}
 										// failed
 										else{
+											Notification.error(data.message);
 											var errors = data.errors;
 											for(var idx in errors){
 												Notification.error(errors[idx].toString());
@@ -189,6 +190,7 @@ homes.controller('whutz.modules.home.index', [
 					}
 					// failed
 					else{
+						Notification.error(data.message)
 						var errors = data.errors;
 						for(var idx in errors){
 							Notification.error(errors[idx].toString());

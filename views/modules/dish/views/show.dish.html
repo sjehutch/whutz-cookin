@@ -24,7 +24,7 @@
               <br>
               <p><b style=""color:#000>IT CONTAINS:</b> {{ dish.contain }} </p>
               <br/>
-               <div class="nopd">
+               <div class="nopd" ng-show="auth.getType()=='user'">
               <input type="number" ng-model="dish.order_quantity" class="form-control addcart33" />
               <a type="submit" name="submit_search"  ng-click="addCart(dish.id,dish.order_quantity)" class="btn  btn-bordered waves-effect waves-light org"> Add Cart </a> </div>
               <br>

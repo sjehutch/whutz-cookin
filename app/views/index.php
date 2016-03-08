@@ -155,9 +155,11 @@
           <li> <a ><i class="fa fa-bars"></i> COOK MENU </a> </li>
           <li><a href="#/dashboard"> Dashboard </a></li>
           <li> <a href="#/home"> HOME </a> </li>
-          <li> <a id="flip" href="#"> MESSAGES
-            <div class="pull-right notification"> 0</div>
-            </a> </li>
+          <li> <a id="flip" > MESSAGES
+            <div class="pull-right notification"> {{ unreadMessage }}</div>
+            </a>
+          </li>
+          <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
           <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
           <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
@@ -181,9 +183,11 @@
           <li> <a id="flip" href="#/mycart"> Cart
             <div class="pull-right notification"> 0</div>
             </a> </li>
-          <li> <a id="flip" href="#"> MESSAGES
-            <div class="pull-right notification"> 0</div>
-            </a> </li>
+          <li>
+              <a id="flip" >MESSAGES<div class="pull-right notification">{{ unreadMessage }}</div>
+            </a>
+          </li>
+            <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
           <li> <a href="#/dishs"> Recently added dishes </a> </li>
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
@@ -208,9 +212,11 @@
       <li> <a ><i class="fa fa-bars"></i> COOK MENU </a> </li>
        <li><a href="#/dashboard"> Dashboard </a></li>
       <li> <a href="#/home"> HOME </a> </li>
-      <li> <a id="flip" href="#"> MESSAGES
-        <div class="pull-right notification"> 0</div>
-        </a> </li>
+      <li> <a id="flip" > MESSAGES
+        <div class="pull-right notification"> {{ unreadMessage }}</div>
+        </a>
+      </li>
+        <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
       <li> <a href="#/my-profile"> MY PROFILE </a> </li>
       <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
       <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
@@ -234,9 +240,10 @@
           <li> <a id="flip" href="#/mycart"> Cart
             <div class="pull-right notification"> 0</div>
             </a> </li>
-          <li> <a id="flip" href="#"> MESSAGES
-            <div class="pull-right notification"> 0</div>
+          <li> <a id="flip" > MESSAGES
+            <div class="pull-right notification"> {{ unreadMessage }}</div>
             </a> </li>
+            <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
           <li> <a href="#/dishs"> Recently added dishes </a> </li>
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->

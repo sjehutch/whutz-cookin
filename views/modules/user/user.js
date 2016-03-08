@@ -23,6 +23,48 @@ user.controller('whutz.modules.user.profile', [
                     console.log('Error: ' + data);
                 });
 }]);
+
+user.controller('whutz.modules.user.message', [
+	'$scope',
+	'$http',
+	'$location',
+	'$window',
+	'$routeParams',
+	"whutz.security.auth",
+	function ($scope, $http, $location, $window,$routeParams,auth) {
+		$scope.messages = [];
+		$scope.send = {};
+
+		$scope.send.cook_id = $routeParams.id;
+
+		$http.get("/message/"+$routeParams.id)
+			.success(function (data) {
+
+				if(data.status){
+					$scope.messages = data.data;
+				}else{
+
+				}
+			})
+			.error(function (data) {
+				console.log('Error: ' + data);
+			});
+		$scope.sender = function(){
+
+			$http.post("/send",$scope.send)
+				.success(function (data) {
+					var msg2={text:$scope.send.text,time:"Now"};
+
+					$scope.messages.push(msg2);
+					Notification.info("Message send Successfully!!")
+					$scope.send.text=null;
+				})
+				.error(function (data) {
+					console.log('Error: ' + data);
+				});
+		}
+
+	}]);
 user.controller('whutz.modules.user.edit.profile', [
     '$scope',
 	'$q',
@@ -203,13 +245,16 @@ user.controller('whutz.modules.user.login', [
 			$http.post("/register",$scope.register)
 				.success(function (data) {
 					// success
+					debugger;
 					if(data.status){
 						Notification.info("Your account is successfully created. please check your email and verify your whutz-cookin account.");
 						$location.path("/home#login");
 					}
 					// failed
 					else{
-						var errors = data.errors;
+						
+						Notification.error(data.message);
+						var errors = data.errors|| [];
 						for(var idx in errors){
 							Notification.error(errors[idx].toString());
 						}

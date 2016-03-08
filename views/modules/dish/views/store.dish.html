@@ -34,16 +34,13 @@
                   </div>
                   <div class="form-group">
                       <div class="col-xs-6 nopd pr">
-                       <!-- <label >DELIVERY METHOD</label>-->
+                       <!-- <label >DELIVERY METHOD</label>
                         <select  ng-model="dish.delivery_method" class="form-control">
                           <option value="">DELIVERY METHOD</option>
                           <option value="delivery only">DELIVERY ONLY</option>
                           <option value="pick up only">PICK UP ONLY</option>
-                        </select>
-                        </div>
-                        <div class="col-xs-6 nopd pl">
-                        <!--<label >CHOOSE A DISH</label>-->
-                        <select  ng-model="dish.dish_type" class="form-control">
+                        </select>-->
+						<select  ng-model="dish.dish_type" class="form-control">
                           <option value=""> CHOOSE A DISH </option>
                           <option value="Main Dish">MAIN DISH</option>
                           <option value="Salad">SALAD</option>
@@ -51,15 +48,43 @@
                           <option value="Beverage">BEVERAGE</option>
                         </select>
                         </div>
+                        <div class="col-xs-6 nopd pl">
+                        <!--<label >CHOOSE A DISH</label>-->
+                        <select  ng-model="dish.dish_temprature" class="form-control">
+                          <option value="">SELECT Temperature of Dish</option>
+						  <option value="hot">HOT</option>
+                          <option value="cold">COLD</option>
+                          <option value="spicy">SPICY</option>
+                        </select>
+						
+						
+                        </div>
                   </div>
-
+				 <div class="form-group">
+                      <div class="col-xs-12 nopd pr">
+					  <label >DELIVERY METHOD</label>
+                      <br>&nbsp;&nbsp;
+						<input type="checkbox" ng-true-value="'delivery only'" ng-model="delivery_method.one" >
+						DELIVERY &nbsp;&nbsp;
+						<input type="checkbox" ng-true-value="'pick up only'" ng-model="delivery_method.two" >
+						PICK UP &nbsp;&nbsp;
+					 <br> <br>
+                       <!-- <label >DELIVERY METHOD</label>
+                        <select  ng-model="dish.delivery_method" class="form-control">
+                          <option value="">DELIVERY METHOD</option>
+                          <option value="delivery only">DELIVERY ONLY</option>
+                          <option value="pick up only">PICK UP ONLY</option>
+                        </select>-->
+						
+                  </div>
+				  
                   <div class="form-group">
                     <p class="col-xs-6 nopd pr">
                       <label class="uploadButton" for="image"></label>
                       <input type="file" id="image" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
     accept="image/*">
     					<div ng-if="dish.dish_img != null">
-    						<img ng-src="{{'uploads/'+dish.dish_img}}" alt="{{ dish.name }}" class="pull-left"/>
+    						<img ng-src="{{'uploads/'+dish.dish_img}}" alt="{{ dish.name }}" class="pull-left" width="250"/>
                             <a class="close pull-left pl10" ng-click="dish.dish_img= null">X</a>
                         </div>
                     </p>
@@ -67,7 +92,7 @@
                       <label class="uploadButton1" for="video"></label>
                       <input type="file" id="video" ngf-select ng-model="video" name="video" >
                       <div ng-if="dish.dish_video != null">
-    						 <video width="400px" controls class="video_class pull-left" >
+    						 <video width="400px" controls class="video_class pull-left" width="300">
                              	<source ng-src="{{'uploads/'+dish.dish_video}}" type="video/mp4">
                              </video>
                              <a class="close pull-left pl10" ng-click="dish.dish_img = null">X</a>

@@ -30,7 +30,7 @@
             	 <h2 class="mt10" style="margin-top:10px !important">{{ dish.user.name }}</h2>
              </div>
             <div class="col-xs-6">
-                <h2 style="text-align:left;">{{ dish.name }}</h2>
+                <h2 style="text-align:left;"><a ng-href="#/dish/show/{{ dish.id }}">{{ dish.name }}</a></h2>
                	 <p> {{ dish.description }} </p>
                 <!--<p class="rating"> <a ng-href="#/dish/show/{{ dish.id }}"> (11 comments) </a></p>-->
                <!-- <p class="desc">{{ dish.quantity }} plates left | {{ dish.distance }}</p>-->

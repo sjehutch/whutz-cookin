@@ -9,12 +9,12 @@
         	<img src="uploads/{{ cook_photo || 'user.png' }}"  alt="" class="img-responsive"/>
         </div>
         <div class="col-sm-9">
-        	<h4>Send Message User</h4>
+        	<h4>Messages</h4>
         
         
-        	<div class="full">
-            	
-            
+        	<div class="full" ng-init="itemId007 = messages[0].user_id ">
+            	<p class="alert alert-success"  ng-repeat="msg in messages">{{ msg.text }}<span class="pull-right">{{ msg.time}}</span> </p>
+
             </div>
         
         
