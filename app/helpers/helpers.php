@@ -81,13 +81,13 @@ class Helpers{
 		<center>
 			<img src="'.Request::server("HTTP_HOST").'/views/images/logo2.png" style="width:200px">
 		</center>
-		</p><br>
+		</p>
 		<p>Dear '.$name.'<br />
-			</p>
+			</p><br />
 			<p>Thank you for registering at The Whutz Cookin</p>			
 			<p>This email is to verify that you are indeed a human! If you are, simply follow the link below which will complete the registration process.</p>
 			<a href="'.Request::server("HTTP_HOST").'/#/login/true?email_verified='.$verification_code.'">Click on the link to activate your account.</a>
-			<p>if you are not able to clicking '.Request::server("HTTP_HOST").'/#/login/true?email_verified='.$verification_code.' </p>
+			<p>if you are not able to clicking http://'.Request::server("HTTP_HOST").'/#/login/true?email_verified='.$verification_code.' </p><br />
 			<p>Best wishes <br/>
 			The Whutz Cookin Registry Team.
 			</p>

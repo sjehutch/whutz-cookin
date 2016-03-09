@@ -367,10 +367,8 @@
 <div id="base-color"></div>
 
 <!-- JavaScript libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
-
-<!--<script src="views/libraries/core/angular/angular.min.js" ></script> -->
+<script src="views/libraries/core/angular/angular.min.js" ></script> 
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
 <script src="views/libraries/core/angular/angular-resource.min.js"></script>
 
@@ -388,8 +386,8 @@
 <script src="views/libraries/3rdParty/sweetalert/sweet-alert.min.js"></script> 
 <script src="views/libraries/3rdParty/ngDialog/ngDialog.min.js"></script> 
 <script data-semver="1.6.1" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js"></script>
-<script src="views/libraries/3rdparty/calendar/calendar.js"></script> 
-<script src="views/libraries/3rdparty/moment/moment.js" ></script>
+<script src="views/libraries/3rdParty/calendar/calendar.js"></script> 
+<script src="views/libraries/3rdParty/moment/moment.js" ></script>
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 

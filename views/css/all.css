@@ -772,7 +772,13 @@ footer.page-footer .footer-copyright {
 	border:1px solid #969696;
 	margin:5px 0;
 }
-
+body .carousel-control .glyphicon-chevron-left, 
+body .carousel-control .glyphicon-chevron-right, 
+body .carousel-control .icon-next, 
+body .carousel-control .icon-prev
+{
+	top: 60%;
+}
 @media (max-width:767px){
 	.show-sm{ display:block;}
 	.show-sm-imp{display:block !important;}
