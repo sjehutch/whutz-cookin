@@ -6,22 +6,20 @@
 		</div>
     	<h1>Welcome Cook to Whutz Cookin</h1>
     	<p class>You are logged in as Cook , You can add new dish for sale.</p>
-		
+
 		<p>
 			<a href="#/dishs" ng-if="auth.getType()=='user'" ng-click="closeThisDialog()">DASHBOARD</a>
 			<a href="#/dashboard" ng-if="auth.getType()=='cook'" ng-click="closeThisDialog()">DASHBOARD</a>
-			
+
 			<a class="btn" href="#/cook/dish/0" ng-click="closeThisDialog()" >Add New Dish</a>
 		</p>
 	</div>
 </script>
 
 <script type="text/ng-template" id="deliveryTemplate">
-
 	<div class="row">
-		<div class="col-xs-12 text-center"><h3>DELIVERY REGISTRATION</h3></div>		
+		<div class="col-xs-12 text-center"><h3>DELIVERY REGISTRATION</h3></div>
 	</div>
-	
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="col-xs-12">
@@ -34,7 +32,6 @@
 				<div class="col-xs-12 col-sm-4 mt10">
 					<input type="text" placeholder="Password" class="form-control"  ng-model="delivery.password" />
 				</div>
-				
 			</div>
 		</div>
 		<div class="col-xs-12">
@@ -48,7 +45,7 @@
 				<div class="col-xs-12 col-sm-4 mt10">
 					<input type="text" placeholder="Mobile" class="form-control"  ng-model="delivery.mobile"/>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="col-xs-12">
@@ -67,18 +64,13 @@
 						<option value="10-15">10-15 Miles</option>
 						<option value="15-20">15-20 Miles</option>
 					</select>
-					
 				</div>
-				
 			</div>
 		</div>
-		
 		<div class="col-xs-12 text-center">
 			<a class="btn mt10" ng-click="save()"> Create a Account</a>
 		</div>
 	</div>
-	
-	
 
 </script>
 
@@ -86,15 +78,15 @@
 	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
       <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id">
         <img ng-src="{{slide.image}}" style="margin:auto;">
-        
       </uib-slide>
+      <div class="container-wrapper text-center scroll-img"> <a href="#/home#intro"><img src="views/images/icon-down.png"  alt=""/></a> </div>
     </uib-carousel>
-    </div>
+ </div>
 
 
 
 <!--<div class="section owl-section" style="background-image:url(views/images/slider/veggies.jpg);background-size:100% auto;" id="homesection"> -->
-<div class="section owl-section" style="background-size:100% auto;position:absolute;top:0;z-index:99; width:100%" id="homesection" > 
+<div class="section owl-section" style="background-size:100% auto;position:absolute;top:0;z-index:99; width:100%" id="homesection" >
 
   <!--<div class="owl-carousel">
 
@@ -104,7 +96,7 @@
   <div class="container-wrapper valign-wrapper">
   <h1 class="text-center white-text">Fine Dining At Your Front Door</h1>
     <div class="container zip-search" ng-show="auth.isAuthenticated()">
-      
+
       <div class="input-field col-sm-12 text-center">
         <input id="contact-first-name" ng-model="s.item" type="text" class="form-control2 bold" placeholder="Search a dish/Cook">
       </div>
@@ -120,7 +112,7 @@
       </div>
     </div>
     <a class="btn-floating btn-large waves-effect waves-dark" id="explore"> <i class="mdi-navigation-arrow-forward"></i> </a> </div>
-  <div class="container-wrapper text-center scroll-img"> <a href="#/home#intro"><img src="views/images/icon-down.png"  alt=""/></a> </div>
+
 </div>
 <!-- Intro section -->
 <div class="section colorful-background white-text text-center welcome-notes" id="intro">
@@ -135,13 +127,13 @@
 </div>
 
 <!-- cook section -->
-<div class="section owl-section" id="cook"> 
+<div class="section owl-section" id="cook">
   <!--<div class="owl-carousel">
 
           <div style="background-image:url(views/images/chef/chef-2.jpg)"></div>
-      </div>--> 
+      </div>-->
   <!-- Vertically aligned container -->
-  <div class="container-wrapper sets-wrapper" style="background:url('views/images/chef/chef-1.jpg') no-repeat scroll center center;background-size:100% 100%;">
+  <div class="container-wrapper sets-wrapper" style="background:url('views/images/chef/chef-1.jpg') no-repeat scroll center center;background-size:100% auto;">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 m10 text-center">
@@ -168,7 +160,7 @@
           <div style="background-image:url(views/images/interior/interior-2.jpg)"></div>
       </div>--> 
   <!-- Vertically aligned container -->
-  <div class="container-wrapper sets-wrapper" style="background:url('views/images/interior/interior-1.jpg') no-repeat scroll center center;background-size:100% 100%;">
+  <div class="container-wrapper sets-wrapper" style="background:url('views/images/interior/interior-1.jpg') no-repeat scroll center center;background-size:100% auto;">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 m10 text-center">

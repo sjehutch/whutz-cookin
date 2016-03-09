@@ -17,7 +17,9 @@ homes.controller('whutz.modules.home.index', [
 	$scope.vreset = {};
 	$scope.s = {};
 	$scope.isResetPassShow = false;
-	
+	$scope.myInterval = 5000;
+	$scope.noWrapSlides = false;
+
 	 var slides = $scope.slides = [];
 	 
 	 slides.push({
@@ -30,7 +32,17 @@ homes.controller('whutz.modules.home.index', [
       text: '',
       id: 2
     });
-	
+	 slides.push({
+		 image: 'views/images/slider/berries.jpg',
+		 text: '',
+		 id: 3
+	 });
+	 slides.push({
+		 image: 'views/images/slider/ribs.jpg',
+		 text: '',
+		 id: 4
+	 });
+
 	
 	 
 	$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 12 };
@@ -45,10 +57,10 @@ homes.controller('whutz.modules.home.index', [
 	}
 	
 	$(document).ready(function(e) {
-		$(".datetimepicker").datetimepicker({
+		/*$(".datetimepicker").datetimepicker({
 					 dateFormat: 'M dd yy',
 					 timeFormat: 'hh:mm TT'
-		});        
+		});*/
     });
 	
 	$scope.cookinSearch = function(){

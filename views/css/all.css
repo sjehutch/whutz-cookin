@@ -356,7 +356,12 @@ input[type="file"] {
 .ng-submitted .ng-invalid{
 	border:1px solid red !important;
 }
-
+.carousel-indicators{
+    bottom:90px;
+}
+#homesection{
+    padding-bottom: 0 !important;
+}
 .notification{
 	background-color: rgb(213, 17, 17);
 	width: 30px;

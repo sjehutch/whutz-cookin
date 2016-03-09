@@ -366,16 +366,18 @@
 <div id="dark-color"></div>
 <div id="base-color"></div>
 
-<!-- JavaScript libraries --> 
+<!-- JavaScript libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
 
-<script src="views/libraries/core/angular/angular.min.js" ></script> 
+<!--<script src="views/libraries/core/angular/angular.min.js" ></script> -->
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
-<script src="views/libraries/core/angular/angular-resource.min.js"></script> 
-<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script> 
-<script src="views/libraries/3rdParty/jquery-ui/jquery-ui.min.js"></script> 
-<script src="views/libraries/3rdParty/jquery-ui/jquery-ui-timepicker-addon.js"></script> 
-<script src="views/libraries/core/angularui/ui-bootstrap-0.14.3.min.js"></script> 
-<script src="views/libraries/core/angular/angular-sanitize.min.js"></script> 
+<script src="views/libraries/core/angular/angular-resource.min.js"></script>
+
+<!--<script src="views/libraries/3rdParty/jquery-ui/jquery-ui.min.js"></script>-->
+<!--<script src="views/libraries/3rdParty/jquery-ui/jquery-ui-timepicker-addon.js"></script>-->
+<script src="views/libraries/core/angularui/ui-bootstrap-0.14.3.min.js"></script>
+<script src="views/libraries/core/angular/angular-sanitize.min.js"></script>
 <script src="views/libraries/3rdParty/sticky/jquery.sticky.js"></script> 
 <script src="views/libraries/3rdParty/fileupload/ng-file-upload-all.min.js"></script> 
 <script src="views/libraries/3rdParty/notification/angular-ui-notification.min.js"></script> 
