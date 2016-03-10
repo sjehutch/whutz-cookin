@@ -24,7 +24,7 @@ class AuthenticationController extends BaseController{
 		$validate=Validator::make(Input::all(),array(
 			'email'    =>'required',
 			'password' =>'required',
-			'type' =>'required',
+			//'type' =>'required',
 			));
 			
 		if($validate->fails()){
@@ -35,7 +35,7 @@ class AuthenticationController extends BaseController{
 			$auth= Auth::attempt(array(
 										 'email' =>	Input::get('email'),
 										 'password' =>	Input::get('password'),
-										 'type'  => Input::get('type')
+										 //'type'  => Input::get('type')
 									  ),true);
 			if ($auth) {
 			  return Response::json(array('status' => true, 'message' => 'You are login',"data" => Auth::user()));

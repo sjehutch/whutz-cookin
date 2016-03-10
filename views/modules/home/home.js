@@ -19,48 +19,49 @@ homes.controller('whutz.modules.home.index', [
 	$scope.isResetPassShow = false;
 	$scope.myInterval = 5000;
 	$scope.noWrapSlides = false;
+	$scope.active = 0;
+	$scope.isHideLoginSignupWhenReset= false;
 
-	 var slides = $scope.slides = [];
-	 
-	 slides.push({
-      image: 'views/images/slider/veggies.jpg',
+	$scope.slides = [];
+
+	$scope.slides.push({
+      image: '/views/images/slider/veggies.jpg',
       text: '',
       id: 1
     });
-	slides.push({
-      image: 'views/images/slider/tomato.jpg',
+	$scope.slides.push({
+      image: '/views/images/slider/tomato.jpg',
       text: '',
       id: 2
     });
-	 slides.push({
-		 image: 'views/images/slider/berries.jpg',
+	$scope. slides.push({
+		 image: '/views/images/slider/berries.jpg',
 		 text: '',
 		 id: 3
-	 });
-	 slides.push({
-		 image: 'views/images/slider/ribs.jpg',
+	});
+	$scope.slides.push({
+		 image: '/views/images/slider/ribs.jpg',
 		 text: '',
 		 id: 4
-	 });
+	});
 
 	
 	 
 	$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 12 };
 	
 	$scope.reset = $location.search().reset;
-	console.log($scope.reset);
 	if($scope.reset != undefined){
 		$scope.vreset.reset = $scope.reset;
 		$scope.isResetPassShow = true;
-		
+		$scope.isHideLoginSignupWhenReset=true;
 		$location.hash("reset");
 	}
 	
 	$(document).ready(function(e) {
-		/*$(".datetimepicker").datetimepicker({
+		$(".datetimepicker").datetimepicker({
 					 dateFormat: 'M dd yy',
 					 timeFormat: 'hh:mm TT'
-		});*/
+		});
     });
 	
 	$scope.cookinSearch = function(){
@@ -119,7 +120,7 @@ homes.controller('whutz.modules.home.index', [
 
 	if(JSON.parse(localStorage.getItem("menupopup"))){
 		ngDialog.closeAll()
-		ngDialog.open({template : 'menuPopup' });
+		ngDialog.open({template : 'menuPopup.html' });
 		localStorage.removeItem("menupopup")
 	}
 	 
@@ -152,7 +153,10 @@ homes.controller('whutz.modules.home.index', [
 						controller: ['$scope','$http','Notification', function($scope,$http,Notification) {
 							$scope.delivery = {};
 							
-							$scope.save = function(){
+							$scope.save = function(invalid){
+								if(invalid)
+									return false;
+
 								$scope.delivery.type="delivery";
 								
 								$http.post("/register",$scope.delivery)
@@ -202,10 +206,17 @@ homes.controller('whutz.modules.home.index', [
 					}
 					// failed
 					else{
-						Notification.error(data.message)
-						var errors = data.errors;
-						for(var idx in errors){
-							Notification.error(errors[idx].toString());
+						if(data.serviceNotAvailable){
+							ngDialog.open({
+								template: 'serviceNotAvailable.html',
+							});
+						}
+						else{
+							Notification.error(data.message)
+							var errors = data.errors;
+							for(var idx in errors){
+								Notification.error(errors[idx].toString());
+							}
 						}
 					}
                 })
@@ -247,6 +258,7 @@ homes.controller('whutz.modules.home.index', [
 				.success(function (data) {
 					// success
 					if(data.status){
+						$scope.isResetPassShow=false;
 						Notification.info(data.message);
 						$location.path("/home#login");
 					}else{

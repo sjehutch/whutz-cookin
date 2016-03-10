@@ -80,7 +80,30 @@
 </div>
 
 </script>
+<script type="text/ng-template" id="menuPopup.html">
+    <div class="open-desc text-center">
+        <div style="padding:30px 0;">
+            <img src="/views/images/logo2.png"  alt="logo" width="200"/>
+        </div>
+        <h1>Welcome Cook to Whutz Cookin</h1>
+        <p class>You are logged in as Cook , You can add new dish for sale.</p>
 
+        <p>
+            <a href="#/dishs" ng-if="auth.getType()=='user'" ng-click="closeThisDialog()">DASHBOARD</a>
+            <a href="#/dashboard" ng-if="auth.getType()=='cook'" ng-click="closeThisDialog()">DASHBOARD</a>
+
+            <a class="btn" href="#/cook/dish/0" ng-click="closeThisDialog()" >Add New Dish</a>
+        </p>
+    </div>
+</script>
+<script type="text/ng-template" id="serviceNotAvailable.html">
+    <div class="open-desc text-center">
+        <div style="padding:30px 0;">
+            <img src="/views/images/logo2.png"  alt="logo" width="200"/>
+        </div>
+       <p>Service in your area is not available.Your account has been registered. You will get new updates soon</p>
+    </div>
+</script>
 <script type="text/ng-template" id="surveyTemplate">
 <div class="row">
 <h5 class="text-center"> Online Survey </h5>
@@ -367,18 +390,21 @@
 <div id="base-color"></div>
 
 <!-- JavaScript libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
 
-<!--<script src="views/libraries/core/angular/angular.min.js" ></script> -->
+
+<script src="views/libraries/core/angular/angular.min.js" ></script>
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
 <script src="views/libraries/core/angular/angular-resource.min.js"></script>
-
-<!--<script src="views/libraries/3rdParty/jquery-ui/jquery-ui.min.js"></script>-->
-<!--<script src="views/libraries/3rdParty/jquery-ui/jquery-ui-timepicker-addon.js"></script>-->
+<!--<script src="views/libraries/core/angularui/ui-bootstrap-tpls-1.2.4.min.js"></script>-->
 <script src="views/libraries/core/angularui/ui-bootstrap-0.14.3.min.js"></script>
+
+<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
+<script src="views/libraries/3rdParty/jquery-ui/jquery-ui.min.js"></script>
+<script src="views/libraries/3rdParty/jquery-ui/jquery-ui-timepicker-addon.js"></script>
+
+
 <script src="views/libraries/core/angular/angular-sanitize.min.js"></script>
-<script src="views/libraries/3rdParty/sticky/jquery.sticky.js"></script> 
+<script src="views/libraries/3rdParty/sticky/jquery.sticky.js"></script>
 <script src="views/libraries/3rdParty/fileupload/ng-file-upload-all.min.js"></script> 
 <script src="views/libraries/3rdParty/notification/angular-ui-notification.min.js"></script> 
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> 
@@ -388,8 +414,8 @@
 <script src="views/libraries/3rdParty/sweetalert/sweet-alert.min.js"></script> 
 <script src="views/libraries/3rdParty/ngDialog/ngDialog.min.js"></script> 
 <script data-semver="1.6.1" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js"></script>
-<script src="views/libraries/3rdparty/calendar/calendar.js"></script> 
-<script src="views/libraries/3rdparty/moment/moment.js" ></script>
+<script src="views/libraries/3rdParty/calendar/calendar.js"></script> 
+<script src="views/libraries/3rdParty/moment/moment.js" ></script>
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 

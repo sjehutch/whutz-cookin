@@ -12,12 +12,10 @@ class UserController extends BaseController {
 			'type'     => 'required'
 			));
 		if($validate->fails()){
-			return Response::json(array('status' => false, 'message' => "Validation Failed" , "errors" => $validate->messages()));
+			return Response::json(array('status' => false,'serviceNotAvailable' =>false, 'message' => "Validation Failed" , "errors" => $validate->messages()));
 		}else{
 			
-			$isData = DB::table('zip_codes')->whereCode(Input::get("zip"))->get();
-			if(!empty($isData))
-			{
+
 				$email_verification_code = Str::random(60);
 				
 				$overwrite = array(
@@ -29,16 +27,20 @@ class UserController extends BaseController {
 				
 				$user = User::create($data);
 				if($user){
-					// $to,$name,$verification_code
-					Helpers::emailVerfication(Input::get("email"),Input::get("email"),$email_verification_code);
-					return Response::json(array('status' =>true, 'message' => "Register Successfully !! Please check your Email for verification".$data['password'].$user));
+					$isData = DB::table('zip_codes')->whereCode(Input::get("zip"))->get();
+					if(!empty($isData))
+					{
+						// $to,$name,$verification_code
+						Helpers::emailVerfication(Input::get("email"),Input::get("email"),$email_verification_code);
+						return Response::json(array('status' =>true,'serviceNotAvailable' =>false, 'message' => "Register Successfully !! Please check your Email for verification".$data['password'].$user));
+					}
+					else{
+						return Response::json(array('status' =>false,'serviceNotAvailable' =>true));
+					}
 				}else{
-					return Response::json(array('status' =>false, 'message' => "Register Failed"));
+					return Response::json(array('status' =>false,'serviceNotAvailable' =>false, 'message' => "Register Failed"));
 				}
-			}
-			else{
-				return Response::json(array('status' =>false, 'message' => "Service in your area is not available.Your account has been registered. You will get new updates soon"));	
-			}
+
 		}
 	}
 	

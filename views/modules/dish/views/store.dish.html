@@ -12,14 +12,14 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <form name="addDish" class="box"  id="create-account_form" >
+              <form name="addDish" class="box"  id="create-account_form" novalidate >
                 <h3 class="page-subheading">ADD NEW DISH</h3>
                 <div class="form_content clearfix">
                   <div style="display:none" id="create_account_error" class="alert alert-danger"></div>
                   <div class="form-group">
                     <!--<label >DISH NAME</label>-->
                     <div class="col-xs-6 nopd pr">
-                    	<input type="text" required="" ng-model="dish.name" id="email_create" class="form-control" placeholder="Dish Name">
+                    	<input type="text" required="" ng-model="dish.name" id="email_create" class="form-control" placeholder="Dish Name" required="">
                     </div>
                     
                      <!-- <label >FOOD FOR DAY/NIGHT</label>-->
@@ -126,16 +126,16 @@
                   </div>
                   <div class="form-group">
                    <!-- <label >ADDRESS FOR DISH</label>-->
-                    <textarea class="form-control" ng-model="dish.address"  cols="50" rows="4" placeholder="ADDRESS FOR DISH"></textarea>
+                    <textarea class="form-control" ng-model="dish.address"  cols="50" rows="4" placeholder="ADDRESS FOR DISH" required></textarea>
                   </div>
                   <div class="form-group">
                   	<div class="col-xs-6 nopd pr">
                    	 <!--<label >AREA ZIP CODE FOR DISH</label>-->
-                   	 <input type="number" required="" ng-model="dish.zipcode" class="form-control" placeholder="AREA ZIP CODE FOR DISH">
+                   	 <input type="number" required="" ng-model="dish.zipcode" class="form-control" placeholder="AREA ZIP CODE FOR DISH" required>
                     </div>
                     <div class="col-xs-6 nopd pl">
                      <!--<label for="plates">NUMBER OF PLATES</label>-->
-                    <input type="number" required="" ng-model="dish.quantity" id="plates" name="plates_left" class="form-control" placeholder="NUMBER OF PLATES">
+                    <input type="number" required="" ng-model="dish.quantity" required id="plates" name="plates_left" class="form-control" placeholder="NUMBER OF PLATES">
                     </div>
                     
                   </div>
@@ -143,7 +143,7 @@
                   <div class="form-group">
                    <div class="col-xs-6 nopd pr">
                     <!--<label for="unfulfilled">UNFULFILLED</label>-->
-                    <input type="text" required="" ng-model="dish.unfulfilled" id="unfulfilled" class="form-control" placeholder="UNFULFILLED">
+                    <input type="text" required="" ng-model="dish.unfulfilled" required id="unfulfilled" class="form-control" placeholder="UNFULFILLED">
                    </div>
                    <div class="col-xs-6 nopd pl">
                    	<!-- <label for="price">PRICE</label>-->
@@ -152,9 +152,9 @@
                   </div>
 
                   <div class="submit">
-                    <button name="adddishweb" id="SubmitCreate" type="submit"  ng-disabled="addDish.$invalid" class="btn btn-default btn-md" ng-click="store()" ng-show="id==0"> <span> <i class="fa fa-plus" ></i> ADD DISH </span> </button>
+                    <button  type="submit"  class="btn btn-default btn-md" ng-click="store(addDish.$invalid)" ng-show="id==0"> <span> <i class="fa fa-plus" ></i> ADD DISH </span> </button>
                     
-                    <button name="adddishweb" id="SubmitCreate" type="submit"  ng-disabled="addDish.$invalid" class="btn btn-default btn-md" ng-click="update()" ng-hide="id==0"> <span> <i class="fa fa-plus"></i> Update DISH </span> </button>
+                    <button  type="submit"  class="btn btn-default btn-md" ng-click="update(addDish.$invalid)" ng-hide="id==0"> <span> <i class="fa fa-plus"></i> Update DISH </span> </button>
                     
                   </div>
                 </div>

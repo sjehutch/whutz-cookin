@@ -41,11 +41,11 @@
             	 <h1 class="full">${{ dish.price }} </h1>
                  <!--<a ng-href="#/dish/show/{{ dish.id }}" class="btn  btn-bordered waves-effect waves-light org mt10"> Add Cart </a><br/>-->
                  
-                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);isFollow=false" ng-show="isFollow"> FOLLOW </a>
-                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);isFollow=true" ng-hide="isFollow"> UNFOLLOW </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);dish.isFollow=true" ng-hide="dish.isFollow"> FOLLOW </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="follow(dish.id);dish.isFollow=false" ng-show="dish.isFollow"> UNFOLLOW </a>
                  
-                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);isFavorite=false" ng-show="isFavorite"> FAVORITE </a>
-                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);isFavorite=true" ng-hide="isFavorite"> REMOVE FROM FAVORITE </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);dish.isFavorite=true" ng-hide="dish.isFavorite"> FAVORITE </a>
+                 <a  class="btn  btn-bordered waves-effect waves-light org mt10" ng-click="favorite(dish.id);dish.isFavorite=false" ng-show="dish.isFavorite"> REMOVE FROM FAVORITE </a>
             </div>
           </div>
           <!--<div class="full" ng-show="dish.isDescShow">

@@ -1,22 +1,7 @@
 <!-- The first section user sees. Make sure it looks tasty -->
- <script type="text/ng-template" id="menuPopup">
- 	<div class="open-desc text-center">
-		<div style="padding:30px 0;">
-			<img src="/views/images/logo2.png"  alt="logo" width="200"/>
-		</div>
-    	<h1>Welcome Cook to Whutz Cookin</h1>
-    	<p class>You are logged in as Cook , You can add new dish for sale.</p>
-
-		<p>
-			<a href="#/dishs" ng-if="auth.getType()=='user'" ng-click="closeThisDialog()">DASHBOARD</a>
-			<a href="#/dashboard" ng-if="auth.getType()=='cook'" ng-click="closeThisDialog()">DASHBOARD</a>
-
-			<a class="btn" href="#/cook/dish/0" ng-click="closeThisDialog()" >Add New Dish</a>
-		</p>
-	</div>
-</script>
 
 <script type="text/ng-template" id="deliveryTemplate">
+    <form name="deliveryBoy" novalidate>
 	<div class="row">
 		<div class="col-xs-12 text-center"><h3>DELIVERY REGISTRATION</h3></div>
 	</div>
@@ -24,13 +9,13 @@
 		<div class="col-xs-12">
 			<div class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 mt10 ">
-					<input type="text" placeholder="Your Name" class="form-control" ng-model="delivery.name" />
+					<input type="text" placeholder="Your Name" class="form-control" ng-model="delivery.name"  required/>
 				</div>
 				<div class="col-xs-12 col-sm-4 mt10">
-					<input type="email" placeholder="email" class="form-control"  ng-model="delivery.email"/>
+					<input type="email" placeholder="email" class="form-control"  ng-model="delivery.email" required/>
 				</div>
 				<div class="col-xs-12 col-sm-4 mt10">
-					<input type="text" placeholder="Password" class="form-control"  ng-model="delivery.password" />
+					<input type="text" placeholder="Password" class="form-control"  ng-model="delivery.password" required />
 				</div>
 			</div>
 		</div>
@@ -68,19 +53,18 @@
 			</div>
 		</div>
 		<div class="col-xs-12 text-center">
-			<a class="btn mt10" ng-click="save()"> Create a Account</a>
+			<button class="btn mt10" ng-click="save(deliveryBoy.$invalid)"> Create a Account</button>
 		</div>
 	</div>
-
+  </form>
 </script>
 
  <div style="height: 100%; width:100%;">
-	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
-      <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
-      </uib-slide>
-      <div class="container-wrapper text-center scroll-img"> <a href="#/home#intro"><img src="views/images/icon-down.png"  alt=""/></a> </div>
-    </uib-carousel>
+   <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+       <img ng-src="{{ slide.image }}" style="margin:auto;">
+     </uib-slide>
+   </uib-carousel>
  </div>
 
 
@@ -179,8 +163,8 @@
     </div>
   </div>
 </div>
-<div  class="section colorful-background  center ng-scope white" ng-if="!auth.isAuthenticated()">
-  <div id="register" class="section r2 center ng-scope">
+<div  class="section colorful-background  center ng-scope white" ng-if="!auth.isAuthenticated()" >
+  <div id="register" class="section r2 center ng-scope" ng-hide="isResetPassShow || isShowforgot">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -192,13 +176,13 @@
               <p class="text-center">Please enter your email address to create an account.</p>
             </div>
             <div class="form-group col-sm-12">
-              <input type="text" placeholder="Enter Your Name" required="" ng-model="register.name" id="contact-name" name="email" class="form-control  bold2 ng-pristine ng-untouched ng-invalid ng-invalid-required">
+              <input type="text" placeholder="Enter Your Name" required="" ng-model="register.name" id="contact-name" name="email" class="form-control  bold2 ">
             </div>
             <div class="form-group col-sm-12">
-              <input type="text" placeholder="Enter Your Email" required="" ng-model="register.email" id="contact-email2" name="email" class="form-control bold2 ng-pristine ng-untouched ng-invalid ng-invalid-required">
+              <input type="text" placeholder="Enter Your Email" required="" ng-model="register.email" id="contact-email2" name="email" class="form-control bold2 ">
             </div>
             <div class="form-group col-sm-12">
-              <input type="password" placeholder="Enter Your Password" required="" ng-model="register.password" id="contact-password2" name="password" class="form-control  bold2  ng-pristine ng-untouched ng-invalid ng-invalid-required">
+              <input type="password" placeholder="Enter Your Password" required="" ng-model="register.password" id="contact-password2" name="password" class="form-control  bold2 ">
             </div>
             <div class="form-group col-sm-12">
               <input type="number" placeholder="Pin Code" class="form-control bold2" required="" ng-model="register.zip" >
@@ -206,11 +190,11 @@
             <div class="form-group col-sm-12">
               <label>Type :</label>
               <label class="radio-inline">
-                <input type="radio" value="cook" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="18" checked="checked">
-                Cook</label>
+                <input type="radio" value="cook" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="18" required="" >
+                <span></span>Cook </label>
               <label class="radio-inline">
-                <input type="radio" value="user" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="19">
-                User</label>
+                <input type="radio" value="user" ng-model="register.type" class="ng-pristine ng-untouched ng-valid" name="19" required="" >
+                <span></span> User</label>
             </div>
             <div class="form-group text-center">
               <button ng-click="registerFn(mregister.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> Register </button>
@@ -256,15 +240,15 @@
       </div>
     </div>
   </div>
-  <div id="login" class="section r2 center ng-scope">
+  <div id="login" class="section r2 center ng-scope" ng-hide="isResetPassShow">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <h2 class="wave-white">Login</h2>
-        </div>
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
           <div class="data-error ng-binding"></div>
-          <form novalidate name="mlogin" class="ng-pristine ng-invalid ng-invalid-required">
+          <form novalidate name="mlogin" class="ng-pristine ng-invalid ng-invalid-required" ng-hide="isShowforgot">
+            <div class="col-sm-12">
+              <h2 class="wave-white">Login</h2>
+            </div>
             <div class="form-group ">
               <input type="text" placeholder="Enter Your Email" class="form-control  ng-pristine ng-invalid ng-invalid-required ng-touched" required="" ng-model="login.email" id="contact-email" name="email">
               <!--<label for="contact-email" class="">Enter Your Email</label>--> 
@@ -273,7 +257,7 @@
               <input type="password" placeholder="Enter Your Password" class="form-control  ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" ng-model="login.password" id="contact-password" name="password">
               <!-- <label for="contact-password" class="">Enter Your Password</label>--> 
             </div>
-           <div class="form-group col-sm-12">
+           <!--<div class="form-group col-sm-12">
               <label>Type :</label>
               <label class="radio-inline">
                 <input type="radio" value="cook" ng-model="login.type" class="ng-pristine ng-untouched ng-valid" name="18" checked="checked">
@@ -284,14 +268,17 @@
                <label class="radio-inline">
                 <input type="radio" value="delivery" ng-model="login.type" class="ng-pristine ng-untouched ng-valid" name="19">
                 delivery</label>
-            </div>
+            </div>-->
             <div class="form-group text-center">
               <button ng-click="loginFn(mlogin.$invalid)" type="submit" name="submit_search" class="btn btn-md bold grey-bg"> login </button>
             </div>
+            <div id="forgot" class="form-group" ng-init="isShowforgot=false"> <a class="white" ng-click="isShowforgot=true;goTo('forgot')"> Forgot your password ?</a> </div>
           </form>
-          <form name="mforgot" novalidate >
-            <div class="form-group" ng-init="isShowforgot=false"> <a class="white" ng-click="isShowforgot=true"> Forgot your password ?</a> </div>
-            <div class="form-group" ng-show="isShowforgot">
+          <form name="mforgot" novalidate ng-show="isShowforgot">
+            <div class="col-sm-12 welcome-notes" style="padding: 3rem 0">
+              <h2 class="wave-white text-center" style="font-size:40px">Forgot Password</h2>
+            </div>
+            <div class="form-group" >
               <input type="email" class="form-control" required placeholder="Email" ng-model="forgot.email" />
             </div>
             <div class="form-group text-center" ng-show="isShowforgot">

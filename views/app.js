@@ -160,12 +160,18 @@ app.controller('whutz.main.controller', [
 	'whutz.security.auth',
 	'Notification',
 	'ngDialog',
-	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog) {
+	'$anchorScroll',
+	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog,$anchorScroll) {
 		 
 		$scope.parseInt = parseInt;
 		$scope.location = $location;
 		$rootScope.auth = Auth;
 		$scope.JSON = JSON;
+
+		 $scope.goTo = function(id){
+			 $location.hash(id);
+			 $anchorScroll();
+		 }
 
 		$scope.unreadMessage = 0;
 
@@ -184,7 +190,8 @@ app.controller('whutz.main.controller', [
 					 console.log('Error: ' + data);
 				 });
 		 }
-		 $scope.getAllConversation();
+		 if(Auth.isAuthenticated())
+		 	$scope.getAllConversation();
 
 		$scope.getUnreadMessage = function(){
 			$http.get("/msg/unread")
@@ -199,14 +206,16 @@ app.controller('whutz.main.controller', [
 					console.log('Error: ' + data);
 				});
 		}
-		$scope.getUnreadMessage();
+
+		 if(Auth.isAuthenticated())
+			$scope.getUnreadMessage();
 		
 		if(Auth.getType() == "cook")
-			ngDialog.open({ template: 'menuPopup' });
+			ngDialog.open({ template: 'menuPopup.html' });
 			
 		
 		$scope.surveyPopup = function(){
-			ngDialog.open({ 
+			ngDialog.open({
 							template: 'surveyTemplate',
 							controller: ['$scope','$http','Notification', function($scope,$http,Notification) {
 											$scope.survey = {};

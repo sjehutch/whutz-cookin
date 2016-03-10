@@ -363,7 +363,8 @@ dish.controller('whutz.modules.dish.addEdit', [
 	'Upload',
 	'Notification',
 	'whutz.libraries.waitLoader',
-	 function ($scope, $http, $location, $window,$routeParams,auth,Upload,Notification,waitLoader) {
+	'$anchorScroll',
+	 function ($scope, $http, $location, $window,$routeParams,auth,Upload,Notification,waitLoader, $anchorScroll) {
 		 
 		$scope.id = parseInt($routeParams.id); 
 		$scope.isEdit = false;
@@ -438,7 +439,12 @@ dish.controller('whutz.modules.dish.addEdit', [
 		}
 		
 		// add dish
-		$scope.store = function(){
+		$scope.store = function(invalid){
+			if(invalid){
+				$location.hash("create-account_form");
+				return false;
+
+			}
 		  $scope.dish.special_notes=JSON.stringify($scope.special_notes);
 		  $scope.dish.delivery_method = JSON.stringify($scope.delivery_method);
 		  $http.post("/dish",$scope.dish)
@@ -457,8 +463,13 @@ dish.controller('whutz.modules.dish.addEdit', [
 		
 		// update
 		
-		$scope.update = function(){
-			
+		$scope.update = function(invalid){
+			if(invalid){
+				$location.hash("create-account_form");
+				$anchorScroll();
+				return false;
+
+			}
 			$scope.dish.special_notes=JSON.stringify($scope.special_notes);
 			$scope.dish.delivery_method=JSON.stringify($scope.delivery_method);
 			$http.put("/dish/"+$scope.id,$scope.dish)

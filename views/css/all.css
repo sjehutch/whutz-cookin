@@ -10,23 +10,23 @@
   
  @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../font/roboto/Roboto-Thin.woff") format("woff"), url("../font/roboto/Roboto-Thin.ttf") format("truetype");
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff"), url("../fonts/Roboto-Thin.ttf") format("truetype");
   font-weight: 200; }
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../font/roboto/Roboto-Light.woff") format("woff"), url("../font/roboto/Roboto-Light.ttf") format("truetype");
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff"), url("../fonts/Roboto-Light.ttf") format("truetype");
   font-weight: 300; }
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../font/roboto/Roboto-Regular.woff") format("woff"), url("../font/roboto/Roboto-Regular.ttf") format("truetype");
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.ttf") format("truetype");
   font-weight: 400; }
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../font/roboto/Roboto-Medium.woff") format("woff"), url("../font/roboto/Roboto-Medium.ttf") format("truetype");
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff"), url("../fonts/Roboto-Medium.ttf") format("truetype");
   font-weight: 500; }
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../font/roboto/Roboto-Bold.woff") format("woff"), url("../font/roboto/Roboto-Bold.ttf") format("truetype");
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff"), url("../fonts/Roboto-Bold.ttf") format("truetype");
   font-weight: 700; }
   .white{color:#fff;}
   .grey-bg{background:#96C95C;}
@@ -40,6 +40,23 @@
 	}
  .bukhari-span {
     font-family: Bukhari,Roboto,sans-serif;
+}
+ .radio-inline input[type="radio"]{
+     display: none;
+
+ }
+.radio-inline span{
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid black;
+    border-radius: 24px;
+    margin-right: 5px;
+    padding: 0 9px;
+}
+.ng-submitted input[type="radio"].ng-invalid-required + span{
+    border: 1px solid red;
+}
+input[type="radio"]:checked + span{
+    background: #9c9f9c;
 }
 ng-view{
   padding-top:100px;
@@ -404,6 +421,7 @@ input[type="file"] {
 	width:100%;
 	line-height:34px;
 	color:#fff;
+    text-transform: uppercase;
 }
 /* nav */
 nav .brand-logo.center {
@@ -772,7 +790,13 @@ footer.page-footer .footer-copyright {
 	border:1px solid #969696;
 	margin:5px 0;
 }
-
+body .carousel-control .glyphicon-chevron-left, 
+body .carousel-control .glyphicon-chevron-right, 
+body .carousel-control .icon-next, 
+body .carousel-control .icon-prev
+{
+	top: 60%;
+}
 @media (max-width:767px){
 	.show-sm{ display:block;}
 	.show-sm-imp{display:block !important;}
