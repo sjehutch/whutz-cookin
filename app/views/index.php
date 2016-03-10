@@ -390,9 +390,14 @@
 <div id="base-color"></div>
 
 <!-- JavaScript libraries -->
+<<<<<<< HEAD
 
 
 <script src="views/libraries/core/angular/angular.min.js" ></script>
+=======
+<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
+<script src="views/libraries/core/angular/angular.min.js" ></script> 
+>>>>>>> 7ee0ca18102c8b5c13b02788e3081f892dfb7d46
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
 <script src="views/libraries/core/angular/angular-resource.min.js"></script>
 <!--<script src="views/libraries/core/angularui/ui-bootstrap-tpls-1.2.4.min.js"></script>-->
