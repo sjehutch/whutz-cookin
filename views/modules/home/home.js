@@ -264,7 +264,6 @@ homes.controller('whutz.modules.home.index', [
 					}else{
 						Notification.error(data.message);
 					}
-
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);

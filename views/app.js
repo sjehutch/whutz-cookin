@@ -161,7 +161,8 @@ app.controller('whutz.main.controller', [
 	'Notification',
 	'ngDialog',
 	'$anchorScroll',
-	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog,$anchorScroll) {
+	'anchorSmoothScroll',
+	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog,$anchorScroll,anchorSmoothScroll) {
 		 
 		$scope.parseInt = parseInt;
 		$scope.location = $location;
@@ -170,7 +171,7 @@ app.controller('whutz.main.controller', [
 
 		 $scope.goTo = function(id){
 			 $location.hash(id);
-			 $anchorScroll();
+			 anchorSmoothScroll.scrollTo(id);
 		 }
 
 		$scope.unreadMessage = 0;

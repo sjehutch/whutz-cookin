@@ -164,7 +164,7 @@
   </div>
 </div>
 <div  class="section colorful-background  center ng-scope white" ng-if="!auth.isAuthenticated()" >
-  <div id="register" class="section r2 center ng-scope" ng-hide="isResetPassShow || isShowforgot">
+  <div id="register" class="section r2 center ng-scope" ng-hide="isResetPassShow">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -245,7 +245,7 @@
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
           <div class="data-error ng-binding"></div>
-          <form novalidate name="mlogin" class="ng-pristine ng-invalid ng-invalid-required" ng-hide="isShowforgot">
+          <form novalidate name="mlogin" class="ng-pristine ng-invalid ng-invalid-required" >
             <div class="col-sm-12">
               <h2 class="wave-white">Login</h2>
             </div>
