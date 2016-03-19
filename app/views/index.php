@@ -171,7 +171,9 @@
         <ul class="nav navbar-nav" ng-show="auth.isAuthenticated()">
           <!--<li><a ng-click="surveyPopup()">Survey</a></li>-->
           <li> <a href="#/dishs" ng-if="auth.getType()=='user'">DASHBOARD</a> <a href="#/dashboard" ng-if="auth.getType()=='cook'">DASHBOARD</a> </li>
-          <li><a href="#/home#contact">Contact Us </a></li>
+            <li><a href="#/new-orders">New Orders</a> </li>
+            <li><a href="#/orders-completed">Order Completed</a> </li>
+            <li><a href="#/home#contact">Contact Us </a></li>
         </ul>
         <!-- cook menu -->
         <ul class="nav navbar-nav show-sm" ng-if="auth.getType()=='cook' && auth.isComplete() && location.path() != '/home'">
@@ -217,6 +219,12 @@
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
           <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
         </ul>
+          <ul class="nav navbar-nav show-sm" ng-if="(auth.getType()=='delivery' && (location.path() != '/home'))">
+              <li> <a ><i class="fa fa-bars"></i> DELIVERY MENU </a> </li>
+              <li> <a href="#/new-orders"> NEW ORDERS </a> </li>
+              <li> <a href="#/order-completed"> ORDER COMPLETED </a> </li>
+              <li> <a href="#/my-profile"> MY PROFILE </a> </li>
+          </ul>
         <ul class="nav navbar-nav navbar-right" ng-if="!auth.isAuthenticated()">
           <!--<li><a href="#/home#menu">Menu</a></li>-->
           <!--<li> <a href="#/home#contact">Contact</a></li>-->
@@ -253,7 +261,6 @@
       <li> <a href="#/my-videos"> MY VIDEOS </a> </li>-->
        <li> <a href="#/my-account"> MY Account </a> </li>
     </ul>
-    
     <!-- user  menu -->
     <ul class="tree dhtml show-gt-sm" ng-if="auth.getType()=='user' && location.path() != '/home'">
       <li> <a ><i class="fa fa-bars"></i> USER MENU </a> </li>
@@ -272,6 +279,13 @@
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
           <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
+    </ul>
+
+    <ul class="nav navbar-nav show-sm" ng-if="(auth.getType()=='delivery' && (location.path() != '/home'))">
+      <li> <a ><i class="fa fa-bars"></i> DELIVERY MENU </a> </li>
+      <li> <a href="#/new-orders"> NEW ORDERS </a> </li>
+      <li> <a href="#/order-completed"> ORDER COMPLETED </a> </li>
+      <li> <a href="#/my-profile"> MY PROFILE </a> </li>
     </ul>
   </div>
 </div>
@@ -390,20 +404,21 @@
 <div id="base-color"></div>
 
 <!-- JavaScript libraries -->
-<<<<<<< HEAD
+
 
 
 <script src="views/libraries/core/angular/angular.min.js" ></script>
-=======
+
 <script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
-<script src="views/libraries/core/angular/angular.min.js" ></script> 
->>>>>>> 7ee0ca18102c8b5c13b02788e3081f892dfb7d46
+
+
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
 <script src="views/libraries/core/angular/angular-resource.min.js"></script>
+
 <!--<script src="views/libraries/core/angularui/ui-bootstrap-tpls-1.2.4.min.js"></script>-->
 <script src="views/libraries/core/angularui/ui-bootstrap-0.14.3.min.js"></script>
 
-<script src="views/libraries/core/jquery/jquery-1.11.3.min.js"></script>
+
 <script src="views/libraries/3rdParty/jquery-ui/jquery-ui.min.js"></script>
 <script src="views/libraries/3rdParty/jquery-ui/jquery-ui-timepicker-addon.js"></script>
 
@@ -415,9 +430,9 @@
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> 
 <script src="views/libraries/3rdParty/google-maps/lodash.min.js"></script> 
 <script src="views/libraries/3rdParty/google-maps/angular-google-maps.min.js"></script> 
-<script src="views/libraries/3rdParty/google-maps/angular-simple-logger.js"></script> 
-<script src="views/libraries/3rdParty/sweetalert/sweet-alert.min.js"></script> 
-<script src="views/libraries/3rdParty/ngDialog/ngDialog.min.js"></script> 
+<script src="views/libraries/3rdParty/google-maps/angular-simple-logger.js"></script>
+<script src="views/libraries/3rdParty/sweetalert/sweet-alert.min.js"></script>
+<script src="views/libraries/3rdParty/ngDialog/ngDialog.min.js"></script>
 <script data-semver="1.6.1" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js"></script>
 <script src="views/libraries/3rdParty/calendar/calendar.js"></script> 
 <script src="views/libraries/3rdParty/moment/moment.js" ></script>
