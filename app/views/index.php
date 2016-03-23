@@ -173,6 +173,14 @@
           <li> <a href="#/dishs" ng-if="auth.getType()=='user'">DASHBOARD</a> <a href="#/dashboard" ng-if="auth.getType()=='cook'">DASHBOARD</a> </li>
           <li><a href="#/home#contact">Contact Us </a></li>
         </ul>
+        <!-- Delivery menu -->
+
+        <ul class="nav navbar-nav" ng-if="auth.getType()=='delivery' ">
+         <li> <a href="#/delivery-orders" ><i class=""></i> NEW ORDERS </a> </li>
+          <li><a href="#/completed-orders" ><i class=""></i> ORDER COMPLETED </a></li>
+        </ul>
+       
+         <!--End Delivery menu -->
         <!-- cook menu -->
         <ul class="nav navbar-nav show-sm" ng-if="auth.getType()=='cook' && auth.isComplete() && location.path() != '/home'">
           <li> <a ><i class="fa fa-bars"></i> COOK MENU </a> </li>
@@ -273,6 +281,15 @@
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
           <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
     </ul>
+     <ul class="tree dhtml show-gt-sm" ng-if="auth.getType()=='delivery' ">
+          <li> <a ><i class="fa fa-bars"></i> DELIVERY MENU </a> </li>
+         
+          <li> <a href=""> HOME </a> </li>
+          <li> <a href="#/delivery-orders"> NEW ORDERS </a> </li>
+          <li> <a href="#/completed-orders"> ORDER COMPLETED </a> </li>
+          <li> <a href=""> MY PROFILE </a> </li>
+        
+        </ul>
   </div>
 </div>
 <!--<div class="navbar-fixed">
