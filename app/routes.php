@@ -118,6 +118,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get("/conversation",array("uses" => "UserController@getAllConversation"));
 
 
+	Route::get("/delivery",array("uses" => "OrderController@delivery"));
 });
 
 

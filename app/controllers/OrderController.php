@@ -145,5 +145,22 @@ class OrderController extends BaseController {
 		}
 		
 	}
+
+	function  delivery(){
+
+		$where = ["user_id" => Auth::user()->id];
+
+		if(Input::has("type")){
+			$where["action"] = Input::get("type");
+		}
+		$data = OrderDelivery::where($where)->get();
+		$data = $data->toArray();
+		if(!empty($data)){
+			return Response::json(array('status' => true, 'message' => "", "data" => $data));
+		}else{
+			return Response::json(array('status' => false, 'message' => "Delivery not available"));
+		}
+	}
+
 }
 	

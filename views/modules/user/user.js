@@ -665,5 +665,14 @@ user.controller('whutz.modules.user.send.message', [
 				}); 	
 		}
 		
-		 
+
+}]);
+user.controller('whutz.modules.user.delivery',[ function($scope){
+
+}]);
+
+
+
+user.controller('whutz.modules.user.deliveryCompleted',[ function($scope){
+
 }]);
