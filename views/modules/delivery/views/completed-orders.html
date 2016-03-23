@@ -10,15 +10,14 @@
         <div class="col-md-12">
           <table class="table table-bordered">
             <thead>
-              <tr>
-              	<th> Order Id</th>
-                <th> Dish Name</th>
-                <th> Qnt</th>
-                <th> Delivered Time</th>
-                <th> Pick Up Location</th>
-                <th> Delivery Address</th>
-                <th> Status</th>
-                <th> Rating Given</th>
+              <tr ng-repeat="row in delivery">
+                <td>{{ row.order_id }}</td>
+                <td>{{ row.dish.name }}</td>
+                <td>{{ row.orderDateTime }}</td>
+                <td>{{ row.location }}</td>
+                <td>{{ row.deliveryAddress }}</td>
+                <td>{{ row.status }} </td>
+                <td>{{ row.action }} </td>
               </tr>
             </thead>
             <tbody>

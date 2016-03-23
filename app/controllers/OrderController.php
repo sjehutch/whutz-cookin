@@ -150,10 +150,10 @@ class OrderController extends BaseController {
 
 		$where = ["user_id" => Auth::user()->id];
 
-		if(Input::has("type")){
-			$where["action"] = Input::get("type");
+		if(Input::has("action")){
+			$where["action"] = Input::get("action");
 		}
-		$data = OrderDelivery::where($where)->get();
+		$data = OrderDelivery::with("dish")->where($where)->get();
 		$data = $data->toArray();
 		if(!empty($data)){
 			return Response::json(array('status' => true, 'message' => "", "data" => $data));

@@ -22,9 +22,15 @@
               </tr>
             </thead>
             <tbody>
-          <tr>
-            No data found
-          </tr>
+              <tr ng-repeat="row in delivery">
+                <td>{{ row.order_id }}</td>
+                <td>{{ row.dish.name }}</td>
+                <td>{{ row.orderDateTime }}</td>
+                <td>{{ row.location }}</td>
+                <td>{{ row.deliveryAddress }}</td>
+                <td>{{ row.status }} </td>
+                <td>{{ row.action }} </td>
+             </tr>
             </tbody>
           </table>
         </div>

@@ -667,12 +667,39 @@ user.controller('whutz.modules.user.send.message', [
 		
 
 }]);
-user.controller('whutz.modules.user.delivery',[ function($scope){
+user.controller('whutz.modules.user.delivery',['$scope','$http','Notification', function($scope,$http,Notification){
+
+	$scope["delivery"] = [];
+
+	$http.get("/delivery")
+		.success(function (data) {
+			if(data.status){
+				$scope.delivery = data.data;
+			}else{
+				Notification.error(data.message);
+			}
+		})
+		.error(function (data) {
+			console.log('Error: ' + data);
+		});
 
 }]);
 
 
 
-user.controller('whutz.modules.user.deliveryCompleted',[ function($scope){
+user.controller('whutz.modules.user.deliveryCompleted',['$scope','$http','Notification',  function($scope,$http,Notification){
 
+	$scope.delivery = [];
+
+	$http.get("/delivery?action=1")
+		.success(function (data) {
+			if(data.status){
+				$scope.delivery = data.data;
+			}else{
+				Notification.error(data.message);
+			}
+		})
+		.error(function (data) {
+			console.log('Error: ' + data);
+		});
 }]);

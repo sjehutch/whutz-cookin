@@ -14,4 +14,8 @@ class OrderDelivery extends Eloquent implements UserInterface, RemindableInterfa
 
     protected $fillable = array("user_id","dishId","qnt","orderDateTime","location","deliveryAddress","status","action","deliverdTime","rating");
 
+
+    public  function dish(){
+        return $this->belongsTo("Dish",'dishId','id');
+    }
 }
