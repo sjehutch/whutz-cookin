@@ -155,11 +155,47 @@ Route::group(['before' => 'auth.admin'], function() {
 
 });
 
-Route::get("/123",function(){
-	
+Route::get("postmates/deliveries", array("uses" => "PostmatesController@getDeliveries" ));
+Route::get("postmates/create", array("uses" => "PostmatesController@createDelivery" ));
 
-	
-	echo User::count();
+Route::get("postmates/zones", array("uses" => "PostmatesController@deliveryZones" ));
+Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuotes"));
+
+
+Route::get("/123",function(){
+
+
+
+// 'application/json; charset=utf8'
+
+
+	/*$sManifest = "A box of gray kittens";
+	$sPickupName ="Kitten Warehouse";
+	$sPickupAddress ="20 McAllister St, San Francisco, CA";
+
+	$sDropoffName = "Alice";
+	$sDropoffAddress =  "678 Green St, San Francisco, CA";
+	$sDropoffPhoneNumber ="415-555-8484";
+
+	$oDelivery = $oClient->createDelivery(
+	// Required arguments
+		$sManifest,
+		$sPickupName,
+		$sPickupAddress,
+		$sDropoffName,
+		$sDropoffAddress,
+		$sDropoffPhoneNumber,
+
+	// Optional arguments
+		$sDropoffBusinessName='',
+		$sManifestReference='',
+		$sPickupBusinessName='',
+		$sPickupNotes='',
+		$sDropoffNotes='',
+		$iQuoteId=null
+	);*/
+	//$oDeliveries = $oClient->listDeliveries();
+	//print_r($oDeliveries);
 });
 
 
