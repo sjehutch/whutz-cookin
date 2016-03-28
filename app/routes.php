@@ -156,7 +156,12 @@ Route::group(['before' => 'auth.admin'], function() {
 });
 
 Route::get("postmates/deliveries", array("uses" => "PostmatesController@getDeliveries" ));
-Route::get("postmates/create", array("uses" => "PostmatesController@createDelivery" ));
+Route::get("postmates/deliveries/{id}", array("uses" => "PostmatesController@getDelivery" ));
+Route::get("postmates/deliveries/{id}/cancel", array("uses" => "PostmatesController@cancelDelivery" ));
+
+Route::post("postmates/deliveries/{id}/return", array("uses" => "PostmatesController@returnDelivery" ));
+
+Route::post("postmates/create", array("uses" => "PostmatesController@createDelivery" ));
 
 Route::get("postmates/zones", array("uses" => "PostmatesController@deliveryZones" ));
 Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuotes"));
@@ -164,7 +169,8 @@ Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuot
 
 Route::get("/123",function(){
 
-
+	$a = new PostmatesController;
+	print_r($a->getDeliveries());
 
 // 'application/json; charset=utf8'
 

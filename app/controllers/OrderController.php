@@ -53,11 +53,13 @@ class OrderController extends BaseController {
 						);
 						
 		if(Input::has("order_address")){
-			$datap["order_address"] = Input::get("order_address");
+			$data["order_address"] = Input::get("order_address");
 		}
 		
 		$order = Order::create($data);
-		
+
+		$postmates = new PostmatesController;
+
 		foreach($carts as $cart){
 			//$d = $cart->dish;
 			$data = array(
@@ -66,7 +68,23 @@ class OrderController extends BaseController {
 							"dish_id" => $cart["dish_id"],
 							"quantity" => $cart["quantity"],
 							"cook_id" => $cart["dish"]["cook_id"]
-						);	
+						);
+
+			$dishData = Dish::find($cart["dish_id"]);
+		//	echo $cart["dish"]["name"];
+			$cookData = User::find($cart["dish"]["cook_id"]);
+			$post = array();
+			$post["manifest"] = "A box of kittens";
+			$post["pickup_name"] = $cookData->name;
+			$post["pickup_address"] = $dishData->address;
+			$post["pickup_phone_number"] = $cookData->phone;
+
+			$post["dropoff_name"] = Auth::user()->name;
+			$post["dropoff_address"]  =  Input::has("order_address")? Input::get("order_address") : Auth::user()->address;
+			$post["dropoff_phone_number"] = Auth::user()->mobile;
+
+			$data = $postmates->post('/v1/customers/'.$postmates::CUSTOMER_ID.'/deliveries',array('Content-Type: application/x-www-form-urlencoded'),$post);
+
 			OrderItems::create($data);
 			
 			$cook = User::find($cart["dish"]["cook_id"]);

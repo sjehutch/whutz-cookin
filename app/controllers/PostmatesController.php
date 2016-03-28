@@ -6,76 +6,106 @@ class PostmatesController extends BaseController {
     const CUSTOMER_ID = "cus_KiIwvChipab_QF";
     const API_KEY = "bfc1e830-3574-44cc-b076-2cc84078b6f6";
 
-    private $_client;
+    public $_client;
+    private $_baseUrl;
 
     public function __construct()
     {
-        $this->_client = new Client("https://api.postmates.com");
+        //Guzzle\Http\StaticClient::mount();
+        $this->_baseUrl = "https://api.postmates.com";
+        $client = new Client($this->_baseUrl);
+        $this->_client = $client->setDefaultOption('auth', array(self::API_KEY, ''));
     }
 
-    public function setAuth($response){
-        return $response->setAuth(self::API_KEY, '');
+    public function  get($url,$headers=array(),$options=array()){
+        $request = $this->_client->get($url,$headers,$options);
+        $response =  $request->send();
+        return $response->json();
+    }
+
+    public function  post($url,$headers=array(),$body=array(),$options=array()){
+        $request = $this->_client->get($url,$headers,$body,$options);
+        $response =  $request->send();
+        return $response->json();
     }
 
     public function getDeliveries(){
 
-        $request = $this->_client->get('/v1/customers/'.self::CUSTOMER_ID.'/deliveries');
-        $request = $this->setAuth($request);
+        $data = $this->get('/v1/customers/'.self::CUSTOMER_ID.'/deliveries');
 
-        $response =  $request->send();
-
-        return Response::json($response->json());
+        return Response::json($data);
 
     }
 
-    public  function deliveryZones(){
-        $request = $this->_client->get('/v1/delivery_zones/');
-        $request = $this->setAuth($request);
-        $response =  $request->send();
+    public function getDelivery($id){
 
-        return Response::json($response->json());
+        $data = $this->get('/v1/customers/'.self::CUSTOMER_ID.'/deliveries/'.$id);
+
+        return Response::json($data);
+
+    }
+    public function cancelDelivery($id){
+
+        $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries/'.$id.'/cancel',array('Content-Type: application/x-www-form-urlencoded'));
+
+        return Response::json($data);
+
+    }
+    public function returnDelivery($id){
+
+        $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries/'.$id.'/return',array('Content-Type: application/x-www-form-urlencoded'));
+
+        return Response::json($data);
+
+    }
+
+    public function addTipToDelivery($id){
+
+        /*$post = array();
+        $post["tip_by_customer"] = Input::get("tip_by_customer");*/
+
+        $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries/'.$id,array('Content-Type: application/x-www-form-urlencoded'),Input::all());
+
+        return Response::json($data);
+    }
+
+    public  function deliveryZones(){
+
+        $data = $this->get('/v1/delivery_zones/');
+
+        return Response::json($data);
     }
 
     public  function deliveryQuotes(){
 
-        $address = array();
+        /*$post = array();
+        $post["pickup_address"] = "20 McAllister St, San Francisco, CA";
+        $post["dropoff_address"] = "101 Market St, San Francisco, CA";*/
 
-        $address["pickup_address"] = "20 McAllister St, San Francisco, CA";
-        $address["dropoff_address"] = "101 Market St, San Francisco, CA";
+        $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/delivery_quotes',array('Content-Type: application/x-www-form-urlencoded'), Input::all());
 
-        $request = $this->_client->post('/v1/customers/'.self::CUSTOMER_ID.'/delivery_quotes',array(), array(
-            'body'    => $address,
-        ));
-        $request = $this->setAuth($request);
-        $response =  $request->send();
-
-
-        return Response::json($response->json());
+        return Response::json($data);
     }
 
 
 
     public function createDelivery(){
 
-        $post = array();
-
-
+        /*$post = array();
         $post["manifest"] = "A box of gray kittens";
         $post["pickup_name"] ="Kitten Warehouse";
         $post["pickup_address"] ="20 McAllister St, San Francisco, CA";
+        $post["pickup_phone_number"] = "415-555-8484";
 
         $post["dropoff_name"] = "Alice";
         $post["dropoff_address"]  =  "678 Green St, San Francisco, CA";
-        $post["dropoff_phone_number"] ="415-555-8484";
+        $post["dropoff_phone_number"] ="415-555-8484";*/
 
-        $request = $this->_client->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries',array(), array($post),array());
-        $request = $this->setAuth($request);
 
-        $response =  $request->send();
+        $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries',array('Content-Type: application/x-www-form-urlencoded'),Input::all());
 
-        return Response::json($response->json());
+        return Response::json($data);
     }
-
 
 
 
