@@ -289,28 +289,17 @@ class AdminController extends BaseController {
 //                ->groupBy('dish_id')
 //                ->orderBy("TotalItemsOrdered","desc")
 //                ->get();
-			
-			
-			
-			
-			
+
 			return $array;
 			
 		},$user->toArray());
-		
 
-		
-		
-		
 		return Response::json(array('status' => true, 'message' => '', "data"=> $data));
 		//$data  = OrderItems::with('dish','cook','order')->get();
 	}
-	
-	
+
 	function cookPayNow(){
-		
 		CookPayments::create(Input::all());
-		
 		return Response::json(array('status' => true, 'message' => 'payments successfully done'));
 	}
 }

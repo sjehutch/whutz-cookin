@@ -1,7 +1,6 @@
 
-var interceptorModule = angular.module('whutz.interceptor',[]);
 
-interceptorModule.factory('customInterceptorFactory', [
+angular.module('whutz').factory('customInterceptorFactory', [
 	"$window", "$rootScope", "$location",
 	function ($window, $rootScope, $location)
 	{

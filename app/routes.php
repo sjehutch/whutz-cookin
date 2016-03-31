@@ -170,10 +170,12 @@ Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuot
 Route::get("/123",function(){
 
 	$a = new PostmatesController;
-	print_r($a->getDeliveries());
+
+	$a =  $a->getDeliveries()->getData();
+	//echo "<pre>";
+	print_r($a->url);
 
 // 'application/json; charset=utf8'
-
 
 	/*$sManifest = "A box of gray kittens";
 	$sPickupName ="Kitten Warehouse";

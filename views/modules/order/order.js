@@ -119,14 +119,17 @@ order.controller('whutz.modules.order.place',[
 	 
 	  $scope.carts = [];
 	  $scope.total = 0;
-		 
+	  $scope.deliveryFees=0;
 	$scope.index = function(){
 		$http.get("/mycart")
 			.success(function (data) {
 				if(data.status){
 					$scope.carts = data.data;
 					for(var idx in $scope.carts){
-						$scope.total += (parseInt($scope.carts[idx]["quantity"]) || 0) * (parseInt($scope.carts[idx]["dish"].price) || 0);
+						if($scope.carts[idx].hasOwnProperty("fee")){
+							$scope.deliveryFees += $scope.carts[idx]["fee"];
+						}
+							$scope.total += (parseInt($scope.carts[idx]["quantity"]) || 0) * (parseInt($scope.carts[idx]["dish"].price) || 0);
 					} 
 				}else{
 					

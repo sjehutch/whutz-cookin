@@ -20,11 +20,11 @@ class PostmatesController extends BaseController {
     public function  get($url,$headers=array(),$options=array()){
         $request = $this->_client->get($url,$headers,$options);
         $response =  $request->send();
-        return $response->json();
+        return  $response->json();
     }
 
     public function  post($url,$headers=array(),$body=array(),$options=array()){
-        $request = $this->_client->get($url,$headers,$body,$options);
+        $request = $this->_client->post($url,$headers,$body,$options);
         $response =  $request->send();
         return $response->json();
     }
@@ -65,8 +65,8 @@ class PostmatesController extends BaseController {
         $post["tip_by_customer"] = Input::get("tip_by_customer");*/
 
         $data = $this->post('/v1/customers/'.self::CUSTOMER_ID.'/deliveries/'.$id,array('Content-Type: application/x-www-form-urlencoded'),Input::all());
-
         return Response::json($data);
+
     }
 
     public  function deliveryZones(){

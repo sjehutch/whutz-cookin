@@ -234,7 +234,7 @@ homes.controller('whutz.modules.home.index', [
 					// success
 					if(data.status){
 						Notification.info("Please check your email and  reset Links send your email.");
-						$location.path("/home#login");
+						$location.path("/home");
 					}else{
 						//Notification.error("");
 					}
@@ -260,7 +260,7 @@ homes.controller('whutz.modules.home.index', [
 					if(data.status){
 						$scope.isResetPassShow=false;
 						Notification.info(data.message);
-						$location.path("/home#login");
+						$location.path("/home");
 					}else{
 						Notification.error(data.message);
 					}

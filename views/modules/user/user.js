@@ -248,7 +248,7 @@ user.controller('whutz.modules.user.login', [
 					debugger;
 					if(data.status){
 						Notification.info("Your account is successfully created. please check your email and verify your whutz-cookin account.");
-						$location.path("/home#login");
+						$location.path("/home");
 					}
 					// failed
 					else{

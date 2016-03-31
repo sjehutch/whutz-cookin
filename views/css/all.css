@@ -45,6 +45,9 @@
      display: none;
 
  }
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+    width: 100%;
+}
 .radio-inline span{
     background: #fff none repeat scroll 0 0;
     border: 1px solid black;

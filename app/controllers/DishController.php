@@ -110,14 +110,11 @@ class DishController extends BaseController {
 			$dishs = Dish::with('user')->where('name', 'like', '%'.$search.'%')->get();
 			
 			if(Input::has("latitude") && Input::has("longitude")){
-				
-				
+
 			$filter_dish = array();
-			
 			//distance filter
 			foreach($dishs->toArray() as $dish){
-				
-				
+
 				$type2 = "favorite";
 				$dish_id = $dish["id"];
 
@@ -130,10 +127,9 @@ class DishController extends BaseController {
 					$dish["isFavorite"] = false;
 				else
 					$dish["isFavorite"] = true;
-					
-				
+
 				$type2 = "follow";
-		
+
 				$data21 = UserLike::whereUser_id(Auth::user()->id)
 									->whereItem_id($dish_id)
 									->Where("type",$type2)

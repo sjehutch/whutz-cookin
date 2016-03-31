@@ -20,6 +20,4 @@ class VerificationController extends BaseController {
 		}
 	}
 	
-	
-	
 }

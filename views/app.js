@@ -10,8 +10,8 @@ window.app = angular.module('whutz', [
 	'ngFileUpload',
 	'whutz.libraries.waitLoader',
 	
-	'whutz.security',
-	'whutz.interceptor',
+	//'whutz.security',
+	//'whutz.interceptor',
 	
 	<!-- modules -->
 	'whutz.modules.home',

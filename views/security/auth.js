@@ -1,6 +1,5 @@
-var whutzauth = angular.module('whutz.security',[]);
 
-whutzauth.factory('whutz.security.auth', ['$q', '$timeout','$http','$location',
+angular.module('whutz').factory('whutz.security.auth', ['$q', '$timeout','$http','$location',
 	function($q, $timeout,$http,$location)
 	{
 		var _identity = undefined,
@@ -9,10 +8,10 @@ whutzauth.factory('whutz.security.auth', ['$q', '$timeout','$http','$location',
 		return {
 			isAuthenticated: function()
 			{
-				if(!_authenticated){
+				//if(!_authenticated){
 					_identity = angular.fromJson(localStorage.getItem("app.identity"));
 					this.authenticate(_identity,true);
-				}
+				//}
 					
 				return _authenticated;
 			},

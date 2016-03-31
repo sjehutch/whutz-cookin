@@ -13,18 +13,19 @@ class CartController extends \BaseController {
 
 
 		$carts = array_map(function($row){
-			try{
+			try {
 				$array = array();
-				$array["pickup_address"] = $row["dish"]["address"]; //'20 McAllister St, San Francisco, CA';
-				$array["dropoff_address"] = Auth::user()->address;  //'101 Market St, San Francisco, CA
+				$array["pickup_address"] = $row["dish"]["address"];
+				$array["dropoff_address"] = Auth::user()->address;
 
 				//print_r($array);
 				$postmates = new PostmatesController();
-				$data = $postmates->post('/v1/customers/'.$postmates::CUSTOMER_ID.'/delivery_quotes',array('Content-Type: application/x-www-form-urlencoded'), $array);
-
+				$data = $postmates->post('/v1/customers/' . $postmates::CUSTOMER_ID . '/delivery_quotes', array('Content-Type: application/x-www-form-urlencoded'), $array);
 				$row["fee"] = $data["fee"];
 			}
-			catch(Exception $ex){}
+			catch(Exception $ex){
+				$row["error"] ="address_undeliverable";
+			}
 
 			return $row;
 		},$carts->toArray());

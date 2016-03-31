@@ -169,7 +169,14 @@
           <li> <a href="#/home#reservations">Reservations</a></li>-->
         </ul>
         <!-- Delivery menu -->
-
+          <ul class="nav navbar-nav" ng-if="auth.getType()=='cook' ">
+              <li> <a href="#/dashboard" ><i class=""></i> Dashboard </a> </li>
+              <li><a href="#/home#contact"><i class=""></i> Contact us </a> </a> </li>
+          </ul>
+        <ul class="nav navbar-nav" ng-if="auth.getType()=='user' ">
+          <li> <a href="#/dashboard-user" ><i class=""></i> Dashboard </a> </li>
+            <li><a href="#/home#contact"><i class=""></i> Contact us </a> </a> </li>
+        </ul>
         <ul class="nav navbar-nav" ng-if="auth.getType()=='delivery' ">
          <li> <a href="#/delivery-orders" ><i class=""></i> NEW ORDERS </a> </li>
           <li><a href="#/completed-orders" ><i class=""></i> ORDER COMPLETED </a></li>
