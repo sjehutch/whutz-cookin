@@ -57,7 +57,6 @@ class OrderController extends BaseController {
 							//'user','dish',"orderItems"
 		$orders = Order::with("orderItems")->whereUser_id(Auth::user()->id)->get();
 
-
 		try{
 			$postmate = new PostmatesController();
 			foreach($orders as $key=>$order) {
@@ -159,27 +158,29 @@ class OrderController extends BaseController {
 			$cookData = User::find($orderItems->cook_id);
 			$dishData = Dish::find($orderItems->dish_id);
 
-			$post = array();
-			$post["manifest"] = "A box of kittens";
-			$post["pickup_name"] = $cookData->name;
-			$post["pickup_address"] = $dishData->address;
-			$post["pickup_phone_number"] = $cookData->phone;
+			try {
+				$post = array();
+				$post["manifest"] = "A box of kittens";
+				$post["pickup_name"] = $cookData->name;
+				$post["pickup_address"] = $dishData->address;
+				$post["pickup_phone_number"] = $cookData->phone;
 
-			$post["dropoff_name"] = Auth::user()->name;
-			$post["dropoff_address"]  =  Input::has("order_address")? Input::get("order_address") : Auth::user()->address;
-			$post["dropoff_phone_number"] = Auth::user()->mobile;
+				$post["dropoff_name"] = Auth::user()->name;
+				$post["dropoff_address"] = Input::has("order_address") ? Input::get("order_address") : Auth::user()->address;
+				$post["dropoff_phone_number"] = Auth::user()->mobile;
 
-			$data = $postmates->post('/v1/customers/'.$postmates::CUSTOMER_ID.'/deliveries',array('Content-Type: application/x-www-form-urlencoded'),$post);
-			$data = $data->getData();
+				$data = $postmates->post('/v1/customers/' . $postmates::CUSTOMER_ID . '/deliveries', array('Content-Type: application/x-www-form-urlencoded'), $post);
+				$data = $data->getData();
 
-			$postmate = array();
+				$postmate = array();
 
-			$postmate["order_id"]= $orderItems->order_id;
-			$postmate["item_id"]= $orderItems->id;
-			$postmate["delivery_id"] = $data["id"];
-			$postmate["data"] = json_encode($data);
+				$postmate["order_id"] = $orderItems->order_id;
+				$postmate["item_id"] = $orderItems->id;
+				$postmate["delivery_id"] = $data["id"];
+				$postmate["data"] = json_encode($data);
 
-			Postmates::create($postmate);
+				Postmates::create($postmate);
+			}catch(Exception $ex){}
 		}
 		$orderItems->status= $status;
 		//$order_update = OrderItems::whereId($id)->whereCook_id(Auth::user()->id)->update(array('status' => $status));
@@ -213,20 +214,21 @@ class OrderController extends BaseController {
 
 		$orders = OrderItems::with("dish")->where($where)->orderBy("cook_id")->get();
 
-		$postmate = new PostmatesController();
-		foreach($orders as $key=>$order) {
-			if($order->state == 2){
-				$data = $postmate->getDelivery($order->item_id);
-				$data = $data->getData();
+		try {
+			$postmate = new PostmatesController();
+			foreach ($orders as $key => $order) {
+				if ($order->state == 2) {
+					$data = $postmate->getDelivery($order->delivery_id);
+					$data = $data->getData();
 
-				if ($data["status"])
 					$order->status = ($data["status"] == "pickup") ? 4 : 3;
 
-				$order->save();
+					$order->save();
+				}
 			}
 		}
-
-		$orders = OrderItems::with("dish")->where($where)->orderBy("cook_id")->get();
+		catch(Exception $ex){}
+		//$orders = OrderItems::with("dish")->where($where)->orderBy("cook_id")->get();
 
 		$orderDetails = order::find($id);
 		
@@ -235,8 +237,6 @@ class OrderController extends BaseController {
 		$cook = 0;
 
 		foreach($orders as $key=>$order){
-
-
 
 			if($order->cook_id == $cook || $cook ==0 ){
 				$same_cook_order[] = $order;

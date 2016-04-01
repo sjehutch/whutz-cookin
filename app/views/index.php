@@ -108,14 +108,14 @@
 <div class="row">
 <h5 class="text-center"> Online Survey </h5>
 <form class="col-xs-12">
-		<div class="form-group">
+		<!--<div class="form-group">
 			<div class="col-xs-6 nopd pr">
 				<input type="text" class="form-control" placeholder="Your Name" ng-model="survey.name"/>
 			</div>
 			<div class="col-xs-6 nopd pr">
 				<input type="email" class="form-control" placeholder="Email" ng-model="survey.email" />
 			</div>
-		</div>
+		</div>-->
 		<div class="form-group">
 			<div class="col-xs-6 nopd pr">
 				<select class="form-control" ng-model="survey.delivery_option">
