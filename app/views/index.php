@@ -67,7 +67,7 @@
 <title>WHUTZ COOKIN</title>
 </head>
 <body class="locked nav-fixed ng-cloak" ng-controller="whutz.main.controller" >
-
+<div class="overlay" ng-show="isOverLayShow" style="width: 100%; height: 100%;position: absolute;z-index: 9999;background: rgba(139, 195, 74, 0.9)"></div>
 <script type="text/ng-template" id="surveyCloseStatus">
 
 <div class="text-center">
@@ -108,14 +108,14 @@
 <div class="row">
 <h5 class="text-center"> Online Survey </h5>
 <form class="col-xs-12">
-		<!--<div class="form-group">
+		<div class="form-group">
 			<div class="col-xs-6 nopd pr">
 				<input type="text" class="form-control" placeholder="Your Name" ng-model="survey.name"/>
 			</div>
 			<div class="col-xs-6 nopd pr">
 				<input type="email" class="form-control" placeholder="Email" ng-model="survey.email" />
 			</div>
-		</div>-->
+		</div>
 		<div class="form-group">
 			<div class="col-xs-6 nopd pr">
 				<select class="form-control" ng-model="survey.delivery_option">
@@ -164,11 +164,12 @@
       </div>
       <div class="navbar-collapse collapse" collapse="navbarCollapsed"  >
         <ul class="nav navbar-nav" ng-hide="auth.isAuthenticated()">
-         <!-- <li><a href="#/home#cook">Book Cook</a></li>
+         <li><a href="#/home#cook">Book Cook</a></li>
           <li><a href="#/home#plate">Order Plate</a></li>
-          <li> <a href="#/home#reservations">Reservations</a></li>-->
+          <li> <a href="#/home#reservations">Reservations</a></li>
         </ul>
         <!-- Delivery menu -->
+
           <ul class="nav navbar-nav" ng-if="auth.getType()=='cook' ">
               <li> <a href="#/dashboard" ><i class=""></i> Dashboard </a> </li>
               <li><a href="#/home#contact"><i class=""></i> Contact us </a> </a> </li>
@@ -188,7 +189,7 @@
           <li> <a ><i class="fa fa-bars"></i> COOK MENU </a> </li>
           <li><a href="#/dashboard"> Dashboard </a></li>
           <li> <a href="#/home"> HOME </a> </li>
-          <li> <a id="flip" > MESSAGES
+          <li> <a id="flip" href="#/messages"> MESSAGES
             <div class="pull-right notification"> {{ unreadMessage }}</div>
             </a>
           </li>
@@ -217,10 +218,9 @@
             <div class="pull-right notification"> 0</div>
             </a> </li>
           <li>
-              <a id="flip" >MESSAGES<div class="pull-right notification">{{ unreadMessage }}</div>
+              <a id="flip" href="#/messages" >MESSAGES<div class="pull-right notification">{{ unreadMessage }}</div>
             </a>
           </li>
-            <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
           <li> <a href="#/dishs"> Recently added dishes </a> </li>
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
@@ -251,11 +251,10 @@
       <li> <a ><i class="fa fa-bars"></i> COOK MENU </a> </li>
        <li><a href="#/dashboard"> Dashboard </a></li>
       <li> <a href="#/home"> HOME </a> </li>
-      <li> <a id="flip" > MESSAGES
+      <li> <a id="flip" href="#/messages" > MESSAGES
         <div class="pull-right notification"> {{ unreadMessage }}</div>
         </a>
       </li>
-        <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
       <li> <a href="#/my-profile"> MY PROFILE </a> </li>
       <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
       <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
@@ -278,7 +277,7 @@
           <li> <a id="flip" href="#/mycart"> Cart
             <div class="pull-right notification"> 0</div>
             </a> </li>
-          <li> <a id="flip" > MESSAGES
+          <li> <a id="flip" href="#/messages"> MESSAGES
             <div class="pull-right notification"> {{ unreadMessage }}</div>
             </a> </li>
             <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
@@ -425,6 +424,8 @@
 
 <script src="views/libraries/core/angular/angular-router.min.js"></script> 
 <script src="views/libraries/core/angular/angular-resource.min.js"></script>
+<script src="views/libraries/core/angular/angular-cookies.js"></script>
+
 
 <!--<script src="views/libraries/core/angularui/ui-bootstrap-tpls-1.2.4.min.js"></script>-->
 <script src="views/libraries/core/angularui/ui-bootstrap-0.14.3.min.js"></script>
@@ -437,7 +438,7 @@
 <script src="views/libraries/core/angular/angular-sanitize.min.js"></script>
 <script src="views/libraries/3rdParty/sticky/jquery.sticky.js"></script>
 <script src="views/libraries/3rdParty/fileupload/ng-file-upload-all.min.js"></script> 
-<script src="views/libraries/3rdParty/notification/angular-ui-notification.min.js"></script> 
+<script src="views/libraries/3rdParty/notification/angular-ui-notification.min.js"></script>
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> 
 <script src="views/libraries/3rdParty/google-maps/lodash.min.js"></script> 
 <script src="views/libraries/3rdParty/google-maps/angular-google-maps.min.js"></script> 

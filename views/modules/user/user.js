@@ -49,6 +49,7 @@ user.controller('whutz.modules.user.message', [
 			.error(function (data) {
 				console.log('Error: ' + data);
 			});
+
 		$scope.sender = function(){
 
 			$http.post("/send",$scope.send)
@@ -64,6 +65,33 @@ user.controller('whutz.modules.user.message', [
 				});
 		}
 
+	}]);
+
+user.controller('whutz.modules.user.messages', [
+	'$scope',
+	'$http',
+	'$location',
+	'$window',
+	'$routeParams',
+	"whutz.security.auth",
+	function ($scope, $http, $location, $window,$routeParams,auth) {
+		$scope.conversation = [];
+
+		$scope.getAllConversation = function(){
+			$http.get("/conversation")
+				.success(function (data) {
+					if(data.status){
+						$scope.conversation = data.data;
+					}else{
+
+					}
+				})
+				.error(function (data) {
+					console.log('Error: ' + data);
+				});
+		}
+		if(auth.isAuthenticated())
+			$scope.getAllConversation();
 	}]);
 user.controller('whutz.modules.user.edit.profile', [
     '$scope',
@@ -585,9 +613,9 @@ user.controller('whutz.modules.user.dashboardUser', [
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
-                }); 
+                });
 
-		 
+
 	 }]);
 
 

@@ -15,11 +15,20 @@
           <div class="row">
             <div class="col-md-4">
               <div class="panel panel-default">
-                <div class="panel-body"> <img style="max-width: 100%; max-height: 240px; min-height: 240px; " class="thumbnail" ng-src="uploads/{{ user.profile_photo || 'user.png' }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">vnt</b> <br>
+                <div class="panel-body"> <img style="max-width: 100%; " class="thumbnail" ng-src="uploads/{{ user.profile_photo || 'user.png' }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">vnt</b> <br>
                   <p>{{ user.email }}</p>
                   <br>
                   <center>
-                    <p class="col-sm-12 nopd"> <a class="col-xs-3 plr2" target="_blank" href="http://fb.com"><img class="img-responsive" alt="facebook" src="views/images/f.png"></a> <a class="col-xs-3 plr2" target="_blank" href="http://twitter.com"><img class="img-responsive" alt="twitter" src="views/images/t.png"></a> <a class="col-xs-3 plr2" target="_blank" href="http://plus.google.com"><img class="img-responsive" alt="Gmail plus" src="views/images/g.png"></a> <a class="col-xs-3 plr2" target="_blank" href="http://linkedin.com"><img class="img-responsive" alt="linkedin" src="views/images/in.png"></a> </p>
+                    <p class="col-sm-12 nopd">
+                      <a class="col-xs-3 plr2" target="_blank" href="http://fb.com">
+                        <img width="30" alt="facebook" src="views/images/f.png">
+                      </a>
+                      <a class="col-xs-3 plr2" target="_blank" href="http://twitter.com">
+                      <img width="30" alt="twitter" src="views/images/t.png"></a>
+                      <a class="col-xs-3 plr2" target="_blank" href="http://plus.google.com">
+                        <img width="30" alt="Gmail plus" src="views/images/g.png">
+                      </a>
+                      <a class="col-xs-3 plr2" target="_blank" href="http://linkedin.com"><img width="30" alt="linkedin" src="views/images/in.png"></a> </p>
                     <br>
                     <a href="#/my-profile/edit">
                     <div class="submit">

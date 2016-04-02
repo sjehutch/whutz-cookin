@@ -12,8 +12,8 @@
         <br>
         <div class="col-md-12">
           <div class="row">
-            <div class="col-xs-12 col-md-6"> 
-          		 <img  class="img-thumbnail" style="width:100%;" ng-src="uploads/{{ dish.dish_img || 'dish-img.jpg'}}" />
+            <div class="col-xs-12 col-md-6 text-center">
+          		 <img  class="img-thumbnail"  ng-src="uploads/{{ dish.dish_img || 'dish-img.jpg'}}" />
                  <p class="text-center"> followers  {{ dish.followers }} </p>
              </div>
             <div class="col-xs-12 col-md-6"><span class="delivery">$ {{ dish.price }}</span> <span style="color: black;" class="delivery">delivery only</span> <br>
@@ -30,13 +30,13 @@
               <br>
               <div class="full">
               	<a ng-click="postToFeed()">
-              		<img src="/views/images/facebook-share.png" alt="" />
+              		<img src="/views/images/facebook-share.png" alt="" width="30" />
                 </a>
                 <a ng-href="http://www.twitter.com/share?url={{ absUrl }}" target="_blank">
-                	<img src="/views/images/twitter-share.png" alt="" />
+                	<img src="/views/images/twitter-share.png" alt="" width="30" />
                 </a>
                 <a ng-href="https://www.linkedin.com/shareArticle?mini=true&url={{ absUrl }}&title={{ dish.name }}&summary={{dish.description}}" target="_blank">
-                	<img src="/views/images/linkdin-share.png" alt="" />
+                	<img src="/views/images/linkdin-share.png" alt="" width="30"/>
                 </a>
                 
               </div>

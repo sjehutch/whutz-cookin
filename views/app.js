@@ -2,6 +2,7 @@ window.app = angular.module('whutz', [
     //'ui.utils',
     //'ui.utils',
     'ngRoute',
+	'ngCookies',
     'ui.bootstrap',
 	'ui-notification',
 	'uiGmapgoogle-maps',
@@ -9,7 +10,6 @@ window.app = angular.module('whutz', [
 	
 	'ngFileUpload',
 	'whutz.libraries.waitLoader',
-	
 	//'whutz.security',
 	//'whutz.interceptor',
 	
@@ -131,6 +131,10 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
 			templateUrl: 'views/modules/user/views/calendar.html',
             controller: 'whutz.modules.user.calendar'
 		})
+		.when('/messages',{
+			templateUrl: 'views/modules/user/views/messages.html',
+			controller: 'whutz.modules.user.messages'
+		})
 		.when('/send/:id',{
 			templateUrl: 'views/modules/user/views/message.html',
             controller: 'whutz.modules.user.send.message'
@@ -170,7 +174,8 @@ app.controller('whutz.main.controller', [
 	'ngDialog',
 	'$anchorScroll',
 	'anchorSmoothScroll',
-	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog,$anchorScroll,anchorSmoothScroll) {
+	'$cookies',
+	 function ($scope,$rootScope, $http, $location, $window, $routeParams,$q,Auth,notification,ngDialog,$anchorScroll,anchorSmoothScroll,$cookies) {
 		 
 		$scope.parseInt = parseInt;
 		$scope.location = $location;
@@ -184,23 +189,6 @@ app.controller('whutz.main.controller', [
 
 		$scope.unreadMessage = 0;
 
-		 $scope.conversation = [];
-
-		 $scope.getAllConversation = function(){
-			 $http.get("/conversation")
-				 .success(function (data) {
-					 if(data.status){
-						 $scope.conversation = data.data;
-					 }else{
-
-					 }
-				 })
-				 .error(function (data) {
-					 console.log('Error: ' + data);
-				 });
-		 }
-		 if(Auth.isAuthenticated())
-		 	$scope.getAllConversation();
 
 		$scope.getUnreadMessage = function(){
 			$http.get("/msg/unread")
@@ -246,8 +234,13 @@ app.controller('whutz.main.controller', [
 		}
 		
 		
-		if($location.path() == '/home')
-			$scope.surveyPopup();
+		if($location.path() == '/home') {
+			if($cookies.get('surveyPopup') == undefined) {
+				$scope.surveyPopup();
+				$cookies.put('surveyPopup', 'false');
+			}
+
+		}
 		
 		$rootScope.$on('$routeChangeStart', function(event,next, current) { 
 		

@@ -307,11 +307,16 @@ class UserController extends BaseController {
 
 	public function getAllConversation(){
 		if(Auth::user()->type == 'user') {
-			$data = Message::whereFrom_id(Auth::user()->id)->select("user_id")->distinct()->get();
+			$data = Message::whereFrom_id(Auth::user()->id)->select("user_id")->distinct()->orderBy("created_at",'desc')->get();
 			$data = array_map(function($row) {
 				$user = User::find($row["user_id"]);
 				$row["from_id"] = $row["user_id"];
 				$row["name"] = $user->name;
+
+				$where = ["user_id"=>$row["user_id"]];
+				$row["sms_count"] = Message::where($where)->count();
+
+
 				return $row;
 
 			},$data->toArray());

@@ -2,6 +2,7 @@ var homes = angular.module('whutz.modules.home', []);
 
 homes.controller('whutz.modules.home.index', [
     '$scope',
+	'$rootScope',
     '$http',
     '$location',
     '$window',
@@ -9,7 +10,7 @@ homes.controller('whutz.modules.home.index', [
 	"whutz.security.auth",
 	'Notification',
 	'ngDialog',
-	 function ($scope, $http, $location, $window, $routeParams, auth, Notification,ngDialog) {
+	 function ($scope,$rootScope, $http, $location, $window, $routeParams, auth, Notification,ngDialog) {
 		 
 	$scope.forgot = {};
 	$scope.register = {};
@@ -135,7 +136,7 @@ homes.controller('whutz.modules.home.index', [
 						auth.authenticate(user);
 						if(user.type== "cook")
 							localStorage.setItem("menupopup", true);
-							
+						$rootScope.isOverLayShow=true;
 						$window.location.reload();
 						
 					}else{

@@ -1,0 +1,22 @@
+
+<div class="container sets-wrap">
+    <div class="row">
+        <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+            <div class="tab-content">
+                <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+                    <li class="homefeatured"><a class="homefeatured" href="#">Message By User</a></li>
+                </ul>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <div class="col-sm-12">
+                        <div class="list-group">
+                            <li class="list-group-item" ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a>
+                                <a ng-href="#/sms/{{ item.from_id }}"> View </a>
+                            </li></div>
+                    </div>
+    </div>
+  </div>
+</div>
+        </div>
+    </div>

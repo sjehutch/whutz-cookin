@@ -1,9 +1,14 @@
 
 <div class="container sets-wrap">
-  <div class="row">
-    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
-    
-      <p> Send Message  </p>
+    <div class="row">
+        <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2" id="center_column">
+            <div class="tab-content">
+                <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+                    <li class="homefeatured"><a class="homefeatured" href="#"> Send Message</a></li>
+                </ul>
+                <br>
+                <br>
+                <div class="col-md-12">
      
      	<div class="col-sm-3">
         	<img src="uploads/{{ cook_photo || 'user.png' }}"  alt="" class="img-responsive"/>
@@ -13,7 +18,7 @@
         
         
         	<div class="full" ng-init="itemId007 = messages[0].user_id ">
-            	<p class="alert alert-success"  ng-repeat="msg in messages">{{ msg.text }}<span class="pull-right">{{ msg.time}}</span> </p>
+            	<p class="alert alert-success"  ng-repeat="msg in messages">{{ msg.text }} {{ msg.sms_count }}<span class="pull-right">{{ msg.time}}</span> </p>
 
             </div>
         
@@ -27,4 +32,6 @@
 
     </div>
   </div>
+</div>
+    </div>
 </div>
