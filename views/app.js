@@ -79,6 +79,10 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
 			templateUrl: 'views/modules/dish/views/show.dish.html',
             controller: 'whutz.modules.dish.show'
 		})
+		.when('/order/show/:id',{
+			templateUrl: 'views/modules/dish/views/show.order.html',
+			controller: 'whutz.modules.order.show'
+		})
 		.when('/cook/dishs/',{
 			templateUrl: 'views/modules/dish/views/dishs.html',
             controller: 'whutz.modules.dish.cook'

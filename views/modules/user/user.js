@@ -107,28 +107,50 @@ user.controller('whutz.modules.user.edit.profile', [
 		 
 		$scope.user ={};
 		$scope.user.profile_photo = null;
-		 
+		 $scope.user.licence_img = null;
+
+		 // Upload
+		 $scope.upload = function (file) {
+			 Upload.upload({
+				 url: '/files/upload',
+				 data: {file: file}
+			 }).then(function (resp) {
+				 $scope.user.profile_photo = resp.data.fileName;
+			 }, function (resp) {
+				 console.log('Error status: ' + resp.status);
+			 }, function (evt) {
+				 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+				 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+			 });
+		 };
 		$scope.$watch('profile_photo',function(newVal, oldVal){
 			if(newVal != undefined && newVal != null){
 				$scope.upload(newVal);	
 			}
 			
 		});
-		
-		// Upload
-		$scope.upload = function (file) {
-			Upload.upload({
-				url: '/files/upload',
-				data: {file: file}
-			}).then(function (resp) {
-				$scope.user.profile_photo = resp.data.fileName;
-			}, function (resp) {
-				console.log('Error status: ' + resp.status);
-			}, function (evt) {
-				var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-				console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-			});
-		};
+
+		 $scope.upload2 = function (file) {
+			 Upload.upload({
+				 url: '/files/upload',
+				 data: {file: file}
+			 }).then(function (resp) {
+				 $scope.model.licence_img = resp.data.fileName;
+			 }, function (resp) {
+				 console.log('Error status: ' + resp.status);
+			 }, function (evt) {
+				 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+				 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+			 });
+		 };
+
+		 $scope.$watch('licence_img',function(newVal, oldVal){
+			 if(newVal != undefined && newVal != null){
+				 $scope.upload2(newVal);
+			 }
+
+		 });
+
 		
 		 $http.get("/user")
 			.success(function (data) {
@@ -404,12 +426,12 @@ user.controller('whutz.modules.user.licence', [
 				console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
 			});
 		};
-		
+
 		$scope.$watch('licence_img',function(newVal, oldVal){
 			if(newVal != undefined && newVal != null){
-				$scope.upload(newVal);	
+				$scope.upload(newVal);
 			}
-			
+
 		});
 		
 		$scope.updateLicence = function(invalid){
@@ -657,9 +679,8 @@ user.controller('whutz.modules.user.send.message', [
 	'$timeout',
 	"whutz.security.auth",
 	'Notification',
-	'uiCalendarConfig',
 	'$compile',
-	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification,uiCalendarConfig,$compile) {
+	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification,$compile) {
 		 
 		
 		$scope.cook_id = $routeParams.id;

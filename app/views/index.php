@@ -65,6 +65,11 @@
 
 <!-- Site title -->
 <title>WHUTZ COOKIN</title>
+    <style>
+        h4{
+            margin-top:0;
+        }
+    </style>
 </head>
 <body class="locked nav-fixed ng-cloak" ng-controller="whutz.main.controller" >
 <div class="overlay" ng-show="isOverLayShow" style="width: 100%; height: 100%;position: absolute;z-index: 9999;background: rgba(139, 195, 74, 0.9)"></div>
@@ -190,7 +195,7 @@
           <li><a href="#/dashboard"> Dashboard </a></li>
           <li> <a href="#/home"> HOME </a> </li>
           <li> <a id="flip" href="#/messages"> MESSAGES
-            <div class="pull-right notification"> {{ unreadMessage }}</div>
+            <div class="pull-right notification" ng-hide="unreadMessage == 0"> {{ unreadMessage }}</div>
             </a>
           </li>
           <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
@@ -198,10 +203,10 @@
           <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
           <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
           <li> <a href="#/cook/my-orders"> MY ORDERS
-            <div class="pull-right notification"> 0</div>
+            <div class="pull-right notification" ng-hide="true"> 0</div>
             </a> </li>
           <li> <a href="#/cook/booking"> BOOKING DETAILS
-            <div class="pull-right notification"> 0</div>
+            <div class="pull-right notification" ng-hide="true"> 0</div>
             </a> </li>
          <!-- <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
           <li> <a href="#/my-videos"> MY VIDEOS </a> </li>-->
@@ -218,7 +223,7 @@
             <div class="pull-right notification"> 0</div>
             </a> </li>
           <li>
-              <a id="flip" href="#/messages" >MESSAGES<div class="pull-right notification">{{ unreadMessage }}</div>
+              <a id="flip" href="#/messages" >MESSAGES<div class="pull-right notification" ng-hide="unreadMessage == 0">{{ unreadMessage }}</div>
             </a>
           </li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>
@@ -252,17 +257,17 @@
        <li><a href="#/dashboard"> Dashboard </a></li>
       <li> <a href="#/home"> HOME </a> </li>
       <li> <a id="flip" href="#/messages" > MESSAGES
-        <div class="pull-right notification"> {{ unreadMessage }}</div>
+        <div class="pull-right notification" ng-hide="unreadMessage == 0"> {{ unreadMessage }}</div>
         </a>
       </li>
       <li> <a href="#/my-profile"> MY PROFILE </a> </li>
       <li> <a href="#/cook/dish/0"> ADD DISH </a> </li>
       <li> <a href="#/cook/dishs"> MY DISHES </a> </li>
       <li> <a href="#/cook/my-orders"> MY ORDERS
-        <div class="pull-right notification"> 0</div>
+        <div class="pull-right notification"  ng-hide="true"> 0</div>
         </a> </li>
       <li> <a href="#/cook/booking"> BOOKING DETAILS
-        <div class="pull-right notification"> 0</div>
+        <div class="pull-right notification" ng-hide="true"> 0</div>
         </a> </li>
      <!-- <li> <a href="#/my-photos"> MY PHOTOS </a> </li>
       <li> <a href="#/my-videos"> MY VIDEOS </a> </li>-->
@@ -278,7 +283,7 @@
             <div class="pull-right notification"> 0</div>
             </a> </li>
           <li> <a id="flip" href="#/messages"> MESSAGES
-            <div class="pull-right notification"> {{ unreadMessage }}</div>
+            <div class="pull-right notification" ng-hide="unreadMessage == 0"> {{ unreadMessage }}</div>
             </a> </li>
             <li ng-repeat="item in conversation"><a ng-href="#/sms/{{ item.from_id }}"> {{ item.name }} </a></li>
           <li> <a href="#/my-profile"> MY PROFILE </a> </li>

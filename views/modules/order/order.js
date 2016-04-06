@@ -101,6 +101,32 @@ order.controller('whutz.modules.order.cook.booking', [
                 }); 
 }])
 
+order.controller('whutz.modules.order.show',[
+	'$scope',
+	'$http',
+	'$location',
+	'$window',
+	'$routeParams',
+	"whutz.security.auth",
+	'Notification',
+	function ($scope, $http, $location, $window,$routeParams,auth,Notification) {
+
+		$scope.order = [];
+		$scope.special_notes = [];
+		$http.get("/order/show/"+$routeParams.id)
+			.success(function (data) {
+				if(data.status){
+					$scope.order = data.data;
+					$scope.special_notes = JSON.parse(data.data.dish.special_notes);
+					console.log($scope.special_notes);
+				}else{
+
+				}
+			})
+			.error(function (data) {
+				console.log('Error: ' + data);
+			});
+	}]);
 order.controller('whutz.modules.order.place',[
 	'$scope',
     '$http',

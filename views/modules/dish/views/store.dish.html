@@ -25,7 +25,7 @@
                      <!-- <label >FOOD FOR DAY/NIGHT</label>-->
                       <div class="col-xs-6 nopd pl">
                         <select ng-model="dish.dish_for_day_night" class="form-control">
-                          <option value=""> Food For </option>
+                          <option value=""> Meal For </option>
                           <option value="breakfast">BREAKFAST</option>
                           <option value="lunch">LUNCH</option>
                           <option value="dinner">DINNER</option>
@@ -131,7 +131,7 @@
                   <div class="form-group">
                   	<div class="col-xs-6 nopd pr">
                    	 <!--<label >AREA ZIP CODE FOR DISH</label>-->
-                   	 <input type="number" required="" ng-model="dish.zipcode" class="form-control" placeholder="AREA ZIP CODE FOR DISH" required>
+                   	 <input type="number" required="" ng-model="dish.zipcode" class="form-control" placeholder="AREA ZIP CODE FOR DISH" required >
                     </div>
                     <div class="col-xs-6 nopd pl">
                      <!--<label for="plates">NUMBER OF PLATES</label>-->
@@ -142,8 +142,12 @@
 
                   <div class="form-group">
                    <div class="col-xs-6 nopd pr">
-                    <!--<label for="unfulfilled">UNFULFILLED</label>-->
-                    <input type="text" required="" ng-model="dish.unfulfilled" required id="unfulfilled" class="form-control" placeholder="UNFULFILLED">
+                    <!--<label for="unfulfilled">Dish Status</label>
+                    <input type="text" required="" ng-model="dish.unfulfilled" required id="unfulfilled" class="form-control" placeholder="UNFULFILLED">-->
+                       <select ng-model="dish.status">
+                           <option value="live">Live Dish</option>
+                           <option value="past">Past Dish</option>
+                       </select>
                    </div>
                    <div class="col-xs-6 nopd pl">
                    	<!-- <label for="price">PRICE</label>-->

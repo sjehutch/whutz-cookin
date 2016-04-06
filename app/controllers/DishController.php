@@ -106,8 +106,14 @@ class DishController extends BaseController {
 	
 		
 		if($type == "dish"){
-			
-			$dishs = Dish::with('user')->where('name', 'like', '%'.$search.'%')->get();
+
+
+			if(is_numeric($search)){
+				$dishs = Dish::with('user')->where('zipcode',$search)->get();
+			}else{
+				$dishs = Dish::with('user')->where('name', 'like', '%'.$search.'%')->get();
+			}
+
 			
 			if(Input::has("latitude") && Input::has("longitude")){
 
@@ -219,13 +225,18 @@ class DishController extends BaseController {
 				if(Input::has("take")){
 					$take =  intval(Input::get("take"));  	
 				}
+				$where = [];
+				$where["cook_id"] = Auth::user()->id;
+
+				if(Input::has("status")){
+					$where["status"] = Input::get("status");
+				}
 				
-				$data = OrderItems::with("dish","user","order")->whereCook_id(Auth::user()->id)->orderBy("created_at",'desc')->take($take)->get();
+				$data = OrderItems::with("dish","user","order")->where($where)->orderBy("created_at",'desc')->take($take)->get();
 				
 				$data = array_map(function($row){
 						
 					$array = array();
-					
 					$array["name"] = $row["dish"]["name"];
 					
 					$date = new DateTime($row["order"]["created_at"]);
@@ -253,7 +264,15 @@ class DishController extends BaseController {
 			}
 			
 		}else{
-			$data = Dish::with("user")->whereCook_id(Auth::user()->id)->get();
+			$where = [];
+			$where["cook_id"] = Auth::user()->id;
+
+			if(Input::has("status")){
+				$where["status"] = Input::get("status");
+			}
+
+			$data = Dish::with("user")->where($where)->get();
+
 			$data = array_map(function($row){
 					$date = new DateTime($row["created_at"]);
 					$row["date"] = $date->format('d-m-Y');	

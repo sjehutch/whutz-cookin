@@ -46,9 +46,9 @@ homes.controller('whutz.modules.home.index', [
 		 id: 4
 	});
 
-	
+
 	 
-	$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 12 };
+	$scope.map = {center: {latitude: 32.7960414, longitude: -96.8132593}, zoom: 12 };
 	
 	$scope.reset = $location.search().reset;
 	if($scope.reset != undefined){

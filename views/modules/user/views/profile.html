@@ -20,12 +20,12 @@
                   <br>
                   <center>
                     <p class="col-sm-12 nopd">
-                      <a class="col-xs-3 plr2" target="_blank" href="http://fb.com">
+                      <a class="col-xs-3 plr2" target="_blank" ng-href="{{ (user.facebook)?  user.facebook : 'http://fb.com' }}">
                         <img width="30" alt="facebook" src="views/images/f.png">
                       </a>
-                      <a class="col-xs-3 plr2" target="_blank" href="http://twitter.com">
+                      <a class="col-xs-3 plr2" target="_blank" ng-href="{{ (user.twitter)?  user.twitter : 'http://twitter.com' }}">
                       <img width="30" alt="twitter" src="views/images/t.png"></a>
-                      <a class="col-xs-3 plr2" target="_blank" href="http://plus.google.com">
+                      <a class="col-xs-3 plr2" target="_blank" ng-href="{{ (user.youtube)?  user.facebook : 'http://plus.google.com' }}" href="">
                         <img width="30" alt="Gmail plus" src="views/images/g.png">
                       </a>
                       <a class="col-xs-3 plr2" target="_blank" href="http://linkedin.com"><img width="30" alt="linkedin" src="views/images/in.png"></a> </p>
@@ -45,6 +45,10 @@
                   <tr>
                     <td><b>Name</b></td>
                     <td>{{ user.name }}</td>
+                  </tr>
+                  <tr ng-if="auth.getType() == 'cook'">
+                    <td><b>BUSINESS NAME</b></td>
+                    <td>{{ user.business_name }}</td>
                   </tr>
                   <tr>
                     <td><b>Phone</b></td>
@@ -82,6 +86,10 @@
                     <td><b>Website</b></td>
                     <td>{{ user.website }}</td>
                   </tr>
+                  <tr ng-if="auth.getType() == 'cook'">
+                    <td><b>SSN OR EIN</b></td>
+                    <td>{{ user.ssn_ein }}</td>
+                  </tr>
                   <tr>
                     <td><b>Specialty</b></td>
                     <td>{{ user.specialty }}</td>
@@ -90,6 +98,32 @@
                     <td><b>Work history</b></td>
                     <td>{{ user.work_history }}</td>
                   </tr>
+                  <tr>
+                    <td><b>Certification</b></td>
+                    <td>{{ user.certification }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Amount of time cooking</b></td>
+                    <td>{{ user.amount_time }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Awards</b></td>
+                    <td>{{ user.award }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>fav food to cook </b></td>
+                    <td>{{ user.fav_food }}</td>
+                  </tr>
+                  <tr>
+                    <td><b> Least fav food to cook </b></td>
+                    <td>{{ user.least_fav }}</td>
+                  </tr>
+                  <tr>
+                    <td><b> Cooking type</b></td>
+                    <td>{{ user.cooking_type }}</td>
+                  </tr>
+
+
                 </tbody>
               </table>
             </div>

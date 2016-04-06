@@ -36,7 +36,7 @@ class OrderController extends BaseController {
 	function cookOrders(){
 								//'user','dish','orderItems'
 		//$orders = Order::with('orderItems')->whereCook_id(Auth::user()->id)->get();
-		$orders  = OrderItems::with('dish')->whereCook_id(Auth::user()->id)->get();
+		$orders  = OrderItems::with('dish',"user")->whereCook_id(Auth::user()->id)->get();
 		$orders->toArray();
 		
 		//foreach($orders as $key =>$order){
@@ -275,6 +275,15 @@ class OrderController extends BaseController {
 			return Response::json(array('status' => true, 'message' => "", "data" => $data));
 		}else{
 			return Response::json(array('status' => false, 'message' => "Delivery not available"));
+		}
+	}
+
+	function showItem($id){
+		$data = OrderItems::with("dish")->find($id);
+		if(!empty($data)){
+			return Response::json(array('status' => true, 'message' => "", "data" => $data));
+		}else{
+			return Response::json(array('status' => false, 'message' => "Data not available"));
 		}
 	}
 

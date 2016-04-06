@@ -34,7 +34,9 @@ class Dish extends Eloquent implements UserInterface {
 								"zipcode",
 								"quantity",
 								"unfulfilled",
-								"price");
+								"price",
+								"status"
+		);
 	
 	 public function user()
     {

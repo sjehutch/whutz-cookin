@@ -27,7 +27,7 @@
               <tr ng-repeat="booking in bookings">
                 <td style="width: 13%;">{{booking.user.name}}</td>
                 <td>{{ booking.user.name }}</td>
-                <td>{{booking.user.phone}}</td>
+                <td><a href="tel:{{booking.user.phone}}">{{booking.user.phone}}</a></td>
                 <td>{{booking.booking_date}}</td>
                 <td>{{booking.venue}}</td>
                 <td>{{booking.dish.name}}</td>

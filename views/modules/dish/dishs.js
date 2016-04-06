@@ -242,13 +242,14 @@ dish.controller('whutz.modules.dish.cook', [
 	 function ($scope, $http, $location, $window,$routeParams,auth,Notification,waitLoader) {
 		 
 		 $scope.dishs = [];
+		 $scope.pastDishs = [];
 		 
 		 //waitLoader.add("#center_column");
 		 
 		 $http.get("/cook/dishs")
 				.success(function (data) {
                  	if(data.status){
-						$scope.dishs = data.dishs;
+						$scope.dishs = data.data;
 					}else{
 						
 					}
@@ -258,7 +259,12 @@ dish.controller('whutz.modules.dish.cook', [
                     console.log('Error: ' + data);
 					 //waitLoader.end("#center_column");
                 });
-				
+		 $http.get("/cook/dishs?status=past")
+			 .success(function(data){
+				if(data.status){
+					$scope.pastDishs = data.data;
+				}
+			 })
 }]);
 
 dish.controller('whutz.modules.dish.show', [
@@ -355,6 +361,7 @@ dish.controller('whutz.modules.dish.show', [
 }]);
 dish.controller('whutz.modules.dish.addEdit', [
     '$scope',
+	'$rootScope',
     '$http',
     '$location',
     '$window',
@@ -364,13 +371,15 @@ dish.controller('whutz.modules.dish.addEdit', [
 	'Notification',
 	'whutz.libraries.waitLoader',
 	'$anchorScroll',
-	 function ($scope, $http, $location, $window,$routeParams,auth,Upload,Notification,waitLoader, $anchorScroll) {
+	 function ($scope,$rootScope, $http, $location, $window,$routeParams,auth,Upload,Notification,waitLoader, $anchorScroll) {
 		 
 		$scope.id = parseInt($routeParams.id); 
 		$scope.isEdit = false;
 		$scope.dish = {};
 		$scope.dish.dish_img = null;
 		$scope.dish.dish_video = null;
+		 $scope.dish.address= $rootScope.auth.getUser()["address"];
+		 $scope.dish.zipcode= $rootScope.auth.getUser()["zip"];
 		
 		$scope.special_notes={};
 		$scope.delivery_method={};

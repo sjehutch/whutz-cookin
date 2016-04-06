@@ -1,0 +1,40 @@
+
+<div class="container sets-wrap">
+  <div class="row">
+    <div class="center_column col-xs-12 col-sm-8 col-sm-offset-2"  id="center_column">
+      <div class="tab-content">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured">
+
+            <a style="text-transform: uppercase;float:left" class="homefeatured" ng-href="#/cook/my-orders">My Orders</a>
+          	<a style="text-transform: uppercase;float:left" class="homefeatured" >{{ order.dish.name}}</a>
+          </li>
+        </ul>
+        <br>
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 text-center">
+          		 <img  class="img-thumbnail"  ng-src="uploads/{{ order.dish.dish_img || 'dish-img.jpg'}}" />
+             </div>
+
+            <div class="col-xs-12 col-md-6">
+              <p>{{ order.dish.name }}</p>
+              <span style="color: black;" class="delivery">{{ order.dish.delivery_method }}</span> <br>
+              <span class="delivery">Dish price ${{ order.dish.price }}</span>
+              <p>Quantity :{{ order.quantity }}</p>
+              <p>Total :{{ order.quantity *  order.dish.price   }}</p>
+              <br/>
+              <p >Order date {{ order.created_at }}</p>
+              <p><b style="color:#000">IT CONTAINS:</b> <span ng-repeat="(key, val) in special_notes">{{ val }},</span> </p>
+               </div>
+            <div class="col-md-12">
+              <h3 style="font-weight: bold; color: black; border-bottom: 1px solid;">Description:</h3>
+              <p> <span>{{ order.dish.description }}</span> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

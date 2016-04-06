@@ -1,16 +1,31 @@
-
-<div class="container sets-wrap">
+<style>
+  .cook-order p{
+    margin:0 ;
+  }
+  .cook-order .thumbnail{
+    margin-bottom: 10px;
+  }
+</style>
+<div class="container sets-wrap cook-order">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 nopd">
+      <div class="col-sm-12">
+        <ul class="nav nav-tabs clearfix" id="home-page-tabs">
+          <li class="homefeatured">
+
+            <a style="text-transform: uppercase;float:left" class="homefeatured" ng-href="#/cook/my-orders">My Orders</a>
+            <a style="text-transform: uppercase;float:left" class="homefeatured" >{{ order.dish.name}}</a>
+          </li>
+        </ul>
+        <br/>
+      </div>
       <div class="col-md-4" ng-repeat="order in orders">
         <div class="panel panel-default">
-          <div class="panel-body"> <img ng-src="uploads/{{ order.dish.dish_img }}" class="thumbnail" style="max-width: 216px; max-height: 190px; min-height: 190px; min-width: 215px;" /> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ order.dish.name }}</b> <br>
+          <div class="panel-body"> <img ng-src="uploads/{{ order.dish.dish_img }}" class="thumbnail" style="max-width: 100%;  " /> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ order.dish.name }}</b>
             <p><b style="color:black;text-transform: uppercase;" >ORDERED BY: {{ order.user.name }}</b></p>
             <br/>
             <p><b>Plates Ordered : {{ order.quantity }}</b> </p>
             <b>{{ order.time_ago }}</b>
-            
-            <br/>
             <label>Dish Status</label>
             <select ng-model="order.status" ng-change="updateStatus(order)">
             	<option value="">Select Dish Status</option>
@@ -19,9 +34,8 @@
                 <option value="3">Delivered</option>
             </select>
             <center>
-              <span style="color:red; font-size: 22px;"><b>$ {{ order.dish.price }}</b></span><br>
-              <br>
-              <a ng-href="#/dish/show/{{order.dish_id }}">
+              <span style="color:red; font-size: 22px;"><b>${{ order.dish.price }}</b></span><br>
+              <a ng-href="#/order/show/{{order.id }}">
               <div class="submit">
                 <button class="btn btn-default btn-md" type="submit" id="SubmitCreate" name="adddishweb"> <span> <i class="fa fa-plus"></i> VIEW DETAILS </span> </button>
               </div>

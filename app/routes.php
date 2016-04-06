@@ -104,6 +104,7 @@ Route::group(array('before' => 'auth'), function() {
 
 	Route::get("cook/plans", array("uses" => "PlanController@plans"));
 
+
 	Route::get("cook/plan/{id}", array("uses" => "PlanController@active"));
 
 	Route::post("update/dish/status", array("uses" => "OrderController@updateDishStatus"));
@@ -119,6 +120,8 @@ Route::group(array('before' => 'auth'), function() {
 
 
 	Route::get("/delivery",array("uses" => "OrderController@delivery"));
+
+	Route::get("order/show/{id}", array("uses" => "OrderController@showItem" ));
 });
 
 

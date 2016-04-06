@@ -19,7 +19,7 @@
                   <p> {{ user.email }} </p>
                   <br>
                   <center>
-                    <p class="col-sm-12 nopd">
+                    <p class="col-sm-12 nopd" ng-hide="true">
                     <a href="http://fb.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/f.png" alt="facebook" class="img-responsive"></a>
                     <a href="http://twitter.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/t.png" alt="twitter" class="img-responsive"></a>
                     <a href="http://plus.google.com" target="_blank" class="col-sm-3 plr2"><img src="views/images/g.png" alt="Gmail plus" class="img-responsive"></a>
@@ -84,6 +84,12 @@
 				 
                  <!--  cook -->
                  <div class="full" ng-if="auth.getType() == 'cook'">
+                     <div class="form-group uploadPnl">
+                         <label class="pointer" for="sdsd">Upload Licence Image</label>
+                         <input type="file" id="sdsd" ngf-select ng-model="licence_img" ngf-pattern="'image/*'"
+                                accept="image/*" class="form-control" />
+
+                     </div>
                     <div class="form-group">
                     	<label >BUSINESS NAME</label>
                     	<input type="text" ng-model="user.business_name" class="form-control" placeholder="BUSINESS NAME">
