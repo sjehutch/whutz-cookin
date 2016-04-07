@@ -5,7 +5,7 @@ class DishController extends BaseController {
 
 	public function index(){
 		 
-		$data = Dish::orderBy("created_at",'desc')->get();			  
+		$data = Dish::with("user")->whereZipcode(Auth::user()->zip)->orderBy("created_at",'desc')->get();
 		return Response::json(array('status' => true, 'message' => "", "data" => $data));
 	
 	}

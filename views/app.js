@@ -148,7 +148,6 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
 			controller: 'whutz.modules.user.message'
 		})
         .when('/resetPassword', {
-    		
         })
         .when('/delivery-orders',{
              templateUrl: 'views/modules/delivery/views/delivery-orders.html',
@@ -158,7 +157,6 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
              templateUrl: 'views/modules/delivery/views/completed-orders.html',
              controller: 'whutz.modules.user.deliveryCompleted'
         })
-        
         .otherwise({
             redirectTo: '/home'
         });

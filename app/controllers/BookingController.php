@@ -21,6 +21,17 @@ class BookingController extends BaseController {
 			
 		return Response::json(array('status' =>true, 'message' => "","bookings" => $bookings));
 	}
-	
+
+
+	function getCookAvailableArea(){
+
+		$where = [];
+		$where["type"] = "cook";
+		$where["zip"] = Auth::user()->zip;
+
+		$data = User::where($where)->get();
+
+		return Response::json(array('status' =>true, 'message' => "","data" => $data));
+	}
 	
 }

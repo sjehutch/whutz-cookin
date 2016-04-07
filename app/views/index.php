@@ -230,7 +230,7 @@
           <li> <a href="#/dishs"> Recently added dishes </a> </li>
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
-          <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
+          <li> <a href="#/cook/booking"> BOOKING A Cook </a> </li>
         </ul>
           <ul class="nav navbar-nav show-sm" ng-if="(auth.getType()=='delivery' && (location.path() != '/home'))">
               <li> <a ><i class="fa fa-bars"></i> DELIVERY MENU </a> </li>
@@ -290,7 +290,7 @@
           <li> <a href="#/dishs"> Recently added dishes </a> </li>
           <!--<li> <a href="#/food-for-sale"> FOOD FOR SALE </a> </li>-->
           <li> <a href="#/my-orders"> MY ORDERS </a> </li>
-          <li> <a href="#/cook/booking"> BOOKING With Cook </a> </li>
+          <li> <a href="#/cook/booking"> BOOKING A Cook </a> </li>
     </ul>
 
      <ul class="tree dhtml show-gt-sm" ng-if="auth.getType()=='delivery' ">

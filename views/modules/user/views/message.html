@@ -15,18 +15,18 @@
         </div>
         <div class="col-sm-9">
         	<h4>Messages</h4>
-        
-        
-        	<div class="full" ng-init="itemId007 = messages[0].user_id ">
+
+            <input type="text" ng-model="send.text" class="form-control"/>
+            <button class="btn mt10" ng-click="sender()">Send</button>
+            <br/>
+            <br/>
+            <div class="full" ng-init="itemId007 = messages[0].user_id ">
             	<p class="alert alert-success"  ng-repeat="msg in messages">{{ msg.text }} {{ msg.sms_count }}<span class="pull-right">{{ msg.time}}</span> </p>
 
             </div>
         
         
-        	<input type="text" ng-model="send.text" class="form-control"/>
-            
-            
-            <button class="btn mt10" ng-click="sender()">Send</button>	
+
         </div>
         
 

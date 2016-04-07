@@ -55,8 +55,9 @@ user.controller('whutz.modules.user.message', [
 			$http.post("/send",$scope.send)
 				.success(function (data) {
 					var msg2={text:$scope.send.text,time:"Now"};
+					$scope.send.text='';
 
-					$scope.messages.push(msg2);
+					$scope.messages.unshift(msg2);
 					Notification.info("Message send Successfully!!")
 					$scope.send.text=null;
 				})
@@ -525,7 +526,6 @@ user.controller('whutz.modules.user.plan2', [
 		}
 		
 }]);
-
 user.controller('whutz.modules.user.myaccount', [
     '$scope',
 	'$rootScope',
@@ -555,7 +555,6 @@ user.controller('whutz.modules.user.myaccount', [
 		 
 		 
 	 }]);
-
 user.controller('whutz.modules.user.dashboard', [
     '$scope',
 	'$rootScope',
@@ -610,7 +609,6 @@ user.controller('whutz.modules.user.dashboard', [
 		 
 		 
 	 }]);
-
 user.controller('whutz.modules.user.dashboardUser', [
     '$scope',
 	'$rootScope',
@@ -639,8 +637,6 @@ user.controller('whutz.modules.user.dashboardUser', [
 
 
 	 }]);
-
-
 user.controller('whutz.modules.user.calendar', [
     '$scope',
 	'$rootScope',
@@ -733,9 +729,6 @@ user.controller('whutz.modules.user.delivery',['$scope','$http','Notification', 
 		});
 
 }]);
-
-
-
 user.controller('whutz.modules.user.deliveryCompleted',['$scope','$http','Notification',  function($scope,$http,Notification){
 
 	$scope.delivery = [];

@@ -89,7 +89,8 @@ Route::get("cook/my-orders", array("before" => "auth" ,"uses" => "OrderControlle
 Route::get("my-orders", array("before" => "auth" ,"uses" => "OrderController@userOrders"));
 Route::post("order/place", array("before" => "auth" ,"uses" => "OrderController@orderPlace"));
 
-Route::get("cook/booking", array("before" => "auth" ,"uses" => "BookingController@index"));
+Route::get("cook/booking", array("before" => "auth" ,"uses" => "BookingController@getCookAvailableArea"));
+
 	
 Route::post("survey", array("uses" => "SurveyController@insert" ))	;
 	

@@ -9,7 +9,29 @@
         <br>
         <br>
         <div class="col-md-12">
-          <table class="table table-bordered">
+
+          <div class="col-sm-12 nopd" ng-repeat="item in cooks">
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">name <a class="white pull-right">Book Now</a></div>
+              <div class="panel-body">
+                <div class="col-sm-3 nopd">
+                  <img src="views/img/cook.jpg" alt="Cook" />
+                </div>
+                <div class="col-sm-9 nopd">
+                   <div class="col-sm-6 nopd">Name: name</div>
+                   <div class="col-sm-6 nopd">email : email</div>
+                    <div class="col-sm-6 nopd">Specialty : specialty</div>
+                    <div class="col-sm-6 nopd">
+                       Work History : work_history
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+          <!--<table class="table table-bordered">
             <thead>
               <tr>
                 <th style="width: 13%;">User</th>
@@ -28,15 +50,15 @@
                 <td style="width: 13%;">{{booking.user.name}}</td>
                 <td>{{ booking.user.name }}</td>
                 <td><a href="tel:{{booking.user.phone}}">{{booking.user.phone}}</a></td>
-                <td>{{booking.booking_date}}</td>
-                <td>{{booking.venue}}</td>
-                <td>{{booking.dish.name}}</td>
-                <td>{{booking.quantity}}</td>
-                <td>{{booking.details}}</td>
-                <td>{{booking.status}}</td>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.venue }}</td>
+                <td>{{ booking.dish.name }}</td>
+                <td>{{ booking.quantity }}</td>
+                <td>{{ booking.details }}</td>
+                <td>{{ booking.status }}</td>
               </tr>
             </tbody>
-          </table>
+          </table>-->
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
       </div>
       <div class="tab-content">
         <ul class="nav nav-tabs clearfix" id="home-page-tabs">
-          <li class="homefeatured"><a class="homefeatured">{{ (auth.getType()=='user')? 'All DISHES' : 'Live' }}</a></li>
+          <li class="homefeatured"><a class="homefeatured">{{ (auth.getType()=='user')? 'Recently Added Dishs ' : 'Live' }}</a></li>
         </ul>
         <br>
         <div class="col-md-12">
@@ -35,6 +35,9 @@
             </div>
           </div>
         </div>
+        <div class="col-sm-12" ng-if="dishs.length == 0">
+            <p> Sorry we are not in your area.</p>
+        </div>
       </div>
       <div class="tab-content" ng-if="auth.getType()=='cook'">
         <ul class="nav nav-tabs clearfix" id="home-page-tabs2">
@@ -44,12 +47,12 @@
         <div class="col-md-12">
           <div class="col-md-4" ng-repeat="dish in pastDishs">
             <div class="panel panel-default">
-              <div class="panel-body"> <img style="max-width: 100%; height: 190px;" class="thumbnail" ng-src="{{ '/uploads/'+dish.dish_img }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ dish.name }}</b> <br>
+              <div class="panel-body"> <img style="max-width: 100%;" class="thumbnail" ng-src="{{ '/uploads/'+dish.dish_img }}"> <b style="text-transform: uppercase; font-size: 18px; color: rgb(112, 171, 37);">{{ dish.name }}</b>
                 <p><b style="color:black;text-transform: uppercase;">DISH BY: {{ dish.user.name }}</b></p>
                 <p><b>{{ dish.quantity }} plates left <br/>
                   <!--2 Miles Away--></b> </p>
                 <center>
-                  <span style="color:red; font-size: 22px;"><b>$ {{ dish.price }}</b></span><br>
+                  <span style="color:red; font-size: 22px;"><b>${{ dish.price }}</b></span><br>
                   <a ng-href="{{ '#/dish/show/'+ dish.id }}">
                     <div class="submit">
                       <button name="adddishweb" id="SubmitCreate" type="submit" class="btn btn-default btn-md"> <span> <i class="fa fa-plus"></i> VIEW DETAILS </span> </button>

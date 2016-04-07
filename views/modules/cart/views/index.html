@@ -13,7 +13,7 @@
             <div class="center_column" id="top_column"></div>
           </div>
           <div class="row">
-            <table class="table table-bordered">
+            <table class="table table-bordered" ng-if="carts.length != 0">
               <thead>
               <tr>
                 <th style="width: 13%;">Photo</th>
@@ -54,6 +54,7 @@
               </tr>
               </tbody>
             </table>
+            <p ng-if="carts.length == 0">NOTHING IS IN YOUR CART </p>
           </div>
         </div>
       </div>

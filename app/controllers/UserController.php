@@ -278,7 +278,7 @@ class UserController extends BaseController {
 		$orWhere = ["user_id" => Auth::user()->id,"from_id" =>  $id];
 
 		Message::where("isRead",0)->where($where)->orWhere($orWhere)->update(array("isRead"=>1));
-		$data = Message::where($where)->orWhere($orWhere)->get();
+		$data = Message::where($where)->orWhere($orWhere)->orderBy("created_at",'desc')->get();
 		$data = array_map(function($row) {
 			$row["time"] = Helpers::time_ago($row["created_at"]);
 			$user = User::find($row["from_id"]);
