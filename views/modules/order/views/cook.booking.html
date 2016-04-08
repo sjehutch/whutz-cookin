@@ -1,4 +1,37 @@
+<script type="text/ng-template" id="bookingCook.html">
+  <div class="open-desc text-center">
 
+    <h1>Booking A Cook</h1>
+    <div class="row">
+    <div class="form-group">
+      <div class="col-sm-6 btm-mrg-sm">
+        <input ng-model="model.book_date" type="text" placeholder="Date" />
+      </div>
+      <div class="col-sm-6">
+        <select ng-model="model.book_time" class="form-control" name="reserve-time" id="reserve-time">
+          <option value="">Choose Your Time</option>
+          <option value="9AM">9AM</option>
+          <option value="10AM">10AM</option>
+          <option value="11AM">11AM</option>
+          <option value="12PM">12PM</option>
+          <option value="1PM">1PM</option>
+          <option value="2PM">2PM</option>
+          <option value="3PM">3PM</option>
+          <option value="4PM">4PM</option>
+          <option value="5PM">5PM</option>
+          <option value="6PM">6PM</option>
+          <option value="7PM">7PM</option>
+          <option value="8PM">8PM</option>
+          <option value="9PM">9PM</option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <a ng-click="booking()">Booking</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</script>
 <div class="container sets-wrap">
   <div class="row">
     <div class="center_column col-xs-12 col-sm-10 col-sm-offset-1" id="center_column">
@@ -13,17 +46,17 @@
           <div class="col-sm-12 nopd" ng-repeat="item in cooks">
 
             <div class="panel panel-primary">
-              <div class="panel-heading">name <a class="white pull-right">Book Now</a></div>
+              <div class="panel-heading">{{ item.name }}<a class="white pull-right" ng-click="booking(item)">Booking</a></div>
               <div class="panel-body">
                 <div class="col-sm-3 nopd">
-                  <img src="views/img/cook.jpg" alt="Cook" />
+                  <img ng-src="{{ ( item.profile_photo == null )? 'views/img/cook.jpg' : 'uploads/'+item.profile_photo }}" alt="Cook"  width="100" />
                 </div>
                 <div class="col-sm-9 nopd">
-                   <div class="col-sm-6 nopd">Name: name</div>
-                   <div class="col-sm-6 nopd">email : email</div>
-                    <div class="col-sm-6 nopd">Specialty : specialty</div>
+                   <div class="col-sm-6 nopd">Name: {{ item.name }}</div>
+                   <div class="col-sm-6 nopd">email : {{ item.email }}</div>
+                    <div class="col-sm-6 nopd">Specialty : {{ item.specialty }}</div>
                     <div class="col-sm-6 nopd">
-                       Work History : work_history
+                       Work History : {{ item.work_history }}
                     </div>
                 </div>
               </div>

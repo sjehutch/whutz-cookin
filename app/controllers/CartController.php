@@ -131,6 +131,16 @@ class CartController extends \BaseController {
 			return	Response::json(array('status' => true, 'message' => "Item remove failed", ));	
 	}
 
+	public function getCart($id)
+	{
+		$data  = Cart::all();
+
+		if($data)
+			return	Response::json(array('status' => true, 'message' => "",$data=>$data ));
+		else
+			return	Response::json(array('status' => true, 'message' => "",$data=>$data ));
+	}
+
 
 }
 

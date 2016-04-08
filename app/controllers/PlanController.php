@@ -33,6 +33,24 @@ class PlanController extends BaseController {
 		
 		
 	}
-	
+
+	public function destroy($id){
+
+		$user = Auth::user();
+		$user->plan_id = (int)$id;
+		$user->save();
+
+
+		$data = array("cook_id" => Auth::user()->id, "plan_id" => $id );
+
+		$cook_plan = CookPlan::create($data);
+
+		if($cook_plan)
+			return Response::json(array("status" => true,'message' => "Plan Activated", "user" => Auth::user()  ));
+		else
+			return Response::json(array("status" => false, "message" => "Plan Acticated failed" ));
+
+
+	}
 	
 }

@@ -86,12 +86,26 @@ order.controller('whutz.modules.order.cook.booking', [
     '$window',
 	'$routeParams',
 	"whutz.security.auth",
-	 function ($scope, $http, $location, $window,$routeParams,auth) {
-		 $scope.bookings = [];
+	'ngDialog',
+	 function ($scope, $http, $location, $window,$routeParams,auth,ngDialog) {
+		 $scope.cooks = [];
+		 $scope.model = null;
+
+
+		 $scope.booking = function(){
+			 ngDialog.open({
+				 template: 'bookingCook.html',
+				 controller: ['$scope', function($scope) {
+					 // controller logic
+				 }]
+			 });
+		 }
+
+
 		 $http.get("/cook/booking")
 				.success(function (data) {
                  	if(data.status){
-						$scope.bookings = data.bookings;
+						$scope.cooks = data.data;
 					}else{
 						
 					}
@@ -146,7 +160,7 @@ order.controller('whutz.modules.order.place',[
 	  $scope.carts = [];
 	  $scope.total = 0;
 	  $scope.deliveryFees=0;
-	$scope.index = function(){
+	  $scope.index = function(){
 		$http.get("/mycart")
 			.success(function (data) {
 				if(data.status){
@@ -165,7 +179,7 @@ order.controller('whutz.modules.order.place',[
 				console.log('Error: ' + data);
 			});
 	}
-	 $scope.index();
+	  $scope.index();
 	 
 	 $scope.setDelivery = function(method){
 		 $scope.selectedDelivery = method;

@@ -56,8 +56,35 @@ class FilesController extends BaseController {
 		else{
 			return Response::json(array('status' => false, 'message' => 'file not exists'));
 		}
-		
-		
+
 	}
-	
+
+	function getFiles(){
+
+		$validate=Validator::make(Input::all(),array(
+			'file'    =>'required',
+		));
+
+		if($validate->fails()){
+			return Response::json(array('status' => false, 'message' => 'file required'));
+		}
+
+		$file = Input::file('file');
+
+		$fileName =  Str::random(40);
+		$extension = $file->getClientOriginalExtension();
+
+		$fileName = date('Y-m-d-H-i-s-').$fileName.'.'.$extension;
+
+		$path = public_path().'/uploads/';
+
+
+		$file->move($path, $fileName);
+
+		return Response::json(array(
+			'status' => true,
+			'message' => 'file uploaded',
+			"fileName" => $fileName
+		));
+	}
 }

@@ -27,7 +27,7 @@ class BookingController extends BaseController {
 
 		$where = [];
 		$where["type"] = "cook";
-		$where["zip"] = Auth::user()->zip;
+		//$where["zipcode"] = Auth::user()->zip;
 
 		$data = User::where($where)->get();
 

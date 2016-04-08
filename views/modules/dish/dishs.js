@@ -209,7 +209,7 @@ dish.controller('whutz.modules.dish.search', [
 		 $scope.options = {scrollwheel: false};
 		 
 		 var setPosition = function(position){
-			var map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 12 };
+			var map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 50, scrollwheel:false};
 			map.center.latitude = position.coords.latitude;
 			map.center.longitude = position.coords.longitude;
 			
