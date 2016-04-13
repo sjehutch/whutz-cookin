@@ -11,6 +11,9 @@
 |
 */
 
+
+
+
 Route::get('/', function()
 {
 	return View::make('index');
@@ -127,6 +130,7 @@ Route::group(array('before' => 'auth'), function() {
 
 
 
+Route::get("user/{id}",array("uses" => "UserController@getUserById" ));
 
 
 /* admin routes*/ 
@@ -173,11 +177,14 @@ Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuot
 
 Route::get("/123",function(){
 
-	$a = new PostmatesController;
+	echo Session::activity(10)->get();
 
-	$a =  $a->getDeliveries()->getData();
+
+	//$a = new PostmatesController;
+
+	//$a =  $a->getDeliveries()->getData();
 	//echo "<pre>";
-	print_r($a->url);
+	//print_r($a->url);
 
 // 'application/json; charset=utf8'
 

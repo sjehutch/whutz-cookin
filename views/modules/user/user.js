@@ -662,6 +662,36 @@ user.controller('whutz.modules.user.calendar', [
 		 
 }]);
 
+user.controller('whutz.modules.user.public', [
+	'$scope',
+	'$rootScope',
+	'$http',
+	'$location',
+	'$window',
+	'$routeParams',
+	'$timeout',
+	"whutz.security.auth",
+	'Notification',
+	function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification) {
+
+		$scope.user = {};
+
+		$scope.getUsers = function(){
+
+			$http.get("/user/"+ $routeParams.id)
+				.success(function (data) {
+					if(data.status){
+						$scope.user = data.user;
+					}else{
+						Notification.error(data.message);
+					}
+				})
+				.error(function (data) {
+					console.log('Error: ' + data);
+				});
+		}
+		$scope.getUsers();
+	}]);
 
 //  whutz.modules.user.send.message
 

@@ -37,7 +37,11 @@ class UserController extends BaseController {
 				}
 		}
 	}
-	
+
+	public function getUserById($id){
+		return Response::json(array('status' =>true,'message' => "", "user" => User::findOrFail($id)));
+	}
+
 	public function getUserInfo(){
 		 return Response::json(array('status' =>true,'message' => "", "user" => Auth::user()) );
 	}

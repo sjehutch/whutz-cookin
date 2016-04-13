@@ -25,5 +25,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	protected $fillable = array("name","email","password","phone","mobile",'dob','address','city','state','zip','website','specialty','work_history','profile_photo','type',"latitude","longitude","verification","email_verification_code","certification","ssn_ein","business_name","amount_time","write_book","travel","fav_food","least_fav","facebook","youtube","twitter","instagram","payment","cooking_type","licence_no","licence_img","is_complete");
 
-	
+
+	public function online(){
+
+	}
 }

@@ -111,6 +111,10 @@ app.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider','$http
 			templateUrl: 'views/modules/order/views/cook.booking.html',
             controller: 'whutz.modules.order.cook.booking'
 		})
+		.when('/user/:id',{
+			templateUrl: 'views/modules/user/views/public.profile.html',
+			controller: 'whutz.modules.user.public'
+		})
 		.when('/near-dish',{
 			templateUrl: 'views/modules/user/views/map.search.html',
             controller: 'whutz.modules.user.near.dish'
