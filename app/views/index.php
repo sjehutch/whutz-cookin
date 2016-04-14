@@ -453,6 +453,7 @@
 <script data-semver="1.6.1" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js"></script>
 <script src="views/libraries/3rdParty/calendar/calendar.js"></script> 
 <script src="views/libraries/3rdParty/moment/moment.js" ></script>
+<script src="views/libraries/3rdParty/highcharts/highcharts.js" ></script>
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 

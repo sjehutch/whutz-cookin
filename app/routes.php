@@ -12,7 +12,15 @@
 */
 
 
+if (Auth::check()) {
+	User::whereId(Auth::user()->id)->update(array("last_activity"=>strtotime("now")));
+}
 
+//if(strtotime('now') - $time <= 600) { // 60 * 10
+//	echo "online";
+//}else{
+//	echo "offline"	;
+//}
 
 Route::get('/', function()
 {
