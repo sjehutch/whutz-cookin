@@ -107,6 +107,9 @@ Route::post("survey", array("uses" => "SurveyController@insert" ))	;
 	
 Route::group(array('before' => 'auth'), function() {
 
+	Route::get('dishs/sold', array("uses" => "DishController@getLastThirtyDayDishSold"));
+	Route::get('dishs/topsold', array("uses" => "DishController@getTopSoldDish"));
+
 	Route::get('/likes/{type}', array("uses" => "UserController@likes"));
 
 	Route::get("/receiver/{id}",array("uses" => "UserController@receiver"));
@@ -115,7 +118,6 @@ Route::group(array('before' => 'auth'), function() {
 	Route::resource('dish', 'DishController',array('except' => array("edit",'create')));
 
 	Route::get("cook/plans", array("uses" => "PlanController@plans"));
-
 
 	Route::get("cook/plan/{id}", array("uses" => "PlanController@active"));
 
@@ -160,29 +162,33 @@ Route::group(['before' => 'auth.admin'], function() {
 	
 	
 	Route::get("admin/payments",array("uses" => "AdminController@paymentDone" ));
+	Route::post("admin/cookPayNow", array("uses" => "AdminController@cookPayNow" ));
 	Route::delete("admin/payment/{id}",array("uses" => "AdminController@deletePayments" ));
-	
+
 	
 	Route::get("admin/sales",array("uses" => "AdminController@topsalesRecord" ));
 	Route::get("admin/cookPayments", array("uses" => "AdminController@cookPayments" ));
-	Route::post("admin/cookPayNow", array("uses" => "AdminController@cookPayNow" ));
+
+
+	Route::get("postmates/deliveries", array("uses" => "PostmatesController@getDeliveries" ));
+	Route::get("postmates/deliveries/{id}", array("uses" => "PostmatesController@getDelivery" ));
+	Route::get("postmates/deliveries/{id}/cancel", array("uses" => "PostmatesController@cancelDelivery" ));
+
+	Route::post("postmates/deliveries/{id}/return", array("uses" => "PostmatesController@returnDelivery" ));
+
+	Route::post("postmates/create", array("uses" => "PostmatesController@createDelivery" ));
+
+	Route::get("postmates/zones", array("uses" => "PostmatesController@deliveryZones" ));
+	Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuotes"));
 	
 	//Route::post("admin/dishs",array("before" => "auth.admin" ,"uses" => "AdminController@users" ));
 
 });
 
-Route::get("postmates/deliveries", array("uses" => "PostmatesController@getDeliveries" ));
-Route::get("postmates/deliveries/{id}", array("uses" => "PostmatesController@getDelivery" ));
-Route::get("postmates/deliveries/{id}/cancel", array("uses" => "PostmatesController@cancelDelivery" ));
-
-Route::post("postmates/deliveries/{id}/return", array("uses" => "PostmatesController@returnDelivery" ));
-
-Route::post("postmates/create", array("uses" => "PostmatesController@createDelivery" ));
-
-Route::get("postmates/zones", array("uses" => "PostmatesController@deliveryZones" ));
-Route::get("postmates/quotes", array("uses" => "PostmatesController@deliveryQuotes"));
 
 
+
+Route::get("/test123",array("uses" => "DishController@getTopSolidDish"));
 Route::get("/123",function(){
 
 	echo Session::activity(10)->get();

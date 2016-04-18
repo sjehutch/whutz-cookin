@@ -10,7 +10,6 @@ class DishController extends BaseController {
 	
 	}
 
-
 	public function create(){}
 	
 	
@@ -322,5 +321,84 @@ class DishController extends BaseController {
 						->select("id","name","dish_video")->get();
 		return Response::json(array('status' => true, 'message' => '', "videos" => $videos));	
 	}
+
+
+
+	public function getLastThirtyDayDishSold(){
+
+		$data = array();
+
+		$data = OrderItems::select('quantity','status',DB::raw('SUBSTRING_INDEX(created_at," ", 1) AS cdate'),DB::raw('sum(quantity) as totalDishSold'))
+							->whereCook_id(Auth::user()->id)
+				   			 ->whereBetween('created_at',array('DATE_SUB(NOW(), INTERVAL 50 DAY)','NOW()'))
+							 ->groupBy('cdate')
+							 ->get();
+
+
+		$data = $data->toArray();
+
+		$date = date("Y-m-d", strtotime("-30 day"));
+
+		$list = array();
+
+		$list["categories"] = array();
+		$list["data"] = array();
+
+		while (strtotime($date) <= strtotime('now')) {
+
+			$isDataFound = false;
+			foreach($data as $row){
+				if($row['cdate'] == $date){
+					$isDataFound=true;
+					$list["categories"][] = $date;
+					$list["data"][]  = $row["totalDishSold"];
+					break;
+				}
+			}
+
+			if(!$isDataFound){
+				$list["categories"][] = $date;
+				$list["data"][]  = 0;
+			}
+
+			$date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+		}
+
+		return Response::json(array('status' => true, 'message' => '', "data" => $list));
+
+	}
+
+	public function getTopSoldDish(){
+
+		$data = array();
+
+		$data = OrderItems::with('dish')
+							->select('quantity','status','dish_id',DB::raw('sum(quantity) as totalDishSold'))
+							->groupBy('dish_id')
+							->orderBy('totalDishSold','desc')
+							->take(5)
+							->get();
+
+
+		return Response::json(array('status' => true, 'message' => '', "data" => $data));
+
+	}
+
+	public function getLastThirtyDayTopSoldDish(){
+
+		$data = array();
+
+		$data = OrderItems::with('dish')
+			->select('quantity','status',DB::raw('sum(quantity) as totalDishSold','dish_id',DB::raw('SUBSTRING_INDEX(created_at," ", 1) AS cdate')))
+			->groupBy('dish_id')
+			->orderBy('totalDishSold','desc')
+			->take(5)
+			->get();
+
+
+		return Response::json(array('status' => true, 'message' => '', "data" => $data));
+
+	}
 }
 
+  

@@ -566,34 +566,81 @@ user.controller('whutz.modules.user.dashboard', [
 	"whutz.security.auth",
 	'Notification',
 	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification) {
-		 
+
 		$scope.payments = [];
 		$scope.soldDish = [];
+		$scope.topSoldDish = [];
 
-		 Highcharts.chart('container', {
-			 xAxis: {
-				 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-					 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-			 },
 
-			 series: [{
-				 data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-			 }]
-		 });
+		 $scope.getLastThirtyDaySoldDish = function(){
+			 $http.get('dishs/sold')
+				 .success(function(data){
+						 Highcharts.chart('container', {
+							 title: {
+								 text: 'Last thirty Day sold dishs'
+							 },
+							 xAxis: {
+								 categories: data.data.categories
+							 },
+							 series: [{
+								 data: data.data.data
+							 }]
+						 });
+				 })
+				 .error(function(data){
 
-		 Highcharts.chart('piechart', {
-			 chart: {
-				 type: 'pie'
-			 },
-			 xAxis: {
-				 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-					 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-			 },
+				 })
+		 }
 
-			 series: [{
-				 data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-			 }]
-		 });
+		 $scope.getLastThirtyDaySoldDish();
+
+		 $scope.getTopSoldDish = function(){
+			 $http.get('dishs/topsold')
+				 .success(function(data){
+					 debugger;
+					 var series = [];
+					 for(var i in data.data)
+					 {
+						series.push({
+							 name: data.data[i].dish.name,
+							 y: Number(data.data[i].totalDishSold)
+						 })
+					 }
+
+
+					 Highcharts.chart('piechart', {
+						 chart: {
+							 type: 'pie'
+						 },
+						 title: {
+							 text: 'Top Dish Sold'
+						 },
+						 plotOptions: {
+							 pie: {
+								 allowPointSelect: true,
+								 cursor: 'pointer',
+								 dataLabels: {
+									 enabled: true,
+									 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+								 }
+							 }
+						 },
+						 series: [{
+							 data: series
+						 }]
+					 });
+				 })
+				 .error(function(data){
+
+				 })
+		 }
+
+		 $scope.getTopSoldDish();
+
+
+
+
+
 
 
 		$http.get("/cook/dishs")
@@ -606,9 +653,9 @@ user.controller('whutz.modules.user.dashboard', [
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
-                }); 
-				
-						
+                });
+
+
 		$http.get("/cook/dishs?type=solddish")
 				.success(function (data) {
                  	if(data.status){
@@ -619,8 +666,8 @@ user.controller('whutz.modules.user.dashboard', [
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
-                }); 
-				
+                });
+
 		$http.get("/payments?type=recently")
 				.success(function (data) {
                  	if(data.status){
@@ -631,9 +678,9 @@ user.controller('whutz.modules.user.dashboard', [
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
-                }); 
-		 
-		 
+                });
+
+
 	 }]);
 user.controller('whutz.modules.user.dashboardUser', [
     '$scope',
@@ -646,9 +693,9 @@ user.controller('whutz.modules.user.dashboardUser', [
 	"whutz.security.auth",
 	'Notification',
 	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification) {
-		 
+
 		$scope.dishs = [];
-			
+
 		$http.get("/likes/dish_favorite")
 				.success(function (data) {
                  	if(data.status){
@@ -675,17 +722,17 @@ user.controller('whutz.modules.user.calendar', [
 	'Notification',
 	'$compile',
 	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification,$compile) {
-		 
+
 		$scope.events = [];
-		
+
 		$http.get("cook/booking?type=calendar")
 			.success(function (data) {
 				$scope.events = data.bookings;
 			})
 			.error(function (data) {
 				console.log('Error: ' + data);
-			}); 
-		 
+			});
+
 }]);
 
 user.controller('whutz.modules.user.public', [
@@ -733,29 +780,29 @@ user.controller('whutz.modules.user.send.message', [
 	'Notification',
 	'$compile',
 	 function ($scope, $rootScope, $http, $location, $window,$routeParams,$timeout,auth,Notification,$compile) {
-		 
-		
+
+
 		$scope.cook_id = $routeParams.id;
 		$scope.send = { "cook_id" : $scope.cook_id };
-		
+
 		$scope.cook_photo = null;
-		
-		
+
+
 		$http.get("/user/photo/"+$scope.cook_id)
 			.success(function (data) {
 				if(data.status){
 					$scope.cook_photo = data.data;
 				}else{
-					
+
 				}
 			})
 			.error(function (data) {
 				console.log('Error: ' + data);
-			}); 
-	
-		
+			});
+
+
 		$scope.sender = function(){
-				
+
 			$http.post("/send",$scope.send)
 				.success(function (data) {
 					Notification.info("Message send Successfully!!")
@@ -763,9 +810,9 @@ user.controller('whutz.modules.user.send.message', [
 				})
 				.error(function (data) {
 					console.log('Error: ' + data);
-				}); 	
+				});
 		}
-		
+
 
 }]);
 user.controller('whutz.modules.user.delivery',['$scope','$http','Notification', function($scope,$http,Notification){
